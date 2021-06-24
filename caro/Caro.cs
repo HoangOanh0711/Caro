@@ -16,7 +16,11 @@ namespace caro
         SocketManager socket;
         string IP = "127.0.0.1";
         int mode = 0;
-        
+        string sohinh;
+        string name;
+        private int _ticks;
+        Bitmap bitmap = new Bitmap(Application.StartupPath + "\\Resources\\o.png");
+
 
         public Caro()
         {
@@ -40,7 +44,7 @@ namespace caro
             if(mode==1)
             {
                 socket = new SocketManager();
-                label1.Text = yourname1;
+                this.name = yourname1;
                 IP = yourname2;
                 hienchat.Enabled = true;
                 nhapchat.Enabled = true;
@@ -81,7 +85,7 @@ namespace caro
         {
             if (MessageBox.Show("Bạn có chắc muốn thoát không", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != System.Windows.Forms.DialogResult.Yes)
                 e.Cancel = true;
-
+            Application.Exit();
             //else
             //{
             //    try
@@ -124,10 +128,24 @@ namespace caro
 
         private void send_Click(object sender, EventArgs e)
         {
-            hienchat.Text += "- " + "" + ": " + nhapchat.Text + "\r\n";
-            nhapchat.Text = null;
-            socket.Send(new SocketData((int)SocketCommand.SEND_MESSAGE, hienchat.Text, new Point()));
-            Listen();
+            if (nhapchat.Text == "")
+            {
+                sendicon();
+            }
+            else
+            {
+                if (socket.IsServer == true)
+                {
+                    hienchat.Text += "- " + "" + label1.Text + ": " + nhapchat.Text + "\r\n";
+                    socket.Send(new SocketData((int)SocketCommand.SEND_MESSAGE, hienchat.Text, new Point()));
+                }
+                else
+                {
+                    hienchat.Text += "- " + "" + label2.Text + ": " + nhapchat.Text + "\r\n";
+                    socket.Send(new SocketData((int)SocketCommand.SEND_MESSAGE, hienchat.Text, new Point()));
+                }
+                Listen();
+            }
         }
         #endregion
 
@@ -142,8 +160,6 @@ namespace caro
         }
         private void ProcessData(SocketData data)
         {
-
-
             switch (data.Command)
             {
                 //case (int)SocketCommand.SEND_POINT:
@@ -166,6 +182,22 @@ namespace caro
 
                 case (int)SocketCommand.SEND_MESSAGE:
                     hienchat.Text = data.Message;
+                    break;
+
+                case (int)SocketCommand.SEND_ICON:
+                    switch (sohinh = data.Message)
+                    {
+                        case "1":
+                            pictureBox5.Image = bitmap;
+                            break;
+                        case "2":
+                            pictureBox6.Image = bitmap;
+                            break;
+                        case "5":
+                            pictureBox6.Image = null;
+                            pictureBox5.Image = null;
+                            break;
+                    }
                     break;
 
                 //    case (int)SocketCommand.NEW_GAME:
@@ -247,12 +279,14 @@ namespace caro
                 socket.IsServer = true;
                 socket.CreateServer();
                 MessageBox.Show("Bạn đang là Server", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                label1.Text = name;
             }
             else
             {
                 socket.IsServer = false;
                 Listen();
                 MessageBox.Show("Kết nối thành công !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                label2.Text = name;
             }
         }
         private void Listen()
@@ -270,7 +304,43 @@ namespace caro
             ListenThread.IsBackground = true;
             ListenThread.Start();
         }
-
         #endregion
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            _ticks++;
+            if(_ticks ==3)
+            {
+                xoaicon();
+                timer1.Stop();
+                _ticks = 0;
+                sohinh = "5";
+                socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+            }
+        }
+        private void sendicon()
+        {
+            timer1.Start();
+            if (socket.IsServer == true)
+            {
+                pictureBox5.Image = bitmap;
+                sohinh = "1";
+                socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+            }
+            else
+            {
+                pictureBox6.Image = bitmap;
+                sohinh = "2";
+                socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+            }
+            Listen();
+        }
+
+        private void xoaicon()
+        {
+            pictureBox5.Image = null;
+            pictureBox6.Image = null;
+        }
     }
+
 }

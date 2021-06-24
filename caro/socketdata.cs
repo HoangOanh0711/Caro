@@ -49,6 +49,7 @@ namespace socketdata
         UNDO,
         END_GAME,
         QUIT,
-        SEND_MESSAGE
+        SEND_MESSAGE,
+        SEND_ICON
     }
 }
