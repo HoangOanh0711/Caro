@@ -25,7 +25,7 @@ namespace caro
         private Stack<PlayInfo> stkUndoStep;
         private Stack<PlayInfo> stkRedoStep;
 
-        //private int playMode = 0;
+        private int playMode = 0;
         private bool IsAI = false;
 
         public Panel Board
@@ -424,6 +424,10 @@ namespace caro
                 playerClicked(this, new BtnClickEvent(GetButtonCoordinate(btn)));
             if (IsEndGame())
                 EndGame();
+            if (!(IsAI) && playMode == 3)
+                StartAI();
+
+            IsAI = false;
 
         }
         public void EndGame()
