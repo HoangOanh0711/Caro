@@ -19,7 +19,10 @@ namespace caro
         string sohinh;
         string name;
         private int _ticks;
-        Bitmap bitmap = new Bitmap(Application.StartupPath + "\\Resources\\o.png");
+        Bitmap haha = new Bitmap(Application.StartupPath + "\\Resources\\haha.png");
+        Bitmap sad = new Bitmap(Application.StartupPath + "\\Resources\\sad.png");
+        Bitmap angry = new Bitmap(Application.StartupPath + "\\Resources\\angry.png");
+        int icon;
 
 
         public Caro()
@@ -36,12 +39,12 @@ namespace caro
         {
             InitializeComponent();
             mode = gameMode;
-            if(mode==2 || mode ==3)
+            if (mode == 2 || mode == 3)
             {
                 label1.Text = yourname1;
                 label2.Text = yourname2;
-            }    
-            if(mode==1)
+            }
+            if (mode == 1)
             {
                 socket = new SocketManager();
                 this.name = yourname1;
@@ -49,7 +52,7 @@ namespace caro
                 hienchat.Enabled = true;
                 nhapchat.Enabled = true;
                 send.Enabled = true;
-            }    
+            }
             board = new GameBoard(banco);
             board.GameOver += Board_GameOver;
             //board.PlayerClicked += Board_PlayerClicked;
@@ -137,15 +140,18 @@ namespace caro
                 if (socket.IsServer == true)
                 {
                     hienchat.Text += "- " + "" + label1.Text + ": " + nhapchat.Text + "\r\n";
+                    nhapchat.Text = "";
                     socket.Send(new SocketData((int)SocketCommand.SEND_MESSAGE, hienchat.Text, new Point()));
                 }
                 else
                 {
                     hienchat.Text += "- " + "" + label2.Text + ": " + nhapchat.Text + "\r\n";
+                    nhapchat.Text = "";
                     socket.Send(new SocketData((int)SocketCommand.SEND_MESSAGE, hienchat.Text, new Point()));
                 }
-                Listen();
             }
+            Listen();
+
         }
         #endregion
 
@@ -188,12 +194,24 @@ namespace caro
                     switch (sohinh = data.Message)
                     {
                         case "1":
-                            pictureBox5.Image = bitmap;
+                            pictureBox5.Image = haha;
                             break;
                         case "2":
-                            pictureBox6.Image = bitmap;
+                            pictureBox6.Image = haha;
+                            break;
+                        case "3":
+                            pictureBox5.Image = sad;
+                            break;
+                        case "4":
+                            pictureBox6.Image = sad;
                             break;
                         case "5":
+                            pictureBox5.Image = angry;
+                            break;
+                        case "6":
+                            pictureBox6.Image = angry;
+                            break;
+                        case "7":
                             pictureBox6.Image = null;
                             pictureBox5.Image = null;
                             break;
@@ -261,14 +279,14 @@ namespace caro
 
         private void Caro_Shown(object sender, EventArgs e)
         {
-            if(mode==1)
+            if (mode == 1)
             {
                 IP = socket.GetLocalIPv4(NetworkInterfaceType.Wireless80211);
 
                 if (string.IsNullOrEmpty(IP))
                     IP = socket.GetLocalIPv4(NetworkInterfaceType.Ethernet);
-            }    
-            
+            }
+
         }
 
         private void Connect()
@@ -306,33 +324,71 @@ namespace caro
         }
         #endregion
 
+        #region icon
         private void timer1_Tick(object sender, EventArgs e)
         {
             _ticks++;
-            if(_ticks ==3)
+            if (_ticks == 2)
             {
                 xoaicon();
                 timer1.Stop();
                 _ticks = 0;
-                sohinh = "5";
+                sohinh = "7";
                 socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
             }
         }
         private void sendicon()
         {
+            switch (icon)
+            {
+                case 0:
+                    break;
+                case 1:
+                    if (socket.IsServer == true)
+                    {
+                        pictureBox5.Image = haha;
+                        sohinh = "1";
+                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                    }
+                    else
+                    {
+                        pictureBox6.Image = haha;
+                        sohinh = "2";
+                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                    }
+                    break;
+                case 2:
+                    if (socket.IsServer == true)
+                    {
+                        pictureBox5.Image = sad;
+                        sohinh = "3";
+                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                    }
+                    else
+                    {
+                        pictureBox6.Image = sad;
+                        sohinh = "4";
+                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                    }
+                    break;
+                case 3:
+                    if (socket.IsServer == true)
+                    {
+                        pictureBox5.Image = angry;
+                        sohinh = "5";
+                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                    }
+                    else
+                    {
+                        pictureBox6.Image = angry;
+                        sohinh = "6";
+                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                    }
+                    break;
+                default:
+                    break;
+            }
             timer1.Start();
-            if (socket.IsServer == true)
-            {
-                pictureBox5.Image = bitmap;
-                sohinh = "1";
-                socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
-            }
-            else
-            {
-                pictureBox6.Image = bitmap;
-                sohinh = "2";
-                socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
-            }
             Listen();
         }
 
@@ -341,6 +397,12 @@ namespace caro
             pictureBox5.Image = null;
             pictureBox6.Image = null;
         }
-    }
 
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox cb = sender as ComboBox;
+            icon = cb.SelectedIndex;
+        }
+    }
+    #endregion
 }
