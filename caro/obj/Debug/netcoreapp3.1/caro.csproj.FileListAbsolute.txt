@@ -114,3 +114,23 @@ D:\đồ án\lập trình mạng\Caro1\caro\obj\Debug\netcoreapp3.1\caro.csproj.
 D:\đồ án\lập trình mạng\Caro1\caro\obj\Debug\netcoreapp3.1\caro.dll
 D:\đồ án\lập trình mạng\Caro1\caro\obj\Debug\netcoreapp3.1\caro.pdb
 D:\đồ án\lập trình mạng\Caro1\caro\obj\Debug\netcoreapp3.1\caro.genruntimeconfig.cache
+C:\Users\baobe\Source\Repos\HoangOanh0711\DoAn\caro\bin\Debug\netcoreapp3.1\caro.exe
+C:\Users\baobe\Source\Repos\HoangOanh0711\DoAn\caro\bin\Debug\netcoreapp3.1\caro.deps.json
+C:\Users\baobe\Source\Repos\HoangOanh0711\DoAn\caro\bin\Debug\netcoreapp3.1\caro.runtimeconfig.json
+C:\Users\baobe\Source\Repos\HoangOanh0711\DoAn\caro\bin\Debug\netcoreapp3.1\caro.runtimeconfig.dev.json
+C:\Users\baobe\Source\Repos\HoangOanh0711\DoAn\caro\bin\Debug\netcoreapp3.1\caro.dll
+C:\Users\baobe\Source\Repos\HoangOanh0711\DoAn\caro\bin\Debug\netcoreapp3.1\caro.pdb
+C:\Users\baobe\Source\Repos\HoangOanh0711\DoAn\caro\obj\Debug\netcoreapp3.1\caro.csproj.AssemblyReference.cache
+C:\Users\baobe\Source\Repos\HoangOanh0711\DoAn\caro\obj\Debug\netcoreapp3.1\caro._2playersinlan.resources
+C:\Users\baobe\Source\Repos\HoangOanh0711\DoAn\caro\obj\Debug\netcoreapp3.1\caro.Caro.resources
+C:\Users\baobe\Source\Repos\HoangOanh0711\DoAn\caro\obj\Debug\netcoreapp3.1\caro.menu.resources
+C:\Users\baobe\Source\Repos\HoangOanh0711\DoAn\caro\obj\Debug\netcoreapp3.1\caro.playAI.resources
+C:\Users\baobe\Source\Repos\HoangOanh0711\DoAn\caro\obj\Debug\netcoreapp3.1\caro.playcom.resources
+C:\Users\baobe\Source\Repos\HoangOanh0711\DoAn\caro\obj\Debug\netcoreapp3.1\caro.Properties.Resources.resources
+C:\Users\baobe\Source\Repos\HoangOanh0711\DoAn\caro\obj\Debug\netcoreapp3.1\caro.csproj.GenerateResource.cache
+C:\Users\baobe\Source\Repos\HoangOanh0711\DoAn\caro\obj\Debug\netcoreapp3.1\caro.AssemblyInfoInputs.cache
+C:\Users\baobe\Source\Repos\HoangOanh0711\DoAn\caro\obj\Debug\netcoreapp3.1\caro.AssemblyInfo.cs
+C:\Users\baobe\Source\Repos\HoangOanh0711\DoAn\caro\obj\Debug\netcoreapp3.1\caro.csproj.CoreCompileInputs.cache
+C:\Users\baobe\Source\Repos\HoangOanh0711\DoAn\caro\obj\Debug\netcoreapp3.1\caro.dll
+C:\Users\baobe\Source\Repos\HoangOanh0711\DoAn\caro\obj\Debug\netcoreapp3.1\caro.pdb
+C:\Users\baobe\Source\Repos\HoangOanh0711\DoAn\caro\obj\Debug\netcoreapp3.1\caro.genruntimeconfig.cache

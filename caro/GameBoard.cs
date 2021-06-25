@@ -26,7 +26,7 @@ namespace caro
         private Stack<PlayInfo> stkRedoStep;
 
         //private int playMode = 0;
-        //private bool IsAI = false;
+        private bool IsAI = false;
 
         public Panel Board
         {
@@ -454,8 +454,418 @@ namespace caro
                 EndGame();
         }
         #endregion
+        #region 1 player
+        private long[] MangDiemTanCong= new long[7] { 0, 64, 4096, 262144, 16777216, 1073741824, 68719476736 };
+        private long[] MangDiemPhongThu= new long[7] { 0, 8, 512, 32768, 2097152, 134217728, 8589934592 };
 
+        #region Calculate attack score //tính điểm tấn công
+        private long AttackVertical(int CurrRow, int CurrCol) //Điểm tấn công theo chiều dọc
+        {
+            long TotalScore = 0; //điểm tổng
+            int ComCells = 0; //số quân của máy
+            int ManCells = 0; //số quân của người chơi
 
+            // Duyệt từ trên xuống
+            for (int Count = 1; Count < 6 && CurrRow + Count < Constance.nRows; Count++) 
+            //Xác định biến đếm: duyệt từ 1 đến 5, duyệt 4 ô + ô đang đánh là 5 ô
+            //&& CurrRow + Count < Constance.nRows dùng để giới hạn biên
+            {
+                if (MatrixPositions[CurrRow + Count][CurrCol].BackgroundImage == ListPlayers[0].Symbol) 
+            //xét mảng ô cờ vị trí[CurrRow + Count][CurrCol].BackgroundImage là quân máy thì tăng ComCells lên 1
+                    ComCells += 1;
+                else if (MatrixPositions[CurrRow + Count][CurrCol].BackgroundImage == ListPlayers[1].Symbol)
+                {
+           //xét mảng ô cờ vị trí[CurrRow + Count][CurrCol].BackgroundImage là quân người thì tăng ManCells lên 1
+                    ManCells += 1;
+                    break;
+                }
+                else 
+                    break;
+           //trường hợp không phải quân người cũng không phải quân máy thì thoát
+            }
+
+            // Duyệt từ dưới lên
+            for (int Count = 1; Count < 6 && CurrRow - Count >= 0; Count++)
+            //Xác định biến đếm: duyệt từ 1 đến 5, duyệt 4 ô + ô đang đánh là 5 ô
+            //&& CurrRow - Count >= 0 dùng để giới hạn biên
+            {
+                if (MatrixPositions[CurrRow - Count][CurrCol].BackgroundImage == ListPlayers[0].Symbol)
+            //xét mảng ô cờ vị trí[CurrRow + Count][CurrCol].BackgroundImage là quân máy thì tăng ComCells lên 1
+                    ComCells += 1;
+                else if (MatrixPositions[CurrRow - Count][CurrCol].BackgroundImage == ListPlayers[1].Symbol)
+                {
+           //xét mảng ô cờ vị trí[CurrRow + Count][CurrCol].BackgroundImage là quân người thì tăng ManCells lên 1
+                    ManCells += 1;
+                    break;
+                }
+                else
+                    break;
+            }
+
+            if (ManCells == 2)
+                return 0;
+
+            /* Nếu ManCells == 1 => bị chặn 1 đầu => lấy điểm phòng ngự tại vị trí này nhưng 
+            nên cộng thêm 1 để tăng phòng ngự cho máy cảnh giác hơn vì đã bị chặn 1 đầu */
+
+            TotalScore -= MangDiemPhongThu[ManCells + 1]; //giảm điểm
+            TotalScore += MangDiemTanCong[ComCells]; //tăng điểm
+
+            return TotalScore;
+        }
+
+        private long AttackHorizontal(int CurrRow, int CurrCol) //xét theo phương ngang
+        {
+            long TotalScore = 0;
+            int ComCells = 0;
+            int ManCells = 0;
+
+            // Duyệt từ trái sang phải
+            for (int Count = 1; Count < 6 && CurrCol + Count < Constance.nCols; Count++)
+            {
+                if (MatrixPositions[CurrRow][CurrCol + Count].BackgroundImage == ListPlayers[0].Symbol)
+                    ComCells += 1;
+                else if (MatrixPositions[CurrRow][CurrCol + Count].BackgroundImage == ListPlayers[1].Symbol)
+                {
+                    ManCells += 1;
+                    break;
+                }
+                else
+                    break;
+            }
+
+            // Duyệt từ phải sang trái
+            for (int Count = 1; Count < 6 && CurrCol - Count >= 0; Count++)
+            {
+                if (MatrixPositions[CurrRow][CurrCol - Count].BackgroundImage == ListPlayers[0].Symbol)
+                    ComCells += 1;
+                else if (MatrixPositions[CurrRow][CurrCol - Count].BackgroundImage == ListPlayers[1].Symbol)
+                {
+                    ManCells += 1;
+                    break;
+                }
+                else
+                    break;
+            }
+
+            if (ManCells == 2)
+                return 0;
+
+            /* Nếu ManCells == 1 => bị chặn 1 đầu => lấy điểm phòng ngự tại vị trí này nhưng 
+            nên cộng thêm 1 để tăng phòng ngự cho máy cảnh giác hơn vì đã bị chặn 1 đầu */
+
+            TotalScore -= MangDiemPhongThu[ManCells + 1];
+            TotalScore += MangDiemTanCong[ComCells];
+
+            return TotalScore;
+        }
+
+        private long AttackMainDiag(int CurrRow, int CurrCol) // Duyện xéo xuôi
+        {
+            long TotalScore = 0;
+            int ComCells = 0;
+            int ManCells = 0;
+
+            // Duyệt trái trên
+            for (int Count = 1; Count < 6 && CurrCol + Count < Constance.nCols && CurrRow + Count < Constance.nRows; Count++)
+            // Duyệt từ trên xuống, dòng tăng lên và cột giảm xuống
+            {
+                if (MatrixPositions[CurrRow + Count][CurrCol + Count].BackgroundImage == ListPlayers[0].Symbol)
+                    ComCells += 1;
+                else if (MatrixPositions[CurrRow + Count][CurrCol + Count].BackgroundImage == ListPlayers[1].Symbol)
+                {
+                    ManCells += 1;
+                    break;
+                }
+                else
+                    break;
+            }
+
+            // Duyệt phải dưới
+            for (int Count = 1; Count < 6 && CurrCol - Count >= 0 && CurrRow - Count >= 0; Count++)
+            // Duyệt từ dưới lên, dòng giảm dần và cột tăng lên
+            {
+                if (MatrixPositions[CurrRow - Count][CurrCol - Count].BackgroundImage == ListPlayers[0].Symbol)
+                    ComCells += 1;
+                else if (MatrixPositions[CurrRow - Count][CurrCol - Count].BackgroundImage == ListPlayers[1].Symbol)
+                {
+                    ManCells += 1;
+                    break;
+                }
+                else
+                    break;
+            }
+
+            if (ManCells == 2)
+                return 0;
+
+            /* Nếu ManCells == 1 => bị chặn 1 đầu => lấy điểm phòng ngự tại vị trí này nhưng 
+            nên cộng thêm 1 để tăng phòng ngự cho máy cảnh giác hơn vì đã bị chặn 1 đầu */
+
+            TotalScore -= MangDiemPhongThu[ManCells + 1];
+            TotalScore += MangDiemTanCong[ComCells];
+
+            return TotalScore;
+        }
+
+        private long AttackExtraDiag(int CurrRow, int CurrCol) // Duyệt chéo ngược
+        {
+            long TotalScore = 0;
+            int ComCells = 0;
+            int ManCells = 0;
+
+            // Duyệt phải trên
+            for (int Count = 1; Count < 6 && CurrCol + Count < Constance.nCols && CurrRow - Count >= 0; Count++)
+            // Duyệt từ dưới lên, dòng giảm dần và cột tăng lên
+            {
+                if (MatrixPositions[CurrRow - Count][CurrCol + Count].BackgroundImage == ListPlayers[0].Symbol)
+                    ComCells += 1;
+                else if (MatrixPositions[CurrRow - Count][CurrCol + Count].BackgroundImage == ListPlayers[1].Symbol)
+                {
+                    ManCells += 1;
+                    break;
+                }
+                else
+                    break;
+            }
+
+            // Duyệt trái dưới
+            for (int Count = 1; Count < 6 && CurrCol - Count >= 0 && CurrRow + Count < Constance.nRows; Count++)
+
+            {
+                if (MatrixPositions[CurrRow + Count][CurrCol - Count].BackgroundImage == ListPlayers[0].Symbol)
+                    ComCells += 1;
+                else if (MatrixPositions[CurrRow + Count][CurrCol - Count].BackgroundImage == ListPlayers[1].Symbol)
+                {
+                    ManCells += 1;
+                    break;
+                }
+                else
+                    break;
+            }
+
+            if (ManCells == 2)
+                return 0;
+
+            /* Nếu ManCells == 1 => bị chặn 1 đầu => lấy điểm phòng ngự tại vị trí này nhưng 
+            nên cộng thêm 1 để tăng phòng ngự cho máy cảnh giác hơn vì đã bị chặn 1 đầu */
+
+            TotalScore -= MangDiemPhongThu[ManCells + 1];
+            TotalScore += MangDiemTanCong[ComCells];
+
+            return TotalScore;
+        }
+        #endregion
+
+        #region Calculate defense score // Tính điểm phòng ngự
+        private long DefenseHorizontal(int CurrRow, int CurrCol)
+        {
+            long TotalScore = 0;
+            int ComCells = 0;
+            int ManCells = 0;
+
+            // Duyệt từ trên xuống
+            for (int Count = 1; Count < 6 && CurrRow + Count < Constance.nRows; Count++)
+            {
+                if (MatrixPositions[CurrRow + Count][CurrCol].BackgroundImage == ListPlayers[0].Symbol)
+                {
+                    ComCells += 1;
+                    break;
+                }  
+                else if (MatrixPositions[CurrRow + Count][CurrCol].BackgroundImage == ListPlayers[1].Symbol)
+                    ManCells += 1;
+                else
+                    break;
+            }
+
+            // Duyệt từ dưới lên
+            for (int Count = 1; Count < 6 && CurrRow - Count >= 0; Count++)
+            {
+                if (MatrixPositions[CurrRow - Count][CurrCol].BackgroundImage == ListPlayers[0].Symbol)
+                {
+                    ComCells += 1;
+                    break;
+                }
+                else if (MatrixPositions[CurrRow - Count][CurrCol].BackgroundImage == ListPlayers[1].Symbol)
+                    ManCells += 1;
+                else
+                    break;
+            }
+
+            if (ComCells == 2)
+                return 0;
+            // Nếu bị chặn ở 2 đầu thì thoát ra
+            TotalScore += MangDiemPhongThu[ManCells];
+            
+            return TotalScore;
+        }
+
+        private long DefenseVertical(int CurrRow, int CurrCol)
+        {
+            long TotalScore = 0;
+            int ComCells = 0;
+            int ManCells = 0;
+
+            // Duyệt từ trái sang phải
+            for (int Count = 1; Count < 6 && CurrCol + Count < Constance.nCols; Count++)
+            {
+                if (MatrixPositions[CurrRow][CurrCol + Count].BackgroundImage == ListPlayers[0].Symbol)
+                {
+                    ComCells += 1;
+                    break;
+                }
+                else if (MatrixPositions[CurrRow][CurrCol + Count].BackgroundImage == ListPlayers[1].Symbol)
+                    ManCells += 1;
+                else
+                    break;
+            }
+
+            // Duyệt từ phải sang trái
+            for (int Count = 1; Count < 6 && CurrCol - Count >= 0; Count++)
+            {
+                if (MatrixPositions[CurrRow][CurrCol - Count].BackgroundImage == ListPlayers[0].Symbol)
+                {
+                    ComCells += 1;
+                    break;
+                }
+                else if (MatrixPositions[CurrRow][CurrCol - Count].BackgroundImage == ListPlayers[1].Symbol)
+                    ManCells += 1;
+                else
+                    break;
+            }
+
+            if (ComCells == 2)
+                return 0;
+
+            TotalScore += MangDiemPhongThu[ManCells];
+
+            return TotalScore;
+        }
+
+        private long DefenseMainDiag(int CurrRow, int CurrCol)
+        {
+            long TotalScore = 0;
+            int ComCells = 0;
+            int ManCells = 0;
+
+            // Duyệt trái trên
+            for (int Count = 1; Count < 6 && CurrCol + Count < Constance.nCols && CurrRow + Count < Constance.nRows; Count++)
+            {
+                if (MatrixPositions[CurrRow + Count][CurrCol + Count].BackgroundImage == ListPlayers[0].Symbol)
+                {
+                    ComCells += 1;
+                    break;
+                }
+                else if (MatrixPositions[CurrRow + Count][CurrCol + Count].BackgroundImage == ListPlayers[1].Symbol)
+                    ManCells += 1;
+                else
+                    break;
+            }
+
+            // Duyệt phải dưới
+            for (int Count = 1; Count < 6 && CurrCol - Count >= 0 && CurrRow - Count >= 0; Count++)
+            {
+                if (MatrixPositions[CurrRow - Count][CurrCol - Count].BackgroundImage == ListPlayers[0].Symbol)
+                {
+                    ComCells += 1;
+                    break;
+                }
+                else if (MatrixPositions[CurrRow - Count][CurrCol - Count].BackgroundImage == ListPlayers[1].Symbol)
+                    ManCells += 1;
+                else
+                    break;
+            }
+
+            if (ComCells == 2)
+                return 0;
+
+            TotalScore += MangDiemPhongThu[ManCells];
+
+            return TotalScore;
+        }
+
+        private long DefenseExtraDiag(int CurrRow, int CurrCol)
+        {
+            long TotalScore = 0;
+            int ComCells = 0;
+            int ManCells = 0;
+
+            // Duyệt phải trên
+            for (int Count = 1; Count < 6 && CurrCol + Count < Constance.nCols && CurrRow - Count >= 0; Count++)
+            {
+                if (MatrixPositions[CurrRow - Count][CurrCol + Count].BackgroundImage == ListPlayers[0].Symbol)
+                {
+                    ComCells += 1;
+                    break;
+                }
+                else if (MatrixPositions[CurrRow - Count][CurrCol + Count].BackgroundImage == ListPlayers[1].Symbol)
+                    ManCells += 1;
+                else
+                    break;
+            }
+
+            // Duyệt trái dưới
+            for (int Count = 1; Count < 6 && CurrCol - Count >= 0 && CurrRow + Count < Constance.nRows; Count++)
+            {
+                if (MatrixPositions[CurrRow + Count][CurrCol - Count].BackgroundImage == ListPlayers[0].Symbol)
+                {
+                    ComCells += 1;
+                    break;
+                }
+                else if (MatrixPositions[CurrRow + Count][CurrCol - Count].BackgroundImage == ListPlayers[1].Symbol)
+                    ManCells += 1;
+                else
+                    break;
+            }
+
+            if (ComCells == 2)
+                return 0;
+
+            TotalScore += MangDiemPhongThu[ManCells];
+
+            return TotalScore;
+        }
+        #endregion
+        private Point FindAiPos()
+        {
+            Point AiPos = new Point();
+            long MaxScore = 0;
+
+            for (int i = 0; i < Constance.nRows; i++)
+            {
+                for (int j = 0; j < Constance.nCols; j++)
+                {
+                    if (MatrixPositions[i][j].BackgroundImage == null)
+                    {
+                        long AttackScore = AttackHorizontal(i, j) + AttackVertical(i, j) + AttackMainDiag(i, j) + AttackExtraDiag(i, j);
+                        long DefenseScore = DefenseHorizontal(i, j) + DefenseVertical(i, j) + DefenseMainDiag(i, j) + DefenseExtraDiag(i, j);
+                        long TempScore = AttackScore > DefenseScore ? AttackScore : DefenseScore; // Xét điểm tất công hay điểm phòng ngự cao hơn, nếu đúng thì lấy điểm tấn công, sai lấy điểm phòng ngự
+
+                        if (MaxScore < TempScore) // So sánh điểm lớn nhất và điểm tạm (temp)
+                        {
+                            MaxScore = TempScore;
+                            AiPos = new Point(i, j); // Tránh bị chung vùng nhớ, chồng lên nhau
+                        }
+                    }
+                }
+            }
+
+            return AiPos;
+        }
+        //Khởi động Ai
+        public void StartAI()
+        {
+            IsAI = true;
+
+            if (StkUndoStep.Count == 0) // mới bắt đầu thì cho đánh giữa bàn cờ
+                MatrixPositions[Constance.nRows / 4][Constance.nCols / 4].PerformClick();
+            else
+            {
+                Point AiPos = FindAiPos(); //Tìm nước đi
+                MatrixPositions[AiPos.X][AiPos.Y].PerformClick();
+            }
+        }
+        #endregion
         #endregion
     }
 }
