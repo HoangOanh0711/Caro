@@ -134,3 +134,23 @@ C:\Users\baobe\Source\Repos\HoangOanh0711\DoAn\caro\obj\Debug\netcoreapp3.1\caro
 C:\Users\baobe\Source\Repos\HoangOanh0711\DoAn\caro\obj\Debug\netcoreapp3.1\caro.dll
 C:\Users\baobe\Source\Repos\HoangOanh0711\DoAn\caro\obj\Debug\netcoreapp3.1\caro.pdb
 C:\Users\baobe\Source\Repos\HoangOanh0711\DoAn\caro\obj\Debug\netcoreapp3.1\caro.genruntimeconfig.cache
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Ver Mới\caro\bin\Debug\netcoreapp3.1\caro.exe
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Ver Mới\caro\bin\Debug\netcoreapp3.1\caro.deps.json
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Ver Mới\caro\bin\Debug\netcoreapp3.1\caro.runtimeconfig.json
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Ver Mới\caro\bin\Debug\netcoreapp3.1\caro.runtimeconfig.dev.json
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Ver Mới\caro\bin\Debug\netcoreapp3.1\caro.dll
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Ver Mới\caro\bin\Debug\netcoreapp3.1\caro.pdb
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Ver Mới\caro\obj\Debug\netcoreapp3.1\caro.csproj.AssemblyReference.cache
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Ver Mới\caro\obj\Debug\netcoreapp3.1\caro._2playersinlan.resources
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Ver Mới\caro\obj\Debug\netcoreapp3.1\caro.Caro.resources
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Ver Mới\caro\obj\Debug\netcoreapp3.1\caro.menu.resources
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Ver Mới\caro\obj\Debug\netcoreapp3.1\caro.playAI.resources
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Ver Mới\caro\obj\Debug\netcoreapp3.1\caro.playcom.resources
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Ver Mới\caro\obj\Debug\netcoreapp3.1\caro.Properties.Resources.resources
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Ver Mới\caro\obj\Debug\netcoreapp3.1\caro.csproj.GenerateResource.cache
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Ver Mới\caro\obj\Debug\netcoreapp3.1\caro.AssemblyInfoInputs.cache
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Ver Mới\caro\obj\Debug\netcoreapp3.1\caro.AssemblyInfo.cs
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Ver Mới\caro\obj\Debug\netcoreapp3.1\caro.csproj.CoreCompileInputs.cache
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Ver Mới\caro\obj\Debug\netcoreapp3.1\caro.dll
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Ver Mới\caro\obj\Debug\netcoreapp3.1\caro.pdb
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Ver Mới\caro\obj\Debug\netcoreapp3.1\caro.genruntimeconfig.cache

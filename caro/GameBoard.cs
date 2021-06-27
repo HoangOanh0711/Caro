@@ -88,11 +88,11 @@ namespace caro
             set { stkRedoStep = value; }
         }
 
-        //public int PlayMode
-        //{
-        //    get { return playMode; }
-        //    set { playMode = value; }
-        //}
+        public int PlayMode
+        {
+            get { return playMode; }
+            set { playMode = value; }
+        }
         #endregion
 
         #region Intialize
@@ -103,20 +103,7 @@ namespace caro
             //this.Avatar = Avatar;
 
             this.CurrentPlayer = 0;
-            this.ListPlayers = new List<Player>()
-            {
-                //new Player("Quân Đặng", Image.FromFile(Application.StartupPath + "\\images\\Quan.jpg"),
-                //                        Image.FromFile(Application.StartupPath + "\\images\\X.png")),
-
-                //new Player("Bà Xã", Image.FromFile(Application.StartupPath + "\\images\\Lisa.jpg"),
-                //                   Image.FromFile(Application.StartupPath + "\\images\\O.png"))
-
-                new Player("player1", Image.FromFile(Application.StartupPath + "\\Resources\\ava2.png"),
-                                        Image.FromFile(Application.StartupPath + "\\Resources\\x.png")),
-
-                new Player("player2", Image.FromFile(Application.StartupPath + "\\Resources\\ava1.png"),
-                                   Image.FromFile(Application.StartupPath + "\\Resources\\o.png"))
-            };
+            
         }
         #endregion
 
@@ -346,7 +333,7 @@ namespace caro
                 return false;
 
             PlayInfo OldPos = StkUndoStep.Pop();
-            //StkRedoStep.Push(OldPos);
+            StkRedoStep.Push(OldPos);
 
             Button btn = MatrixPositions[OldPos.Point.Y][OldPos.Point.X];
             btn.BackgroundImage = null;
@@ -415,7 +402,7 @@ namespace caro
             btn.BackgroundImage = ListPlayers[CurrentPlayer].Symbol;
             
             StkUndoStep.Push(new PlayInfo(GetButtonCoordinate(btn), CurrentPlayer, btn.BackgroundImage));
-            //StkRedoStep.Clear();
+            StkRedoStep.Clear();
 
             CurrentPlayer = CurrentPlayer == 1 ? 0 : 1;
             ChangePlayer();
@@ -449,7 +436,7 @@ namespace caro
             btn.BackgroundImage = ListPlayers[CurrentPlayer].Symbol;
 
             StkUndoStep.Push(new PlayInfo(GetButtonCoordinate(btn), CurrentPlayer, btn.BackgroundImage));
-            //StkRedoStep.Clear();
+            StkRedoStep.Clear();
 
             CurrentPlayer = CurrentPlayer == 1 ? 0 : 1;
             ChangePlayer();

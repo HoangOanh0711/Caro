@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using socketdata;
 using socketmanager;
 using System.Net.NetworkInformation;
+using System.Collections.Generic;
 
 namespace caro
 {
@@ -23,6 +24,9 @@ namespace caro
         Bitmap sad = new Bitmap(Application.StartupPath + "\\Resources\\sad.png");
         Bitmap angry = new Bitmap(Application.StartupPath + "\\Resources\\angry.png");
         int icon;
+        int scoX, scoO;
+        public int ScoX { get => scoX; }
+        public int ScoO { get => scoO; }
 
 
         public Caro()
@@ -32,6 +36,7 @@ namespace caro
             board.GameOver += Board_GameOver;
             //board.PlayerClicked += Board_PlayerClicked;
             NewGame();
+            board.StartAI();
         }
         #endregion
 
@@ -69,42 +74,60 @@ namespace caro
 
             //btn_Undo.Enabled = true;
             //btn_Redo.Enabled = true;
+            board.ListPlayers = new List<Player>()
+            {
+                new Player(label1.Text, Image.FromFile(Application.StartupPath + "\\Resources\\ava2.png"),
+                                        Image.FromFile(Application.StartupPath + "\\Resources\\x.png"),
+                                        pictureBox3),
 
+                new Player(label2.Text, Image.FromFile(Application.StartupPath + "\\Resources\\ava1.png"),
+                                   Image.FromFile(Application.StartupPath + "\\Resources\\o.png"),
+                                   pictureBox4)
+            };
+            scoO = scoX = 0;
             board.DrawGameBoard();
         }
         void EndGame()
         {
-            //undoToolStripMenuItem.Enabled = false;
-            //redoToolStripMenuItem.Enabled = false;
+            button1.Enabled = false;
+            button2.Enabled = false;
 
-            //btn_Undo.Enabled = false;
-            //btn_Redo.Enabled = false;
-
-            //tm_CountDown.Stop();
             banco.Enabled = false;
+        }
+
+        void update_Score(int winner)
+        {
+            if (winner == 1)
+                scoX++;
+            else if (winner == 2)
+                scoO++;
+            textBox1.Text = ScoO.ToString();
+            textBox2.Text = ScoX.ToString();
         }
 
         private void Caro_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (MessageBox.Show("Bạn có chắc muốn thoát không", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != System.Windows.Forms.DialogResult.Yes)
+            {
                 e.Cancel = true;
-            Application.Exit();
-            //else
-            //{
-            //    try
-            //    {
-            //        socket.Send(new SocketData((int)SocketCommand.QUIT, "", new Point()));
-            //    }
-            //    catch { }
-            //}
+                Application.Exit();
+            }
+            else
+            {
+                try
+                {
+                    socket.Send(new SocketData((int)SocketCommand.QUIT, "", new Point()));
+                }
+                catch { }
+            }
         }
 
         private void Board_GameOver(object sender, EventArgs e)
         {
             EndGame();
 
-            //if (board.PlayMode == 1)
-            //    socket.Send(new SocketData((int)SocketCommand.END_GAME, "", new Point()));
+            if (board.PlayMode == 1)
+                socket.Send(new SocketData((int)SocketCommand.END_GAME, "", new Point()));
         }
         #endregion
 
