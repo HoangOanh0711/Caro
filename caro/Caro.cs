@@ -15,7 +15,7 @@ namespace caro
         #region Properties
         GameBoard board;
         SocketManager socket;
-        string IP = "127.0.0.1";
+        string IP;
         int mode = 0;
         string sohinh;
         string name;
@@ -51,7 +51,6 @@ namespace caro
             {
                 socket = new SocketManager();
                 this.name = yourname1;
-                //IP = yourname2;
                 hienchat.Enabled = true;
                 nhapchat.Enabled = true;
                 send.Enabled = true;
@@ -109,9 +108,7 @@ namespace caro
         }
 
         private void Board_PlayerClicked(object sender, BtnClickEvent e)
-        {
-     
-
+        {   
             if (board.PlayMode == 1)
             {
                 try
@@ -137,16 +134,13 @@ namespace caro
             if (MessageBox.Show("Bạn có chắc muốn thoát không", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != System.Windows.Forms.DialogResult.Yes)
             {
                 e.Cancel = true;
-                Application.Exit();
-            }
-            else
-            {
                 try
                 {
                     socket.Send(new SocketData((int)SocketCommand.QUIT, "", new Point()));
                 }
                 catch { }
             }
+            Application.Exit();
         }
 
         private void Board_GameOver(object sender, EventArgs e)
@@ -164,9 +158,7 @@ namespace caro
             Application.Exit();
             if (board.PlayMode == 1)
             {
-
-                socket.CloseConnect();
-                
+                socket.CloseConnect();                
             }
         }
 
@@ -259,7 +251,6 @@ namespace caro
                     break;
 
                 case (int)SocketCommand.NAMECL:
-
                     this.Invoke((MethodInvoker)(() =>
                     {
                         label2.Text = data.Message;
@@ -275,31 +266,34 @@ namespace caro
                     break;
 
                 case (int)SocketCommand.SEND_ICON:
-                    switch (sohinh = data.Message)
+                    this.Invoke((MethodInvoker)(() =>
                     {
-                        case "1":
-                            pictureBox5.Image = haha;
-                            break;
-                        case "2":
-                            pictureBox6.Image = haha;
-                            break;
-                        case "3":
-                            pictureBox5.Image = sad;
-                            break;
-                        case "4":
-                            pictureBox6.Image = sad;
-                            break;
-                        case "5":
-                            pictureBox5.Image = angry;
-                            break;
-                        case "6":
-                            pictureBox6.Image = angry;
-                            break;
-                        case "7":
-                            pictureBox6.Image = null;
-                            pictureBox5.Image = null;
-                            break;
-                    }
+                        switch (sohinh = data.Message)
+                        {
+                            case "1":
+                                pictureBox5.Image = haha;
+                                break;
+                            case "2":
+                                pictureBox6.Image = haha;
+                                break;
+                            case "3":
+                                pictureBox5.Image = sad;
+                                break;
+                            case "4":
+                                pictureBox6.Image = sad;
+                                break;
+                            case "5":
+                                pictureBox5.Image = angry;
+                                break;
+                            case "6":
+                                pictureBox6.Image = angry;
+                                break;
+                            case "7":
+                                pictureBox6.Image = null;
+                                pictureBox5.Image = null;
+                                break;
+                        }
+                    }));
                     break;
 
                 case (int)SocketCommand.NEW_GAME:
@@ -334,8 +328,6 @@ namespace caro
                     }));
                     break;
 
-
-
                 case (int)SocketCommand.QUIT:
                     this.Invoke((MethodInvoker)(() =>
                     {
@@ -353,14 +345,11 @@ namespace caro
         }
 
         private void Caro_Shown(object sender, EventArgs e)
-        {
-          
+        {          
                 IP = socket.GetLocalIPv4(NetworkInterfaceType.Wireless80211);
 
                 if (string.IsNullOrEmpty(IP))
-                    IP = socket.GetLocalIPv4(NetworkInterfaceType.Ethernet);
-         
-
+                    IP = socket.GetLocalIPv4(NetworkInterfaceType.Ethernet);     
         }
 
         private void Connect()
@@ -381,8 +370,7 @@ namespace caro
                 Listen();
                 MessageBox.Show("Kết nối thành công !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 label2.Text = name;
-            }
-            
+            }            
         }
         private void Listen()
         {

@@ -33,7 +33,14 @@ namespace caro
             this.Hide();
         }
 
-       
+        private void _2playersinlan_Shown(object sender, EventArgs e)
+        {
+            SocketManager Socket = new SocketManager();
+            txbIP.Text = Socket.GetLocalIPv4(NetworkInterfaceType.Wireless80211);
+
+            if (string.IsNullOrEmpty(txbIP.Text))
+                txbIP.Text = Socket.GetLocalIPv4(NetworkInterfaceType.Ethernet);
+        }
     }
 }
 
