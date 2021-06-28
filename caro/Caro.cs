@@ -15,7 +15,7 @@ namespace caro
         #region Properties
         GameBoard board;
         SocketManager socket;
-        string IP;
+        string IP ;
         int mode = 0;
         string sohinh;
         string name;
@@ -51,6 +51,7 @@ namespace caro
             {
                 socket = new SocketManager();
                 this.name = yourname1;
+                this.IP = yourname2;
                 hienchat.Enabled = true;
                 nhapchat.Enabled = true;
                 send.Enabled = true;
@@ -344,17 +345,9 @@ namespace caro
             Listen();
         }
 
-        private void Caro_Shown(object sender, EventArgs e)
-        {          
-                IP = socket.GetLocalIPv4(NetworkInterfaceType.Wireless80211);
-
-                if (string.IsNullOrEmpty(IP))
-                    IP = socket.GetLocalIPv4(NetworkInterfaceType.Ethernet);     
-        }
-
         private void Connect()
         {
-            socket.IP = IP;
+            socket.IP = this.IP;
             if (!socket.ConnectServer())
             {
                 socket.IsServer = true;
