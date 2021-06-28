@@ -33,6 +33,9 @@ namespace socketdata
             get { return message; }
             set { message = value; }
         }
+        
+
+        
 
         public SocketData(int command, string message, Point point)
         {
@@ -50,6 +53,9 @@ namespace socketdata
         END_GAME,
         QUIT,
         SEND_MESSAGE,
-        SEND_ICON
+        SEND_ICON,
+        REDO,
+        NAMESE,
+        NAMECL
     }
 }

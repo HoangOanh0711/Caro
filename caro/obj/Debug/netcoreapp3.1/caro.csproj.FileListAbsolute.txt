@@ -154,3 +154,4 @@ C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Ver Mới\caro\obj\Debug\netcoreapp3.
 C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Ver Mới\caro\obj\Debug\netcoreapp3.1\caro.dll
 C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Ver Mới\caro\obj\Debug\netcoreapp3.1\caro.pdb
 C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Ver Mới\caro\obj\Debug\netcoreapp3.1\caro.genruntimeconfig.cache
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Ver Mới\caro\obj\Debug\netcoreapp3.1\caro.rules.resources

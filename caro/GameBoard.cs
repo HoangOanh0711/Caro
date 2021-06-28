@@ -382,8 +382,6 @@ namespace caro
             return true;
         }
 
-
-
         #endregion
 
         #region 2 players

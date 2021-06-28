@@ -3,6 +3,8 @@ using System.Windows.Forms;
 using socketmanager;
 using System.Threading;
 using socketdata;
+using System.Net.Sockets;
+using System.Net.NetworkInformation;
 
 namespace caro
 {
@@ -12,7 +14,8 @@ namespace caro
         {
             InitializeComponent();
         }
-
+        
+        
         private void back_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -29,6 +32,8 @@ namespace caro
             caro.Show();
             this.Hide();
         }
+
+       
     }
 }
 

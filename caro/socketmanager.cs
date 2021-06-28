@@ -71,13 +71,13 @@ namespace socketmanager
 
         private bool SendData(Socket target, byte[] data)
         {
-                return target.Send(data) == 1 ;
+            return target.Send(data) == 1;
         }
 
 
         private bool ReceiveData(Socket target, byte[] data)
         {
-            return target.Receive(data) == 1 ;
+            return target.Receive(data) == 1;
         }
         /// <summary>
         /// Nén đối tượng thành mảng byte[]
