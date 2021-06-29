@@ -448,8 +448,10 @@ namespace caro
         #endregion
         
         #region 1 player
-        private long[] MangDiemTanCong= new long[7] { 0, 64, 4096, 262144, 16777216, 1073741824, 68719476736 };
-        private long[] MangDiemPhongThu= new long[7] { 0, 8, 512, 32768, 2097152, 134217728, 8589934592 };
+            //Khởi tạo 2 mảng điểm tấn công và điểm phòng thủ, cho giá trị bằng 7 (trường hợp 5 cờ và bị chặn 2 đầu)
+        private long[] MangDiemTanCong= new long[7] { 0, 64, 4096, 262144, 16777216, 1073741824, 68719476736 }; //
+        private long[] MangDiemPhongThu= new long[7] { 0, 8, 512, 32768, 2097152, 134217728, 8589934592 }; //điểm phòng thủ mặc điểm sẽ bé hơn điểm tấn công
+        //điểm phòng thủ ở mức 1 mặc định là 8 bởi vì xét xung quanh con cờ có 8 ô, do đó điểm tân công ở mức 1 sẽ lớn hơn điểm phòng thủ (8*8=64), sau đó nhân cho 64 sẽ ra mức 2
 
         #region Calculate attack score //tính điểm tấn công
         private long AttackVertical(int CurrRow, int CurrCol) //Điểm tấn công theo chiều dọc
@@ -460,11 +462,11 @@ namespace caro
 
             // Duyệt từ trên xuống
             for (int Count = 1; Count < 6 && CurrRow + Count < Constance.nRows; Count++) 
-            //Xác định biến đếm: duyệt từ 1 đến 5, duyệt 4 ô + ô đang đánh là 5 ô
+            //Xác định biến đếm(count): duyệt từ 1 đến 5, duyệt 4 ô + ô đang đánh là 5 ô
             //&& CurrRow + Count < Constance.nRows dùng để giới hạn biên
             {
                 if (MatrixPositions[CurrRow + Count][CurrCol].BackgroundImage == ListPlayers[0].Symbol) 
-            //xét mảng ô cờ vị trí[CurrRow + Count][CurrCol].BackgroundImage là quân máy thì tăng ComCells lên 1
+            //xét mảng ô cờ vị trí[CurrRow + Count][CurrCol].BackgroundImage (tức là ô tiếp theo theo chiều từ trên xuống) là quân máy thì tăng ComCells lên 1
                     ComCells += 1;
                 else if (MatrixPositions[CurrRow + Count][CurrCol].BackgroundImage == ListPlayers[1].Symbol)
                 {
@@ -480,9 +482,9 @@ namespace caro
             // Duyệt từ dưới lên
             for (int Count = 1; Count < 6 && CurrRow - Count >= 0; Count++)
             //Xác định biến đếm: duyệt từ 1 đến 5, duyệt 4 ô + ô đang đánh là 5 ô
-            //&& CurrRow - Count >= 0 dùng để giới hạn biên
+            //&& CurrRow - Count >= 0 dùng để giới hạn biên (duyệt ngược từ dưới lên)
             {
-                if (MatrixPositions[CurrRow - Count][CurrCol].BackgroundImage == ListPlayers[0].Symbol)
+                if (MatrixPositions[CurrRow - Count][CurrCol].BackgroundImage == ListPlayers[0].Symbol) //ô hiện tại lùi lại nên - count
             //xét mảng ô cờ vị trí[CurrRow + Count][CurrCol].BackgroundImage là quân máy thì tăng ComCells lên 1
                     ComCells += 1;
                 else if (MatrixPositions[CurrRow - Count][CurrCol].BackgroundImage == ListPlayers[1].Symbol)
@@ -495,15 +497,15 @@ namespace caro
                     break;
             }
 
-            if (ManCells == 2)
-                return 0;
+            if (ManCells == 2)//Com bị chặn hai đầu
+                return 0; //trả về 0 điểm
 
             /* Nếu ManCells == 1 => bị chặn 1 đầu => lấy điểm phòng ngự tại vị trí này nhưng 
             nên cộng thêm 1 để tăng phòng ngự cho máy cảnh giác hơn vì đã bị chặn 1 đầu */
-
+            //nếu không bị chặn 2 đầu thì giảm điểm phòng ngự, tăng điểm tấn công
             TotalScore -= MangDiemPhongThu[ManCells + 1]; //giảm điểm
             TotalScore += MangDiemTanCong[ComCells]; //tăng điểm
-
+            //điểm tổng sẽ bị ảnh hưởng bởi quân của người và quân của máy trên phương đang tính toán
             return TotalScore;
         }
 
@@ -561,7 +563,7 @@ namespace caro
 
             // Duyệt trái trên
             for (int Count = 1; Count < 6 && CurrCol + Count < Constance.nCols && CurrRow + Count < Constance.nRows; Count++)
-            // Duyệt từ trên xuống, dòng tăng lên và cột giảm xuống
+            // Duyệt từ trên xuống, dòng tăng lên và cột tăng lên
             {
                 if (MatrixPositions[CurrRow + Count][CurrCol + Count].BackgroundImage == ListPlayers[0].Symbol)
                     ComCells += 1;
@@ -576,7 +578,7 @@ namespace caro
 
             // Duyệt phải dưới
             for (int Count = 1; Count < 6 && CurrCol - Count >= 0 && CurrRow - Count >= 0; Count++)
-            // Duyệt từ dưới lên, dòng giảm dần và cột tăng lên
+            // Duyệt từ dưới lên, dòng giảm dần và cột giảm lên
             {
                 if (MatrixPositions[CurrRow - Count][CurrCol - Count].BackgroundImage == ListPlayers[0].Symbol)
                     ComCells += 1;
@@ -624,7 +626,7 @@ namespace caro
 
             // Duyệt trái dưới
             for (int Count = 1; Count < 6 && CurrCol - Count >= 0 && CurrRow + Count < Constance.nRows; Count++)
-
+            //duyệt từ trên xuống cột giảm xuống và dòng tăng lên 
             {
                 if (MatrixPositions[CurrRow + Count][CurrCol - Count].BackgroundImage == ListPlayers[0].Symbol)
                     ComCells += 1;
@@ -662,11 +664,11 @@ namespace caro
             {
                 if (MatrixPositions[CurrRow + Count][CurrCol].BackgroundImage == ListPlayers[0].Symbol)
                 {
-                    ComCells += 1;
+                    ComCells += 1; //gặp quân máy thì thoát ra
                     break;
                 }  
                 else if (MatrixPositions[CurrRow + Count][CurrCol].BackgroundImage == ListPlayers[1].Symbol)
-                    ManCells += 1;
+                    ManCells += 1; //gặp quân người thì tăng lên, và tiếp tục xét tiếp, càng nhiều quân người thì càng nguy điểm phải chặn ngay, quan trọng đối với việc phòng ngự
                 else
                     break;
             }
@@ -687,7 +689,7 @@ namespace caro
 
             if (ComCells == 2)
                 return 0;
-            // Nếu bị chặn ở 2 đầu thì thoát ra
+            // Nếu chặn ở 2 đầu thì thoát ra
             TotalScore += MangDiemPhongThu[ManCells];
             
             return TotalScore;
@@ -819,16 +821,16 @@ namespace caro
             return TotalScore;
         }
         #endregion
-        private Point FindAiPos()
+        private Point FindAiPos() //tìm kiếm nước đi
         {
-            Point AiPos = new Point();
+            Point AiPos = new Point(); //khai báo ô cờ
             long MaxScore = 0;
-
+            //dùng vét cạn để duyệt hết bàn cờ
             for (int i = 0; i < Constance.nRows; i++)
             {
                 for (int j = 0; j < Constance.nCols; j++)
                 {
-                    if (MatrixPositions[i][j].BackgroundImage == null)
+                    if (MatrixPositions[i][j].BackgroundImage == null) //nếu mảng thứ cờ thứ i,j bằng 0, tức là chưa được đánh
                     {
                         long AttackScore = AttackHorizontal(i, j) + AttackVertical(i, j) + AttackMainDiag(i, j) + AttackExtraDiag(i, j);
                         long DefenseScore = DefenseHorizontal(i, j) + DefenseVertical(i, j) + DefenseMainDiag(i, j) + DefenseExtraDiag(i, j);
@@ -850,12 +852,12 @@ namespace caro
         {
             IsAI = true;
 
-            if (StkUndoStep.Count == 0) // mới bắt đầu thì cho đánh giữa bàn cờ
-                MatrixPositions[Constance.nRows / 4][Constance.nCols / 4].PerformClick();
-            else
+            if (StkUndoStep.Count == 0) // mới bắt đầu thì cho đánh giữa bàn cờ, StkUndoStep.Count == 0 các nước đã đi bằng 0
+                MatrixPositions[Constance.nRows / 4][Constance.nCols / 4].PerformClick(); //AI đánh
+            else //nếu đã có thế cờ rồi
             {
-                Point AiPos = FindAiPos(); //Tìm nước đi
-                MatrixPositions[AiPos.X][AiPos.Y].PerformClick();
+                Point AiPos = FindAiPos(); //Tìm nước đi, ô cờ
+                MatrixPositions[AiPos.X][AiPos.Y].PerformClick(); //đánh cờ ở vị trí x, y
             }
         }
         #endregion
