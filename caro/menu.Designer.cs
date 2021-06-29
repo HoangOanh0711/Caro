@@ -101,7 +101,7 @@ namespace caro
             this.playvscom.Name = "playvscom";
             this.playvscom.Size = new System.Drawing.Size(250, 45);
             this.playvscom.TabIndex = 5;
-            this.playvscom.Text = "Players vs Com";
+            this.playvscom.Text = "Player vs Com";
             this.playvscom.UseVisualStyleBackColor = true;
             this.playvscom.Click += new System.EventHandler(this.playvscom_Click);
             // 

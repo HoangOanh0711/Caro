@@ -40,13 +40,14 @@ namespace caro
         public Caro(string yourname1, string yourname2, int gameMode)
         {
             InitializeComponent();
-            mode = gameMode;
+            this.mode = gameMode;
             if (mode == 2 || mode == 3)
             {
                 label1.Text = yourname1;
                 label2.Text = yourname2;
                 board = new GameBoard(banco);
                 board.PlayMode = mode;
+                board.GameOver += Board_GameOver;
                 NewGame();
             }
             if (mode == 1)
@@ -71,13 +72,11 @@ namespace caro
             button2.Enabled = true;
             board.ListPlayers = new List<Player>()
             {
-                new Player(label1.Text, Image.FromFile(Application.StartupPath + "\\Resources\\ava2.png"),
-                                        Image.FromFile(Application.StartupPath + "\\Resources\\x.png"),
+                new Player(label1.Text,Image.FromFile(Application.StartupPath + "\\Resources\\x.png"),
                                         pictureBox3),
 
-                new Player(label2.Text, Image.FromFile(Application.StartupPath + "\\Resources\\ava1.png"),
-                                   Image.FromFile(Application.StartupPath + "\\Resources\\o.png"),
-                                   pictureBox4)
+                new Player(label2.Text,Image.FromFile(Application.StartupPath + "\\Resources\\o.png"),
+                                        pictureBox4)
             };
             scoO = scoX = 0;
             board.DrawGameBoard();
@@ -118,6 +117,7 @@ namespace caro
                 {
                     EndGame();
                     MessageBox.Show("Không có kết nối nào tới máy đối thủ", "Lỗi kết nối", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Connect();
                 }
             }
         }
@@ -206,6 +206,21 @@ namespace caro
                 }
             }
             Listen();
+
+        }
+        private void button6_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                socket.Send(new SocketData((int)SocketCommand.START, "", new Point()));
+                Start();
+                Listen();
+            }
+            catch
+            {
+                MessageBox.Show("Vui lòng chờ bạn chơi", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
 
         }
         #endregion
@@ -349,6 +364,10 @@ namespace caro
             send.Enabled = true;
             nhapchat.Enabled = true;
             NewGame();
+            if(socket.IsServer==false)
+            {
+                banco.Enabled = false;
+            }    
              
         }
         private void beforeStart()
@@ -484,21 +503,6 @@ namespace caro
         {
             rules Rule = new rules();
             Rule.Show();
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                socket.Send(new SocketData((int)SocketCommand.START, "", new Point()));
-                Start();
-            }
-            catch
-            {
-                MessageBox.Show("Vui lòng chờ bạn chơi", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            
-
         }
 
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)

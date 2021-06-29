@@ -87,13 +87,13 @@ namespace caro
             this.player1.Location = new System.Drawing.Point(8, 5);
             this.player1.Margin = new System.Windows.Forms.Padding(2);
             this.player1.Name = "player1";
-            this.player1.Size = new System.Drawing.Size(205, 205);
+            this.player1.Size = new System.Drawing.Size(205, 210);
             this.player1.TabIndex = 0;
             // 
             // pictureBox5
             // 
             this.pictureBox5.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox5.Location = new System.Drawing.Point(125, 120);
+            this.pictureBox5.Location = new System.Drawing.Point(124, 125);
             this.pictureBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(80, 80);
@@ -132,7 +132,7 @@ namespace caro
             this.pictureBox3.Location = new System.Drawing.Point(140, 54);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(60, 50);
+            this.pictureBox3.Size = new System.Drawing.Size(60, 60);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 1;
             this.pictureBox3.TabStop = false;
@@ -163,7 +163,7 @@ namespace caro
             this.player2.Location = new System.Drawing.Point(8, 214);
             this.player2.Margin = new System.Windows.Forms.Padding(2);
             this.player2.Name = "player2";
-            this.player2.Size = new System.Drawing.Size(205, 205);
+            this.player2.Size = new System.Drawing.Size(205, 210);
             this.player2.TabIndex = 1;
             // 
             // pictureBox6
@@ -210,7 +210,8 @@ namespace caro
             this.pictureBox4.Location = new System.Drawing.Point(140, 54);
             this.pictureBox4.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(60, 50);
+            this.pictureBox4.Size = new System.Drawing.Size(60, 60);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox4.TabIndex = 1;
             this.pictureBox4.TabStop = false;
             // 
@@ -236,17 +237,18 @@ namespace caro
             this.banco.Location = new System.Drawing.Point(217, 5);
             this.banco.Margin = new System.Windows.Forms.Padding(2);
             this.banco.Name = "banco";
-            this.banco.Size = new System.Drawing.Size(680, 580);
+            this.banco.Size = new System.Drawing.Size(690, 600);
             this.banco.TabIndex = 3;
             // 
             // button6
             // 
-            this.button6.BackColor = System.Drawing.Color.DarkRed;
-            this.button6.Location = new System.Drawing.Point(307, 197);
+            this.button6.BackColor = System.Drawing.Color.Transparent;
+            this.button6.BackgroundImage = global::caro.Properties.Resources.play;
+            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button6.Location = new System.Drawing.Point(301, 261);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(191, 75);
+            this.button6.Size = new System.Drawing.Size(100, 100);
             this.button6.TabIndex = 0;
-            this.button6.Text = "Start";
             this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
@@ -254,12 +256,12 @@ namespace caro
             // 
             this.hienchat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(232)))), ((int)(((byte)(226)))));
             this.hienchat.Enabled = false;
-            this.hienchat.Location = new System.Drawing.Point(902, 5);
+            this.hienchat.Location = new System.Drawing.Point(912, 5);
             this.hienchat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.hienchat.Multiline = true;
             this.hienchat.Name = "hienchat";
             this.hienchat.ReadOnly = true;
-            this.hienchat.Size = new System.Drawing.Size(275, 550);
+            this.hienchat.Size = new System.Drawing.Size(265, 550);
             this.hienchat.TabIndex = 0;
             // 
             // button1
@@ -345,11 +347,11 @@ namespace caro
             // nhapchat
             // 
             this.nhapchat.Enabled = false;
-            this.nhapchat.Location = new System.Drawing.Point(902, 558);
+            this.nhapchat.Location = new System.Drawing.Point(916, 558);
             this.nhapchat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.nhapchat.Multiline = true;
             this.nhapchat.Name = "nhapchat";
-            this.nhapchat.Size = new System.Drawing.Size(190, 37);
+            this.nhapchat.Size = new System.Drawing.Size(176, 37);
             this.nhapchat.TabIndex = 1;
             // 
             // send
@@ -395,7 +397,7 @@ namespace caro
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::caro.Properties.Resources.pink1;
-            this.ClientSize = new System.Drawing.Size(1184, 611);
+            this.ClientSize = new System.Drawing.Size(1184, 616);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button4);
@@ -412,8 +414,8 @@ namespace caro
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(1000, 600);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.MaximumSize = new System.Drawing.Size(1200, 650);
-            this.MinimumSize = new System.Drawing.Size(1196, 554);
+            this.MaximumSize = new System.Drawing.Size(1200, 655);
+            this.MinimumSize = new System.Drawing.Size(1200, 655);
             this.Name = "Caro";
             this.Text = "Caro";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Caro_FormClosing);

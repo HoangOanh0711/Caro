@@ -9,7 +9,7 @@ namespace caro
         public static int CellWidth = 30;
         public static int CellHeight = 30;
 
-        public static int nRows = 14;
-        public static int nCols = 17;
+        public static int nRows = 20;
+        public static int nCols = 24;
     }
 }

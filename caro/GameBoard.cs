@@ -14,7 +14,9 @@ namespace caro
 
         private int currentPlayer;
         private TextBox playerName;
-        private PictureBox avatar;
+        private PictureBox turn1;
+        private PictureBox turn2;
+        
 
         private List<Player> listPlayers;
         private List<List<Button>> matrixPositions;
@@ -46,11 +48,7 @@ namespace caro
             set { playerName = value; }
         }
 
-        public PictureBox Avatar
-        {
-            get { return avatar; }
-            set { avatar = value; }
-        }
+        
 
         public List<Player> ListPlayers
         {
@@ -93,6 +91,9 @@ namespace caro
             get { return playMode; }
             set { playMode = value; }
         }
+
+        public PictureBox Turn1 { get => turn1; set => turn1 = value; }
+        public PictureBox Turn2 { get => turn2; set => turn2 = value; }
         #endregion
 
         #region Intialize
@@ -387,15 +388,17 @@ namespace caro
         #region 2 players
         private void ChangePlayer()
         {
-            //PlayerName.Text = ListPlayers[CurrentPlayer].Name;
-            //Avatar.Image = ListPlayers[CurrentPlayer].Avatar;
+            int temp = CurrentPlayer;
+            temp = temp == 1 ? 0 : 1;
+            listPlayers[CurrentPlayer].Frame.Visible = true;
+            listPlayers[temp].Frame.Visible = false;
         }
         private void btn_Click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
 
             if (btn.BackgroundImage != null)
-                return; // Nếu ô đã được đánh thì ko cho đánh lại
+                return; 
 
             btn.BackgroundImage = ListPlayers[CurrentPlayer].Symbol;
             
@@ -409,7 +412,7 @@ namespace caro
                 playerClicked(this, new BtnClickEvent(GetButtonCoordinate(btn)));
             if (IsEndGame())
                 EndGame();
-            if (!(IsAI) || playMode == 3)
+            if (!(IsAI) && playMode == 3)
                 StartAI();
 
             IsAI = false;
@@ -429,7 +432,7 @@ namespace caro
             Button btn = MatrixPositions[point.Y][point.X];
 
             if (btn.BackgroundImage != null)
-                return; // Nếu ô đã được đánh thì ko cho đánh lại
+                return; 
 
             btn.BackgroundImage = ListPlayers[CurrentPlayer].Symbol;
 
@@ -443,6 +446,7 @@ namespace caro
                 EndGame();
         }
         #endregion
+        
         #region 1 player
         private long[] MangDiemTanCong= new long[7] { 0, 64, 4096, 262144, 16777216, 1073741824, 68719476736 };
         private long[] MangDiemPhongThu= new long[7] { 0, 8, 512, 32768, 2097152, 134217728, 8589934592 };
@@ -855,6 +859,7 @@ namespace caro
             }
         }
         #endregion
+        
         #endregion
     }
 }
