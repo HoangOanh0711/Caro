@@ -482,7 +482,8 @@ namespace caro
 
         private void button5_Click(object sender, EventArgs e)
         {
-
+            rules Rule = new rules();
+            Rule.Show();
         }
 
         private void button6_Click(object sender, EventArgs e)
