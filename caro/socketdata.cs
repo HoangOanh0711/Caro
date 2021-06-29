@@ -56,6 +56,7 @@ namespace socketdata
         SEND_ICON,
         REDO,
         NAMESE,
-        NAMECL
+        NAMECL,
+        START
     }
 }

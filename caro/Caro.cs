@@ -34,9 +34,8 @@ namespace caro
             InitializeComponent();
             board = new GameBoard(banco);
             board.GameOver += Board_GameOver;
-            
             NewGame();
-            board.StartAI();
+            //board.StartAI();
         }
         public Caro(string yourname1, string yourname2, int gameMode)
         {
@@ -46,22 +45,21 @@ namespace caro
             {
                 label1.Text = yourname1;
                 label2.Text = yourname2;
+                board = new GameBoard(banco);
+                board.PlayMode = mode;
+                NewGame();
             }
             if (mode == 1)
             {
                 socket = new SocketManager();
                 this.name = yourname1;
                 this.IP = yourname2;
-                hienchat.Enabled = true;
-                nhapchat.Enabled = true;
-                send.Enabled = true;
+
+                board = new GameBoard(banco);
+                board.PlayMode = mode;
+                board.GameOver += Board_GameOver;
+                board.PlayerClicked += Board_PlayerClicked;
             }
-            
-            board = new GameBoard(banco);
-            board.PlayMode = mode;
-            board.GameOver += Board_GameOver;
-            board.PlayerClicked += Board_PlayerClicked;
-            NewGame();
         }
         #endregion
 
@@ -69,14 +67,8 @@ namespace caro
         #region Methods
         void NewGame()
         {
-            //pgb_CountDown.Value = 0;
-            //tm_CountDown.Stop();
-
-            //undoToolStripMenuItem.Enabled = true;
-            //redoToolStripMenuItem.Enabled = true;
-
-            //btn_Undo.Enabled = true;
-            //btn_Redo.Enabled = true;
+            button1.Enabled = true;
+            button2.Enabled = true;
             board.ListPlayers = new List<Player>()
             {
                 new Player(label1.Text, Image.FromFile(Application.StartupPath + "\\Resources\\ava2.png"),
@@ -226,11 +218,11 @@ namespace caro
                 Connect();
                 if (socket.IsServer == false)
                 {
+                    MessageBox.Show("Đợi chủ phòng bắt đầu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     socket.Send(new SocketData((int)SocketCommand.NAMECL, label2.Text, new Point()));
                 }
                
             }
-
         }
         private void ProcessData(SocketData data)
         {
@@ -308,7 +300,6 @@ namespace caro
                 case (int)SocketCommand.UNDO:
                     this.Invoke((MethodInvoker)(() =>
                     {
-                    
                         board.Undo();
                     }));
                     break;
@@ -316,7 +307,6 @@ namespace caro
                 case (int)SocketCommand.REDO:
                     this.Invoke((MethodInvoker)(() =>
                     {
-                           
                             board.Redo();
                     }));
                     break;
@@ -333,9 +323,15 @@ namespace caro
                     this.Invoke((MethodInvoker)(() =>
                     {
                         EndGame();
-                        
                         socket.CloseConnect();
                         MessageBox.Show("Đối thủ đã chạy mất dép", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }));
+                    break;
+
+                case (int)SocketCommand.START:
+                    this.Invoke((MethodInvoker)(() =>
+                    {
+                        Start();
                     }));
                     break;
 
@@ -344,14 +340,42 @@ namespace caro
             }
             Listen();
         }
+        private void Start()
+        {
+            button6.Visible = false;
+            button4.Enabled = true;
 
+            comboBox1.Enabled = true;
+            send.Enabled = true;
+            nhapchat.Enabled = true;
+            NewGame();
+             
+        }
+        private void beforeStart()
+        {
+            if(socket.IsServer == true)
+            {
+                button6.Visible = true;
+            }
+            if (socket.IsServer == false)
+            {
+                button6.Visible = false;
+            }
+            button1.Enabled = false;
+            button2.Enabled = false;
+            button4.Enabled = false;
+
+            comboBox1.Enabled = false;
+            send.Enabled = false;
+            nhapchat.Enabled = false;
+            
+        }
         private void Connect()
         {
             socket.IP = this.IP;
             if (!socket.ConnectServer())
             {
                 socket.IsServer = true;
-                banco.Enabled = true;
                 socket.CreateServer();
                 MessageBox.Show("Bạn đang là Server", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 label1.Text = name;
@@ -359,11 +383,11 @@ namespace caro
             else
             {
                 socket.IsServer = false;
-                banco.Enabled = false;
                 Listen();
                 MessageBox.Show("Kết nối thành công !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 label2.Text = name;
-            }            
+            }
+            beforeStart();
         }
         private void Listen()
         {
@@ -458,6 +482,21 @@ namespace caro
 
         private void button5_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                socket.Send(new SocketData((int)SocketCommand.START, "", new Point()));
+                Start();
+            }
+            catch
+            {
+                MessageBox.Show("Vui lòng chờ bạn chơi", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            
 
         }
 

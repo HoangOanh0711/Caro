@@ -409,7 +409,7 @@ namespace caro
                 playerClicked(this, new BtnClickEvent(GetButtonCoordinate(btn)));
             if (IsEndGame())
                 EndGame();
-            if (!(IsAI) && playMode == 3)
+            if (!(IsAI) || playMode == 3)
                 StartAI();
 
             IsAI = false;
