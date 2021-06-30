@@ -57,6 +57,7 @@ namespace socketdata
         REDO,
         NAMESE,
         NAMECL,
-        START
+        START,
+        CHANGE
     }
 }

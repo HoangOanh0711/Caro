@@ -35,7 +35,7 @@ namespace caro
             board = new GameBoard(banco);
             board.GameOver += Board_GameOver;
             NewGame();
-            //board.StartAI();
+            
         }
         public Caro(string yourname1, string yourname2, int gameMode)
         {
@@ -48,6 +48,7 @@ namespace caro
                 board = new GameBoard(banco);
                 board.PlayMode = mode;
                 board.GameOver += Board_GameOver;
+                board.PlayerClicked += Board_PlayerClicked;
                 NewGame();
             }
             if (mode == 1)
@@ -85,7 +86,7 @@ namespace caro
         {
             button1.Enabled = false;
             button2.Enabled = false;
-
+            MessageBox.Show(board.ListPlayers[board.CurrentPlayer == 1 ? 0 : 1].Name + " đã chiến thắng ♥ !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             banco.Enabled = false;
         }
 
@@ -117,7 +118,7 @@ namespace caro
                 {
                     EndGame();
                     MessageBox.Show("Không có kết nối nào tới máy đối thủ", "Lỗi kết nối", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Connect();
+                    
                 }
             }
         }
@@ -235,12 +236,13 @@ namespace caro
                 {
                     MessageBox.Show("Đợi chủ phòng bắt đầu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     socket.Send(new SocketData((int)SocketCommand.NAMECL, label2.Text, new Point()));
-                }
                
+                }
             }
         }
         private void ProcessData(SocketData data)
         {
+            
             switch (data.Command)
             {
                 case (int)SocketCommand.SEND_POINT:
@@ -330,7 +332,7 @@ namespace caro
                     this.Invoke((MethodInvoker)(() =>
                     {
                         EndGame();
-                        MessageBox.Show(name + " đã chiến thắng ♥ !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        
                     }));
                     break;
 
@@ -347,6 +349,13 @@ namespace caro
                     this.Invoke((MethodInvoker)(() =>
                     {
                         Start();
+                    }));
+                    break;
+
+                case (int)SocketCommand.CHANGE:
+                    this.Invoke((MethodInvoker)(() =>
+                    {
+                        
                     }));
                     break;
 

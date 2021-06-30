@@ -423,7 +423,7 @@ namespace caro
             if (gameOver != null)
             {
                 gameOver(this, new EventArgs());
-                MessageBox.Show("Bạn Đã chiến thắng!");
+                
             }    
                 
         }
