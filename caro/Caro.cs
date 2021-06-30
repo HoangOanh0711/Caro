@@ -514,6 +514,11 @@ namespace caro
             Rule.Show();
         }
 
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             ComboBox cb = sender as ComboBox;

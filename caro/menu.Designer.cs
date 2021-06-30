@@ -42,12 +42,11 @@ namespace caro
             // 
             this.twoplay.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.twoplay.BackColor = System.Drawing.Color.PowderBlue;
+            this.twoplay.BackColor = System.Drawing.Color.Transparent;
             this.twoplay.BackgroundImage = global::caro.Properties.Resources.xanhnhat;
             this.twoplay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.twoplay.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.twoplay.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.twoplay.Image = global::caro.Properties.Resources.d1dcfb___Pale_Lavender_Color_Image___Schemecolor;
             this.twoplay.Location = new System.Drawing.Point(91, 277);
             this.twoplay.Margin = new System.Windows.Forms.Padding(2);
             this.twoplay.Name = "twoplay";
@@ -75,10 +74,10 @@ namespace caro
             // 
             this.playcom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.playcom.BackColor = System.Drawing.Color.Transparent;
             this.playcom.BackgroundImage = global::caro.Properties.Resources.xanhnhat;
             this.playcom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.playcom.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.playcom.Image = global::caro.Properties.Resources.d1dcfb___Pale_Lavender_Color_Image___Schemecolor;
             this.playcom.Location = new System.Drawing.Point(91, 326);
             this.playcom.Margin = new System.Windows.Forms.Padding(2);
             this.playcom.Name = "playcom";
@@ -92,41 +91,41 @@ namespace caro
             // 
             this.playvscom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.playvscom.BackColor = System.Drawing.Color.Transparent;
             this.playvscom.BackgroundImage = global::caro.Properties.Resources.xanhnhat;
             this.playvscom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.playvscom.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.playvscom.Image = global::caro.Properties.Resources.d1dcfb___Pale_Lavender_Color_Image___Schemecolor;
             this.playvscom.Location = new System.Drawing.Point(91, 376);
             this.playvscom.Margin = new System.Windows.Forms.Padding(2);
             this.playvscom.Name = "playvscom";
             this.playvscom.Size = new System.Drawing.Size(250, 45);
             this.playvscom.TabIndex = 5;
             this.playvscom.Text = "Player vs Com";
-            this.playvscom.UseVisualStyleBackColor = true;
+            this.playvscom.UseVisualStyleBackColor = false;
             this.playvscom.Click += new System.EventHandler(this.playvscom_Click);
             // 
             // exit
             // 
             this.exit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.exit.BackColor = System.Drawing.Color.Transparent;
             this.exit.BackgroundImage = global::caro.Properties.Resources.xanhnhat;
             this.exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.exit.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.exit.Image = global::caro.Properties.Resources.d1dcfb___Pale_Lavender_Color_Image___Schemecolor;
             this.exit.Location = new System.Drawing.Point(91, 426);
             this.exit.Margin = new System.Windows.Forms.Padding(2);
             this.exit.Name = "exit";
             this.exit.Size = new System.Drawing.Size(250, 45);
             this.exit.TabIndex = 6;
             this.exit.Text = "Exit";
-            this.exit.UseVisualStyleBackColor = true;
+            this.exit.UseVisualStyleBackColor = false;
             this.exit.Click += new System.EventHandler(this.exit_Click);
             // 
             // menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::caro.Properties.Resources.pink1;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(228)))), ((int)(((byte)(244)))));
             this.ClientSize = new System.Drawing.Size(434, 491);
             this.Controls.Add(this.exit);
             this.Controls.Add(this.playvscom);

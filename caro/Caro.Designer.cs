@@ -61,6 +61,8 @@ namespace caro
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolTip5 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip6 = new System.Windows.Forms.ToolTip(this.components);
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.player1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -79,6 +81,7 @@ namespace caro
             | System.Windows.Forms.AnchorStyles.Right)));
             this.player1.BackColor = System.Drawing.Color.White;
             this.player1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("player1.BackgroundImage")));
+            this.player1.Controls.Add(this.textBox3);
             this.player1.Controls.Add(this.pictureBox5);
             this.player1.Controls.Add(this.textBox1);
             this.player1.Controls.Add(this.label1);
@@ -119,12 +122,13 @@ namespace caro
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.Image = global::caro.Properties.Resources.f3cfd7___Queen_Pink_Color_Image___Schemecolor;
-            this.label1.Location = new System.Drawing.Point(20, 153);
+            this.label1.Location = new System.Drawing.Point(118, 103);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(61, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Player1";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // pictureBox3
             // 
@@ -154,7 +158,9 @@ namespace caro
             this.player2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.player2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("player2.BackgroundImage")));
+            this.player2.BackColor = System.Drawing.Color.Transparent;
+            this.player2.BackgroundImage = global::caro.Properties.Resources.camhong;
+            this.player2.Controls.Add(this.textBox4);
             this.player2.Controls.Add(this.pictureBox6);
             this.player2.Controls.Add(this.textBox2);
             this.player2.Controls.Add(this.label2);
@@ -197,7 +203,7 @@ namespace caro
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label2.Image = global::caro.Properties.Resources.camhong;
-            this.label2.Location = new System.Drawing.Point(20, 154);
+            this.label2.Location = new System.Drawing.Point(124, 103);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 20);
@@ -254,7 +260,7 @@ namespace caro
             // 
             // hienchat
             // 
-            this.hienchat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(232)))), ((int)(((byte)(226)))));
+            this.hienchat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(228)))), ((int)(((byte)(244)))));
             this.hienchat.Enabled = false;
             this.hienchat.Location = new System.Drawing.Point(912, 5);
             this.hienchat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -266,7 +272,7 @@ namespace caro
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(232)))), ((int)(((byte)(226)))));
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(228)))), ((int)(((byte)(244)))));
             this.button1.BackgroundImage = global::caro.Properties.Resources.undo;
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button1.FlatAppearance.BorderSize = 0;
@@ -282,7 +288,7 @@ namespace caro
             // 
             // button5
             // 
-            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(232)))), ((int)(((byte)(226)))));
+            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(228)))), ((int)(((byte)(244)))));
             this.button5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button5.BackgroundImage")));
             this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button5.FlatAppearance.BorderSize = 0;
@@ -298,7 +304,7 @@ namespace caro
             // 
             // button3
             // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(232)))), ((int)(((byte)(226)))));
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(228)))), ((int)(((byte)(244)))));
             this.button3.BackgroundImage = global::caro.Properties.Resources.exit;
             this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button3.FlatAppearance.BorderSize = 0;
@@ -314,7 +320,7 @@ namespace caro
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(232)))), ((int)(((byte)(226)))));
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(228)))), ((int)(((byte)(244)))));
             this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button2.FlatAppearance.BorderSize = 0;
@@ -330,7 +336,7 @@ namespace caro
             // 
             // button4
             // 
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(232)))), ((int)(((byte)(226)))));
+            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(228)))), ((int)(((byte)(244)))));
             this.button4.BackgroundImage = global::caro.Properties.Resources.newgame21;
             this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button4.FlatAppearance.BorderSize = 0;
@@ -347,16 +353,16 @@ namespace caro
             // nhapchat
             // 
             this.nhapchat.Enabled = false;
-            this.nhapchat.Location = new System.Drawing.Point(916, 558);
+            this.nhapchat.Location = new System.Drawing.Point(912, 558);
             this.nhapchat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.nhapchat.Multiline = true;
             this.nhapchat.Name = "nhapchat";
-            this.nhapchat.Size = new System.Drawing.Size(176, 37);
+            this.nhapchat.Size = new System.Drawing.Size(180, 37);
             this.nhapchat.TabIndex = 1;
             // 
             // send
             // 
-            this.send.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(232)))), ((int)(((byte)(226)))));
+            this.send.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(228)))), ((int)(((byte)(244)))));
             this.send.BackgroundImage = global::caro.Properties.Resources.send;
             this.send.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.send.Enabled = false;
@@ -392,11 +398,41 @@ namespace caro
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // textBox3
+            // 
+            this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(207)))), ((int)(((byte)(215)))));
+            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox3.Enabled = false;
+            this.textBox3.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox3.Location = new System.Drawing.Point(3, 156);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(107, 27);
+            this.textBox3.TabIndex = 11;
+            this.textBox3.Text = "Player1";
+            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox4
+            // 
+            this.textBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(224)))), ((int)(((byte)(202)))));
+            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox4.Enabled = false;
+            this.textBox4.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox4.Location = new System.Drawing.Point(3, 157);
+            this.textBox4.Multiline = true;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(107, 27);
+            this.textBox4.TabIndex = 12;
+            this.textBox4.Text = "Player1";
+            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // Caro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::caro.Properties.Resources.pink1;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(228)))), ((int)(((byte)(244)))));
             this.ClientSize = new System.Drawing.Size(1184, 616);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.comboBox1);
@@ -468,6 +504,8 @@ namespace caro
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.ToolTip toolTip5;
         private System.Windows.Forms.ToolTip toolTip6;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox4;
     }
 }
 
