@@ -147,7 +147,7 @@ namespace caro
                         Location = new Point(LocX, LocY),
                         Tag = i.ToString(), // Để xác định button đang ở hàng nào
 
-                        BackColor = Color.FromArgb(255, 206, 148),
+                        BackColor = Color.FromArgb(230, 218, 207),
                         BackgroundImageLayout = ImageLayout.Stretch
 
                     };

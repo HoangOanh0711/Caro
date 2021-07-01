@@ -23,8 +23,7 @@ namespace caro
         Bitmap haha = new Bitmap(Application.StartupPath + "\\Resources\\haha.png");
         Bitmap sad = new Bitmap(Application.StartupPath + "\\Resources\\sad.png");
         Bitmap angry = new Bitmap(Application.StartupPath + "\\Resources\\angry.png");
-        int icon;
-        int scoX, scoO;
+        int icon, temp, scoX, scoO;
         public int ScoX { get => scoX; }
         public int ScoO { get => scoO; }
 
@@ -41,6 +40,7 @@ namespace caro
         {
             InitializeComponent();
             this.mode = gameMode;
+            scoO = scoX = 0;
             if (mode == 2 || mode == 3)
             {
                 name1.Text = yourname1;
@@ -69,6 +69,11 @@ namespace caro
         #region Methods
         void NewGame()
         {
+            if (this.mode == 1)
+            {
+                if (socket.IsServer == false)
+                 banco.Enabled = false; 
+            }    
             button1.Enabled = true;
             button2.Enabled = true;
             board.ListPlayers = new List<Player>()
@@ -79,14 +84,23 @@ namespace caro
                 new Player(name2.Text,Image.FromFile(Application.StartupPath + "\\Resources\\o.png"),
                                         pictureBox4)
             };
-            scoO = scoX = 0;
             board.DrawGameBoard();
         }
-        void EndGame()
+        void EndGame(int mod)
         {
             button1.Enabled = false;
             button2.Enabled = false;
-            MessageBox.Show(board.ListPlayers[board.CurrentPlayer == 1 ? 0 : 1].Name + " đã chiến thắng ♥ !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if(mod==0)
+            {
+                temp = board.CurrentPlayer;
+                if (temp == 1)
+                {
+                    update_Score(2);
+                }
+                else
+                    update_Score(1);
+                MessageBox.Show(board.ListPlayers[temp == 1 ? 0 : 1].Name + " đã chiến thắng ♥ !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             banco.Enabled = false;
         }
 
@@ -116,7 +130,7 @@ namespace caro
                 }
                 catch
                 {
-                    EndGame();
+                    EndGame(1);
                     MessageBox.Show("Không có kết nối nào tới máy đối thủ", "Lỗi kết nối", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     
                 }
@@ -134,12 +148,13 @@ namespace caro
                 }
                 catch { }
             }
+            Thread.Sleep(200);
             Application.Exit();
         }
 
         private void Board_GameOver(object sender, EventArgs e)
         {
-            EndGame();
+            EndGame(0);
 
             if (board.PlayMode == 1)
                 socket.Send(new SocketData((int)SocketCommand.END_GAME, "", new Point()));
@@ -264,6 +279,7 @@ namespace caro
                     this.Invoke((MethodInvoker)(() =>
                     {
                         name2.Text = data.Message;
+                        board.ListPlayers[2].Name= data.Message;
                         socket.Send(new SocketData((int)SocketCommand.NAMESE, name1.Text, new Point()));
                     }));
                     break;
@@ -272,6 +288,7 @@ namespace caro
                     this.Invoke((MethodInvoker)(() =>
                     {
                         name1.Text = data.Message;
+                        board.ListPlayers[1].Name = data.Message;
                     }));
                     break;
 
@@ -310,7 +327,7 @@ namespace caro
                     this.Invoke((MethodInvoker)(() =>
                     {
                         NewGame();
-                        banco.Enabled = false;
+                        
                     }));
                     break;
 
@@ -331,15 +348,14 @@ namespace caro
                 case (int)SocketCommand.END_GAME:
                     this.Invoke((MethodInvoker)(() =>
                     {
-                        EndGame();
-                        
+                        EndGame(0); 
                     }));
                     break;
 
                 case (int)SocketCommand.QUIT:
                     this.Invoke((MethodInvoker)(() =>
                     {
-                        EndGame();
+                        EndGame(1);
                         socket.CloseConnect();
                         MessageBox.Show("Đối thủ đã chạy mất dép", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }));
