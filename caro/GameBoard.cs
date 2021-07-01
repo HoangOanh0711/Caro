@@ -147,8 +147,9 @@ namespace caro
                         Location = new Point(LocX, LocY),
                         Tag = i.ToString(), // Để xác định button đang ở hàng nào
 
-                        BackColor = Color.Lavender,
+                        BackColor = Color.FromArgb(255, 206, 148),
                         BackgroundImageLayout = ImageLayout.Stretch
+
                     };
 
                     btn.Click += btn_Click;
@@ -197,7 +198,7 @@ namespace caro
                     MatrixPositions[CurrRow][CurrCol + Count].BackColor = Color.Lime;
                 return true;
             }
-
+            //màu của sự chiến thắng: color.lime :>
             return false;
         }
 

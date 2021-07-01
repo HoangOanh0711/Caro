@@ -43,8 +43,8 @@ namespace caro
             this.mode = gameMode;
             if (mode == 2 || mode == 3)
             {
-                label1.Text = yourname1;
-                label2.Text = yourname2;
+                name1.Text = yourname1;
+                name2.Text = yourname2;
                 board = new GameBoard(banco);
                 board.PlayMode = mode;
                 board.GameOver += Board_GameOver;
@@ -73,10 +73,10 @@ namespace caro
             button2.Enabled = true;
             board.ListPlayers = new List<Player>()
             {
-                new Player(label1.Text,Image.FromFile(Application.StartupPath + "\\Resources\\x.png"),
+                new Player(name1.Text,Image.FromFile(Application.StartupPath + "\\Resources\\x.png"),
                                         pictureBox3),
 
-                new Player(label2.Text,Image.FromFile(Application.StartupPath + "\\Resources\\o.png"),
+                new Player(name2.Text,Image.FromFile(Application.StartupPath + "\\Resources\\o.png"),
                                         pictureBox4)
             };
             scoO = scoX = 0;
@@ -195,13 +195,13 @@ namespace caro
             {
                 if (socket.IsServer == true)
                 {
-                    hienchat.Text += "- " + "" + label1.Text + ": " + nhapchat.Text + "\r\n";
+                    hienchat.Text += "- " + "" + name1.Text + ": " + nhapchat.Text + "\r\n";
                     nhapchat.Text = "";
                     socket.Send(new SocketData((int)SocketCommand.SEND_MESSAGE, hienchat.Text, new Point()));
                 }
                 else
                 {
-                    hienchat.Text += "- " + "" + label2.Text + ": " + nhapchat.Text + "\r\n";
+                    hienchat.Text += "- " + "" + name2.Text + ": " + nhapchat.Text + "\r\n";
                     nhapchat.Text = "";
                     socket.Send(new SocketData((int)SocketCommand.SEND_MESSAGE, hienchat.Text, new Point()));
                 }
@@ -235,7 +235,7 @@ namespace caro
                 if (socket.IsServer == false)
                 {
                     MessageBox.Show("Đợi chủ phòng bắt đầu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    socket.Send(new SocketData((int)SocketCommand.NAMECL, label2.Text, new Point()));
+                    socket.Send(new SocketData((int)SocketCommand.NAMECL, name2.Text, new Point()));
                
                 }
             }
@@ -263,15 +263,15 @@ namespace caro
                 case (int)SocketCommand.NAMECL:
                     this.Invoke((MethodInvoker)(() =>
                     {
-                        label2.Text = data.Message;
-                        socket.Send(new SocketData((int)SocketCommand.NAMESE, label1.Text, new Point()));
+                        name2.Text = data.Message;
+                        socket.Send(new SocketData((int)SocketCommand.NAMESE, name1.Text, new Point()));
                     }));
                     break;
 
                 case (int)SocketCommand.NAMESE:
                     this.Invoke((MethodInvoker)(() =>
                     {
-                        label1.Text = data.Message;
+                        name1.Text = data.Message;
                     }));
                     break;
 
@@ -406,14 +406,14 @@ namespace caro
                 socket.IsServer = true;
                 socket.CreateServer();
                 MessageBox.Show("Bạn đang là Server", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                label1.Text = name;
+                name1.Text = name;
             }
             else
             {
                 socket.IsServer = false;
                 Listen();
                 MessageBox.Show("Kết nối thành công !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                label2.Text = name;
+                name2.Text = name;
             }
             beforeStart();
         }
@@ -514,10 +514,7 @@ namespace caro
             Rule.Show();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
