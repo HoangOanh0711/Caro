@@ -186,7 +186,7 @@ namespace caro
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(228)))), ((int)(((byte)(244)))));
-            this.ClientSize = new System.Drawing.Size(584, 337);
+            this.ClientSize = new System.Drawing.Size(569, 522);
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.textBox5);

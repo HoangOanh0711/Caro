@@ -35,6 +35,7 @@ namespace caro
             this.playcom = new System.Windows.Forms.Button();
             this.playvscom = new System.Windows.Forms.Button();
             this.exit = new System.Windows.Forms.Button();
+            this.instructions = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,10 +48,10 @@ namespace caro
             this.twoplay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.twoplay.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.twoplay.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.twoplay.Location = new System.Drawing.Point(91, 277);
+            this.twoplay.Location = new System.Drawing.Point(91, 265);
             this.twoplay.Margin = new System.Windows.Forms.Padding(2);
             this.twoplay.Name = "twoplay";
-            this.twoplay.Size = new System.Drawing.Size(250, 45);
+            this.twoplay.Size = new System.Drawing.Size(250, 40);
             this.twoplay.TabIndex = 0;
             this.twoplay.Text = "2 Players in LAN";
             this.twoplay.UseVisualStyleBackColor = false;
@@ -78,10 +79,10 @@ namespace caro
             this.playcom.BackgroundImage = global::caro.Properties.Resources.xanhnhat;
             this.playcom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.playcom.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.playcom.Location = new System.Drawing.Point(91, 326);
+            this.playcom.Location = new System.Drawing.Point(91, 309);
             this.playcom.Margin = new System.Windows.Forms.Padding(2);
             this.playcom.Name = "playcom";
-            this.playcom.Size = new System.Drawing.Size(250, 45);
+            this.playcom.Size = new System.Drawing.Size(250, 40);
             this.playcom.TabIndex = 4;
             this.playcom.Text = "2 Players / Com";
             this.playcom.UseVisualStyleBackColor = false;
@@ -95,10 +96,10 @@ namespace caro
             this.playvscom.BackgroundImage = global::caro.Properties.Resources.xanhnhat;
             this.playvscom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.playvscom.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.playvscom.Location = new System.Drawing.Point(91, 376);
+            this.playvscom.Location = new System.Drawing.Point(91, 353);
             this.playvscom.Margin = new System.Windows.Forms.Padding(2);
             this.playvscom.Name = "playvscom";
-            this.playvscom.Size = new System.Drawing.Size(250, 45);
+            this.playvscom.Size = new System.Drawing.Size(250, 40);
             this.playvscom.TabIndex = 5;
             this.playvscom.Text = "Player vs Com";
             this.playvscom.UseVisualStyleBackColor = false;
@@ -112,14 +113,31 @@ namespace caro
             this.exit.BackgroundImage = global::caro.Properties.Resources.xanhnhat;
             this.exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.exit.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.exit.Location = new System.Drawing.Point(91, 426);
+            this.exit.Location = new System.Drawing.Point(91, 441);
             this.exit.Margin = new System.Windows.Forms.Padding(2);
             this.exit.Name = "exit";
-            this.exit.Size = new System.Drawing.Size(250, 45);
+            this.exit.Size = new System.Drawing.Size(250, 40);
             this.exit.TabIndex = 6;
             this.exit.Text = "Exit";
             this.exit.UseVisualStyleBackColor = false;
             this.exit.Click += new System.EventHandler(this.exit_Click);
+            // 
+            // instructions
+            // 
+            this.instructions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.instructions.BackColor = System.Drawing.Color.Transparent;
+            this.instructions.BackgroundImage = global::caro.Properties.Resources.xanhnhat;
+            this.instructions.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.instructions.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.instructions.Location = new System.Drawing.Point(91, 397);
+            this.instructions.Margin = new System.Windows.Forms.Padding(2);
+            this.instructions.Name = "instructions";
+            this.instructions.Size = new System.Drawing.Size(250, 40);
+            this.instructions.TabIndex = 7;
+            this.instructions.Text = "Instructions";
+            this.instructions.UseVisualStyleBackColor = false;
+            this.instructions.Click += new System.EventHandler(this.instructions_Click);
             // 
             // menu
             // 
@@ -127,6 +145,7 @@ namespace caro
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(228)))), ((int)(((byte)(244)))));
             this.ClientSize = new System.Drawing.Size(434, 491);
+            this.Controls.Add(this.instructions);
             this.Controls.Add(this.exit);
             this.Controls.Add(this.playvscom);
             this.Controls.Add(this.playcom);
@@ -151,5 +170,6 @@ namespace caro
         private System.Windows.Forms.Button playcom;
         private System.Windows.Forms.Button playvscom;
         private System.Windows.Forms.Button exit;
+        private System.Windows.Forms.Button instructions;
     }
 }

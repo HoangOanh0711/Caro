@@ -69,11 +69,7 @@ namespace caro
         #region Methods
         void NewGame()
         {
-            if (this.mode == 1)
-            {
-                if (socket.IsServer == false)
-                 banco.Enabled = false; 
-            }    
+            
             button1.Enabled = true;
             button2.Enabled = true;
             board.ListPlayers = new List<Player>()
@@ -97,9 +93,9 @@ namespace caro
                 {
                     update_Score(2);
                 }
-                else
+                else if (temp == 0)
                     update_Score(1);
-                MessageBox.Show(board.ListPlayers[temp == 1 ? 0 : 1].Name + " đã chiến thắng ♥ !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show(board.ListPlayers[temp == 1 ? 0 : 1].Name + " đã chiến thắng ♥ !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             banco.Enabled = false;
         }
@@ -148,14 +144,13 @@ namespace caro
                 }
                 catch { }
             }
-            Thread.Sleep(200);
+            //Thread.Sleep(200);
             Application.Exit();
         }
 
         private void Board_GameOver(object sender, EventArgs e)
         {
             EndGame(0);
-
             if (board.PlayMode == 1)
                 socket.Send(new SocketData((int)SocketCommand.END_GAME, "", new Point()));
         }
@@ -189,15 +184,18 @@ namespace caro
         private void button4_Click(object sender, EventArgs e)
         {
             NewGame();
+            banco.Enabled = true;
             if (board.PlayMode == 1)
             {
                 try
                 {
                     socket.Send(new SocketData((int)SocketCommand.NEW_GAME, "", new Point()));
+                    if (socket.IsServer == false)
+                        banco.Enabled = false;
                 }
                 catch { }
             }
-            banco.Enabled = true;
+            
         }
 
         private void send_Click(object sender, EventArgs e)
@@ -229,6 +227,7 @@ namespace caro
             try
             {
                 socket.Send(new SocketData((int)SocketCommand.START, "", new Point()));
+                socket.Send(new SocketData((int)SocketCommand.NAMESE, name1.Text, new Point()));
                 Start();
                 Listen();
             }
@@ -250,8 +249,6 @@ namespace caro
                 if (socket.IsServer == false)
                 {
                     MessageBox.Show("Đợi chủ phòng bắt đầu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    socket.Send(new SocketData((int)SocketCommand.NAMECL, name2.Text, new Point()));
-               
                 }
             }
         }
@@ -280,7 +277,6 @@ namespace caro
                     {
                         name2.Text = data.Message;
                         board.ListPlayers[2].Name= data.Message;
-                        socket.Send(new SocketData((int)SocketCommand.NAMESE, name1.Text, new Point()));
                     }));
                     break;
 
@@ -289,6 +285,7 @@ namespace caro
                     {
                         name1.Text = data.Message;
                         board.ListPlayers[1].Name = data.Message;
+                        socket.Send(new SocketData((int)SocketCommand.NAMECL, name2.Text, new Point()));
                     }));
                     break;
 
@@ -327,7 +324,9 @@ namespace caro
                     this.Invoke((MethodInvoker)(() =>
                     {
                         NewGame();
-                        
+                        if (this.mode==1 && socket.IsServer == false)
+                            banco.Enabled = false;
+
                     }));
                     break;
 

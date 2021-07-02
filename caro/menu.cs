@@ -41,5 +41,11 @@ namespace caro
             PlayAI.Show();
             this.Hide();
         }
+
+        private void instructions_Click(object sender, EventArgs e)
+        {
+            Inmenu inmenu = new Inmenu();
+            inmenu.Show();
+        }
     }
 }
