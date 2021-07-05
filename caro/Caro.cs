@@ -20,12 +20,12 @@ namespace caro
         string sohinh;
         string name;
         private int _ticks;
-        Bitmap happy1 = new Bitmap(Application.StartupPath + "\\Resources\\happy(1).png");
+        Bitmap happy1 = new Bitmap(Application.StartupPath + "\\Resources\\happy (1).png");
         Bitmap happy = new Bitmap(Application.StartupPath + "\\Resources\\happy.png");
         Bitmap sad = new Bitmap(Application.StartupPath + "\\Resources\\sad1.png");
         Bitmap crying = new Bitmap(Application.StartupPath + "\\Resources\\crying.png");
         Bitmap cute = new Bitmap(Application.StartupPath + "\\Resources\\cute.png");
-        Bitmap laughing2 = new Bitmap(Application.StartupPath + "\\Resources\\laughing(2).png");
+        Bitmap laughing2 = new Bitmap(Application.StartupPath + "\\Resources\\laughing (2).png");
         Bitmap laughing = new Bitmap(Application.StartupPath + "\\Resources\\laughing.png");
         Bitmap serious = new Bitmap(Application.StartupPath + "\\Resources\\serious.png");
         Bitmap surprised = new Bitmap(Application.StartupPath + "\\Resources\\surprised.png");

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ThanhBlack\\Desktop\\.Net\\Đồ án\\Ver Mới\\caro\\caro.csproj": {}
+    "D:\\visual studio\\doan\\DoAnLTM\\caro\\caro.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ThanhBlack\\Desktop\\.Net\\Đồ án\\Ver Mới\\caro\\caro.csproj": {
+    "D:\\visual studio\\doan\\DoAnLTM\\caro\\caro.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ThanhBlack\\Desktop\\.Net\\Đồ án\\Ver Mới\\caro\\caro.csproj",
+        "projectUniqueName": "D:\\visual studio\\doan\\DoAnLTM\\caro\\caro.csproj",
         "projectName": "caro",
-        "projectPath": "C:\\Users\\ThanhBlack\\Desktop\\.Net\\Đồ án\\Ver Mới\\caro\\caro.csproj",
-        "packagesPath": "C:\\Users\\ThanhBlack\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ThanhBlack\\Desktop\\.Net\\Đồ án\\Ver Mới\\caro\\obj\\",
+        "projectPath": "D:\\visual studio\\doan\\DoAnLTM\\caro\\caro.csproj",
+        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+        "outputPath": "D:\\visual studio\\doan\\DoAnLTM\\caro\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ThanhBlack\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -57,7 +57,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }

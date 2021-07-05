@@ -157,3 +157,26 @@ C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Ver Mới\caro\obj\Debug\netcoreapp3.
 C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Ver Mới\caro\obj\Debug\netcoreapp3.1\caro.rules.resources
 C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Ver Mới\caro\obj\Debug\netcoreapp3.1\caro.emoji.resources
 C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Ver Mới\caro\obj\Debug\netcoreapp3.1\caro.Inmenu.resources
+D:\visual studio\doan\DoAnLTM\caro\bin\Debug\netcoreapp3.1\caro.exe
+D:\visual studio\doan\DoAnLTM\caro\bin\Debug\netcoreapp3.1\caro.deps.json
+D:\visual studio\doan\DoAnLTM\caro\bin\Debug\netcoreapp3.1\caro.runtimeconfig.json
+D:\visual studio\doan\DoAnLTM\caro\bin\Debug\netcoreapp3.1\caro.runtimeconfig.dev.json
+D:\visual studio\doan\DoAnLTM\caro\bin\Debug\netcoreapp3.1\caro.dll
+D:\visual studio\doan\DoAnLTM\caro\bin\Debug\netcoreapp3.1\caro.pdb
+D:\visual studio\doan\DoAnLTM\caro\obj\Debug\netcoreapp3.1\caro.csproj.AssemblyReference.cache
+D:\visual studio\doan\DoAnLTM\caro\obj\Debug\netcoreapp3.1\caro._2playersinlan.resources
+D:\visual studio\doan\DoAnLTM\caro\obj\Debug\netcoreapp3.1\caro.Caro.resources
+D:\visual studio\doan\DoAnLTM\caro\obj\Debug\netcoreapp3.1\caro.emoji.resources
+D:\visual studio\doan\DoAnLTM\caro\obj\Debug\netcoreapp3.1\caro.Inmenu.resources
+D:\visual studio\doan\DoAnLTM\caro\obj\Debug\netcoreapp3.1\caro.menu.resources
+D:\visual studio\doan\DoAnLTM\caro\obj\Debug\netcoreapp3.1\caro.playAI.resources
+D:\visual studio\doan\DoAnLTM\caro\obj\Debug\netcoreapp3.1\caro.playcom.resources
+D:\visual studio\doan\DoAnLTM\caro\obj\Debug\netcoreapp3.1\caro.Properties.Resources.resources
+D:\visual studio\doan\DoAnLTM\caro\obj\Debug\netcoreapp3.1\caro.rules.resources
+D:\visual studio\doan\DoAnLTM\caro\obj\Debug\netcoreapp3.1\caro.csproj.GenerateResource.cache
+D:\visual studio\doan\DoAnLTM\caro\obj\Debug\netcoreapp3.1\caro.AssemblyInfoInputs.cache
+D:\visual studio\doan\DoAnLTM\caro\obj\Debug\netcoreapp3.1\caro.AssemblyInfo.cs
+D:\visual studio\doan\DoAnLTM\caro\obj\Debug\netcoreapp3.1\caro.csproj.CoreCompileInputs.cache
+D:\visual studio\doan\DoAnLTM\caro\obj\Debug\netcoreapp3.1\caro.dll
+D:\visual studio\doan\DoAnLTM\caro\obj\Debug\netcoreapp3.1\caro.pdb
+D:\visual studio\doan\DoAnLTM\caro\obj\Debug\netcoreapp3.1\caro.genruntimeconfig.cache
