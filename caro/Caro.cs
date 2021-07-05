@@ -244,8 +244,6 @@ namespace caro
             {
                 MessageBox.Show("Vui lòng chờ bạn chơi", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
-
         }
         #endregion
 
@@ -258,7 +256,7 @@ namespace caro
                 if (socket.IsServer == false)
                 {
                     MessageBox.Show("Đợi chủ phòng bắt đầu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                }                
             }
         }
         private void ProcessData(SocketData data)
@@ -454,8 +452,7 @@ namespace caro
             if(socket.IsServer==false)
             {
                 banco.Enabled = false;
-            }    
-             
+            }            
         }
         private void beforeStart()
         {
@@ -529,182 +526,182 @@ namespace caro
         private void sendicon()
         {
             switch (icon)
-            {
-                case 0:
-                    break;
-                case 1:
-                    if (socket.IsServer == true)
-                    {
-                        pictureBox5.Image = happy1;
-                        sohinh = "1";
-                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
-                    }
-                    else
-                    {
-                        pictureBox6.Image = happy1;
-                        sohinh = "2";
-                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
-                    }
-                    break;
-                case 2:
-                    if (socket.IsServer == true)
-                    {
-                        pictureBox5.Image = happy;
-                        sohinh = "3";
-                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
-                    }
-                    else
-                    {
-                        pictureBox6.Image = happy;
-                        sohinh = "4";
-                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
-                    }
-                    break;
-                case 3:
-                    if (socket.IsServer == true)
-                    {
-                        pictureBox5.Image = laughing;
-                        sohinh = "5";
-                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
-                    }
-                    else
-                    {
-                        pictureBox6.Image = laughing;
-                        sohinh = "6";
-                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
-                    }
-                    break;
-                case 4:
-                    if (socket.IsServer == true)
-                    {
-                        pictureBox5.Image = laughing2;
-                        sohinh = "7";
-                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
-                    }
-                    else
-                    {
-                        pictureBox6.Image = laughing2;
-                        sohinh = "8";
-                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
-                    }
-                    break;
-                case 5:
-                    if (socket.IsServer == true)
-                    {
-                        pictureBox5.Image = sad;
-                        sohinh = "9";
-                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
-                    }
-                    else
-                    {
-                        pictureBox6.Image = sad;
-                        sohinh = "10";
-                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
-                    }
-                    break;
-                case 6:
-                    if (socket.IsServer == true)
-                    {
-                        pictureBox5.Image = angry1;
-                        sohinh = "11";
-                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
-                    }
-                    else
-                    {
-                        pictureBox6.Image = angry1;
-                        sohinh = "12";
-                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
-                    }
-                    break;
-                case 7:
-                    if (socket.IsServer == true)
-                    {
-                        pictureBox5.Image = angry;
-                        sohinh = "13";
-                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
-                    }
-                    else
-                    {
-                        pictureBox6.Image = angry;
-                        sohinh = "14";
-                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
-                    }
-                    break;
-                case 8:
-                    if (socket.IsServer == true)
-                    {
-                        pictureBox5.Image = crying;
-                        sohinh = "15";
-                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
-                    }
-                    else
-                    {
-                        pictureBox6.Image = crying;
-                        sohinh = "16";
-                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
-                    }
-                    break;
-                case 9:
-                    if (socket.IsServer == true)
-                    {
-                        pictureBox5.Image = cute;
-                        sohinh = "17";
-                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
-                    }
-                    else
-                    {
-                        pictureBox6.Image = cute;
-                        sohinh = "18";
-                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
-                    }
-                    break;
-                case 10:
-                    if (socket.IsServer == true)
-                    {
-                        pictureBox5.Image = surprised;
-                        sohinh = "19";
-                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
-                    }
-                    else
-                    {
-                        pictureBox6.Image = surprised;
-                        sohinh = "20";
-                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
-                    }
-                    break;
-                case 11:
-                    if (socket.IsServer == true)
-                    {
-                        pictureBox5.Image = serious;
-                        sohinh = "21";
-                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
-                    }
-                    else
-                    {
-                        pictureBox6.Image = serious;
-                        sohinh = "22";
-                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
-                    }
-                    break;
-                case 12:
-                    if (socket.IsServer == true)
-                    {
-                        pictureBox5.Image = vain;
-                        sohinh = "23";
-                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
-                    }
-                    else
-                    {
-                        pictureBox6.Image = vain;
-                        sohinh = "24";
-                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
-                    }
-                    break;
-                default:
-                    break;
-            }
-            timer1.Start();
-            Listen();
+                {
+                    case 0:
+                        break;
+                    case 1:
+                        if (socket.IsServer == true)
+                        {
+                            pictureBox5.Image = happy1;
+                            sohinh = "1";
+                            socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                        }
+                        else
+                        {
+                            pictureBox6.Image = happy1;
+                            sohinh = "2";
+                            socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                        }
+                        break;
+                    case 2:
+                        if (socket.IsServer == true)
+                        {
+                            pictureBox5.Image = happy;
+                            sohinh = "3";
+                            socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                        }
+                        else
+                        {
+                            pictureBox6.Image = happy;
+                            sohinh = "4";
+                            socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                        }
+                        break;
+                    case 3:
+                        if (socket.IsServer == true)
+                        {
+                            pictureBox5.Image = laughing;
+                            sohinh = "5";
+                            socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                        }
+                        else
+                        {
+                            pictureBox6.Image = laughing;
+                            sohinh = "6";
+                            socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                        }
+                        break;
+                    case 4:
+                        if (socket.IsServer == true)
+                        {
+                            pictureBox5.Image = laughing2;
+                            sohinh = "7";
+                            socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                        }
+                        else
+                        {
+                            pictureBox6.Image = laughing2;
+                            sohinh = "8";
+                            socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                        }
+                        break;
+                    case 5:
+                        if (socket.IsServer == true)
+                        {
+                            pictureBox5.Image = sad;
+                            sohinh = "9";
+                            socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                        }
+                        else
+                        {
+                            pictureBox6.Image = sad;
+                            sohinh = "10";
+                            socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                        }
+                        break;
+                    case 6:
+                        if (socket.IsServer == true)
+                        {
+                            pictureBox5.Image = angry1;
+                            sohinh = "11";
+                            socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                        }
+                        else
+                        {
+                            pictureBox6.Image = angry1;
+                            sohinh = "12";
+                            socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                        }
+                        break;
+                    case 7:
+                        if (socket.IsServer == true)
+                        {
+                            pictureBox5.Image = angry;
+                            sohinh = "13";
+                            socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                        }
+                        else
+                        {
+                            pictureBox6.Image = angry;
+                            sohinh = "14";
+                            socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                        }
+                        break;
+                    case 8:
+                        if (socket.IsServer == true)
+                        {
+                            pictureBox5.Image = crying;
+                            sohinh = "15";
+                            socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                        }
+                        else
+                        {
+                            pictureBox6.Image = crying;
+                            sohinh = "16";
+                            socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                        }
+                        break;
+                    case 9:
+                        if (socket.IsServer == true)
+                        {
+                            pictureBox5.Image = cute;
+                            sohinh = "17";
+                            socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                        }
+                        else
+                        {
+                            pictureBox6.Image = cute;
+                            sohinh = "18";
+                            socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                        }
+                        break;
+                    case 10:
+                        if (socket.IsServer == true)
+                        {
+                            pictureBox5.Image = surprised;
+                            sohinh = "19";
+                            socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                        }
+                        else
+                        {
+                            pictureBox6.Image = surprised;
+                            sohinh = "20";
+                            socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                        }
+                        break;
+                    case 11:
+                        if (socket.IsServer == true)
+                        {
+                            pictureBox5.Image = serious;
+                            sohinh = "21";
+                            socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                        }
+                        else
+                        {
+                            pictureBox6.Image = serious;
+                            sohinh = "22";
+                            socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                        }
+                        break;
+                    case 12:
+                        if (socket.IsServer == true)
+                        {
+                            pictureBox5.Image = vain;
+                            sohinh = "23";
+                            socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                        }
+                        else
+                        {
+                            pictureBox6.Image = vain;
+                            sohinh = "24";
+                            socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                timer1.Start();
+                Listen();           
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -712,6 +709,11 @@ namespace caro
             emoji i = new emoji();
             i.bieutuong = new emoji.truyenicon(loadicon);
             i.Show();
+            i.FormClosed += DoAnyThing;
+        }
+        void DoAnyThing(object sender, EventArgs e)
+        {
+            sendicon();
         }
         private void loadicon(int data)
         {
