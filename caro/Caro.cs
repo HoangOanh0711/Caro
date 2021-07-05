@@ -20,14 +20,21 @@ namespace caro
         string sohinh;
         string name;
         private int _ticks;
-        Bitmap haha = new Bitmap(Application.StartupPath + "\\Resources\\haha.png");
-        Bitmap sad = new Bitmap(Application.StartupPath + "\\Resources\\sad.png");
-        Bitmap angry = new Bitmap(Application.StartupPath + "\\Resources\\angry.png");
+        Bitmap happy1 = new Bitmap(Application.StartupPath + "\\Resources\\happy(1).png");
+        Bitmap happy = new Bitmap(Application.StartupPath + "\\Resources\\happy.png");
+        Bitmap sad = new Bitmap(Application.StartupPath + "\\Resources\\sad1.png");
+        Bitmap crying = new Bitmap(Application.StartupPath + "\\Resources\\crying.png");
+        Bitmap cute = new Bitmap(Application.StartupPath + "\\Resources\\cute.png");
+        Bitmap laughing2 = new Bitmap(Application.StartupPath + "\\Resources\\laughing(2).png");
+        Bitmap laughing = new Bitmap(Application.StartupPath + "\\Resources\\laughing.png");
+        Bitmap serious = new Bitmap(Application.StartupPath + "\\Resources\\serious.png");
+        Bitmap surprised = new Bitmap(Application.StartupPath + "\\Resources\\surprised.png");
+        Bitmap angry = new Bitmap(Application.StartupPath + "\\Resources\\angry1.png");
+        Bitmap angry1 = new Bitmap(Application.StartupPath + "\\Resources\\angry11.png");
+        Bitmap vain = new Bitmap(Application.StartupPath + "\\Resources\\vain.png");
         int icon, temp, scoX, scoO;
         public int ScoX { get => scoX; }
         public int ScoO { get => scoO; }
-
-
         public Caro()
         {
             InitializeComponent();
@@ -65,6 +72,11 @@ namespace caro
                 board.PlayerClicked += Board_PlayerClicked;
             }
             
+        }
+        public Caro(int bieutuong)
+        {
+            this.icon = bieutuong;
+            InitializeComponent();
         }
         public void setname()
         {
@@ -204,27 +216,20 @@ namespace caro
 
         private void send_Click(object sender, EventArgs e)
         {
-            if (nhapchat.Text == "")
+            sendicon();
+            if (socket.IsServer == true)
             {
-                sendicon();
+                hienchat.Text += "- " + "" + name1.Text + ": " + nhapchat.Text + "\r\n";
+                nhapchat.Text = "";
+                socket.Send(new SocketData((int)SocketCommand.SEND_MESSAGE, hienchat.Text, new Point()));
             }
             else
             {
-                if (socket.IsServer == true)
-                {
-                    hienchat.Text += "- " + "" + name1.Text + ": " + nhapchat.Text + "\r\n";
-                    nhapchat.Text = "";
-                    socket.Send(new SocketData((int)SocketCommand.SEND_MESSAGE, hienchat.Text, new Point()));
-                }
-                else
-                {
-                    hienchat.Text += "- " + "" + name2.Text + ": " + nhapchat.Text + "\r\n";
-                    nhapchat.Text = "";
-                    socket.Send(new SocketData((int)SocketCommand.SEND_MESSAGE, hienchat.Text, new Point()));
-                }
+                hienchat.Text += "- " + "" + name2.Text + ": " + nhapchat.Text + "\r\n";
+                nhapchat.Text = "";
+                socket.Send(new SocketData((int)SocketCommand.SEND_MESSAGE, hienchat.Text, new Point()));
             }
             Listen();
-
         }
         private void button6_Click(object sender, EventArgs e)
         {
@@ -299,24 +304,78 @@ namespace caro
                         switch (sohinh = data.Message)
                         {
                             case "1":
-                                pictureBox5.Image = haha;
+                                pictureBox5.Image = happy1;
                                 break;
                             case "2":
-                                pictureBox6.Image = haha;
+                                pictureBox6.Image = happy1;
                                 break;
                             case "3":
-                                pictureBox5.Image = sad;
+                                pictureBox5.Image = happy;
                                 break;
                             case "4":
-                                pictureBox6.Image = sad;
+                                pictureBox6.Image = happy;
                                 break;
                             case "5":
-                                pictureBox5.Image = angry;
+                                pictureBox5.Image = laughing;
                                 break;
                             case "6":
-                                pictureBox6.Image = angry;
+                                pictureBox6.Image = laughing;
                                 break;
                             case "7":
+                                pictureBox5.Image = laughing2;
+                                break;
+                            case "8":
+                                pictureBox6.Image = laughing2;
+                                break;
+                            case "9":
+                                pictureBox5.Image = sad;
+                                break;
+                            case "10":
+                                pictureBox6.Image = sad;
+                                break;
+                            case "11":
+                                pictureBox5.Image = angry1;
+                                break;
+                            case "12":
+                                pictureBox6.Image = angry1;
+                                break;
+                            case "13":
+                                pictureBox5.Image = angry;
+                                break;
+                            case "14":
+                                pictureBox6.Image = angry;
+                                break;
+                            case "15":
+                                pictureBox5.Image = crying;
+                                break;
+                            case "16":
+                                pictureBox6.Image = crying;
+                                break;
+                            case "17":
+                                pictureBox5.Image = cute;
+                                break;
+                            case "18":
+                                pictureBox6.Image = cute;
+                                break;
+                            case "19":
+                                pictureBox5.Image = surprised;
+                                break;
+                            case "20":
+                                pictureBox6.Image = surprised;
+                                break;
+                            case "21":
+                                pictureBox5.Image = serious;
+                                break;
+                            case "22":
+                                pictureBox6.Image = serious;
+                                break;
+                            case "23":
+                                pictureBox5.Image = vain;
+                                break;
+                            case "24":
+                                pictureBox6.Image = vain;
+                                break;
+                            case "25":
                                 pictureBox6.Image = null;
                                 pictureBox5.Image = null;
                                 break;
@@ -388,7 +447,7 @@ namespace caro
             button6.Visible = false;
             button4.Enabled = true;
 
-            comboBox1.Enabled = true;
+            button7.Enabled = true;
             send.Enabled = true;
             nhapchat.Enabled = true;
             NewGame();
@@ -412,7 +471,7 @@ namespace caro
             button2.Enabled = false;
             button4.Enabled = false;
 
-            comboBox1.Enabled = false;
+            button7.Enabled = false;
             send.Enabled = false;
             nhapchat.Enabled = false;
             
@@ -459,10 +518,11 @@ namespace caro
             _ticks++;
             if (_ticks == 2)
             {
+                icon = 0;
                 xoaicon();
                 timer1.Stop();
                 _ticks = 0;
-                sohinh = "7";
+                sohinh = "25";
                 socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
             }
         }
@@ -475,13 +535,13 @@ namespace caro
                 case 1:
                     if (socket.IsServer == true)
                     {
-                        pictureBox5.Image = haha;
+                        pictureBox5.Image = happy1;
                         sohinh = "1";
                         socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
                     }
                     else
                     {
-                        pictureBox6.Image = haha;
+                        pictureBox6.Image = happy1;
                         sohinh = "2";
                         socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
                     }
@@ -489,13 +549,13 @@ namespace caro
                 case 2:
                     if (socket.IsServer == true)
                     {
-                        pictureBox5.Image = sad;
+                        pictureBox5.Image = happy;
                         sohinh = "3";
                         socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
                     }
                     else
                     {
-                        pictureBox6.Image = sad;
+                        pictureBox6.Image = happy;
                         sohinh = "4";
                         socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
                     }
@@ -503,14 +563,140 @@ namespace caro
                 case 3:
                     if (socket.IsServer == true)
                     {
-                        pictureBox5.Image = angry;
+                        pictureBox5.Image = laughing;
                         sohinh = "5";
                         socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
                     }
                     else
                     {
-                        pictureBox6.Image = angry;
+                        pictureBox6.Image = laughing;
                         sohinh = "6";
+                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                    }
+                    break;
+                case 4:
+                    if (socket.IsServer == true)
+                    {
+                        pictureBox5.Image = laughing2;
+                        sohinh = "7";
+                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                    }
+                    else
+                    {
+                        pictureBox6.Image = laughing2;
+                        sohinh = "8";
+                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                    }
+                    break;
+                case 5:
+                    if (socket.IsServer == true)
+                    {
+                        pictureBox5.Image = sad;
+                        sohinh = "9";
+                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                    }
+                    else
+                    {
+                        pictureBox6.Image = sad;
+                        sohinh = "10";
+                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                    }
+                    break;
+                case 6:
+                    if (socket.IsServer == true)
+                    {
+                        pictureBox5.Image = angry1;
+                        sohinh = "11";
+                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                    }
+                    else
+                    {
+                        pictureBox6.Image = angry1;
+                        sohinh = "12";
+                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                    }
+                    break;
+                case 7:
+                    if (socket.IsServer == true)
+                    {
+                        pictureBox5.Image = angry;
+                        sohinh = "13";
+                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                    }
+                    else
+                    {
+                        pictureBox6.Image = angry;
+                        sohinh = "14";
+                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                    }
+                    break;
+                case 8:
+                    if (socket.IsServer == true)
+                    {
+                        pictureBox5.Image = crying;
+                        sohinh = "15";
+                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                    }
+                    else
+                    {
+                        pictureBox6.Image = crying;
+                        sohinh = "16";
+                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                    }
+                    break;
+                case 9:
+                    if (socket.IsServer == true)
+                    {
+                        pictureBox5.Image = cute;
+                        sohinh = "17";
+                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                    }
+                    else
+                    {
+                        pictureBox6.Image = cute;
+                        sohinh = "18";
+                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                    }
+                    break;
+                case 10:
+                    if (socket.IsServer == true)
+                    {
+                        pictureBox5.Image = surprised;
+                        sohinh = "19";
+                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                    }
+                    else
+                    {
+                        pictureBox6.Image = surprised;
+                        sohinh = "20";
+                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                    }
+                    break;
+                case 11:
+                    if (socket.IsServer == true)
+                    {
+                        pictureBox5.Image = serious;
+                        sohinh = "21";
+                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                    }
+                    else
+                    {
+                        pictureBox6.Image = serious;
+                        sohinh = "22";
+                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                    }
+                    break;
+                case 12:
+                    if (socket.IsServer == true)
+                    {
+                        pictureBox5.Image = vain;
+                        sohinh = "23";
+                        socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
+                    }
+                    else
+                    {
+                        pictureBox6.Image = vain;
+                        sohinh = "24";
                         socket.Send(new SocketData((int)SocketCommand.SEND_ICON, sohinh, new Point()));
                     }
                     break;
@@ -519,6 +705,17 @@ namespace caro
             }
             timer1.Start();
             Listen();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            emoji i = new emoji();
+            i.bieutuong = new emoji.truyenicon(loadicon);
+            i.Show();
+        }
+        private void loadicon(int data)
+        {
+            icon = data;
         }
 
         private void xoaicon()
@@ -531,14 +728,6 @@ namespace caro
         {
             rules Rule = new rules();
             Rule.Show();
-        }
-
-        
-
-        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-            ComboBox cb = sender as ComboBox;
-            icon = cb.SelectedIndex;
         }
     }
     #endregion
