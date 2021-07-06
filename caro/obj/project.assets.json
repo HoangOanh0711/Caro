@@ -8,19 +8,19 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\ASUS\\.nuget\\packages\\": {}
+    "C:\\Users\\ThanhBlack\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\visual studio\\doan\\DoAnLTM\\caro\\caro.csproj",
+      "projectUniqueName": "C:\\Users\\ThanhBlack\\Desktop\\.Net\\Đồ án\\Sắp Final\\caro\\caro.csproj",
       "projectName": "caro",
-      "projectPath": "D:\\visual studio\\doan\\DoAnLTM\\caro\\caro.csproj",
-      "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-      "outputPath": "D:\\visual studio\\doan\\DoAnLTM\\caro\\obj\\",
+      "projectPath": "C:\\Users\\ThanhBlack\\Desktop\\.Net\\Đồ án\\Sắp Final\\caro\\caro.csproj",
+      "packagesPath": "C:\\Users\\ThanhBlack\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ThanhBlack\\Desktop\\.Net\\Đồ án\\Sắp Final\\caro\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ThanhBlack\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -63,7 +63,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   }

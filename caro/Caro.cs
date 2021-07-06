@@ -15,6 +15,7 @@ namespace caro
         #region Properties
         GameBoard board;
         SocketManager socket;
+        DialogResult dialogResult;
         string IP ;
         int mode = 0;
         string sohinh;
@@ -35,14 +36,7 @@ namespace caro
         int icon, temp, scoX, scoO;
         public int ScoX { get => scoX; }
         public int ScoO { get => scoO; }
-        public Caro()
-        {
-            InitializeComponent();
-            board = new GameBoard(banco);
-            board.GameOver += Board_GameOver;
-            NewGame();
-            
-        }
+        
         public Caro(string yourname1, string yourname2, int gameMode)
         {
             InitializeComponent();
@@ -73,11 +67,13 @@ namespace caro
             }
             
         }
+        
         public Caro(int bieutuong)
         {
             this.icon = bieutuong;
             InitializeComponent();
         }
+        
         public void setname()
         {
             board.ListPlayers = new List<Player>()
@@ -89,10 +85,11 @@ namespace caro
                                         pictureBox4)
             };
         }    
+       
         #endregion
 
-
         #region Methods
+       
         void NewGame()
         {
             
@@ -101,6 +98,7 @@ namespace caro
             
             board.DrawGameBoard();
         }
+       
         void EndGame()
         {
             button1.Enabled = false;
@@ -143,14 +141,19 @@ namespace caro
 
         private void Caro_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Bạn có chắc muốn thoát không", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            dialogResult = MessageBox.Show("Bạn có chắc muốn thoát không", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.Yes)
             {
-                try
+                if (this.mode == 1)
                 {
-                    socket.Send(new SocketData((int)SocketCommand.QUIT, "", new Point()));
+                    try
+                    {
+                        socket.Send(new SocketData((int)SocketCommand.QUIT, "", new Point()));
+                        socket.CloseConnect();
+                    }
+                    catch { socket.CloseConnect(); }
                 }
-                catch { }
+
                 Application.Exit();
             }
         }
@@ -172,13 +175,24 @@ namespace caro
         #endregion
 
         #region Button
+       
         private void button3_Click(object sender, EventArgs e)
         {
-            if (board.PlayMode == 1)
+            dialogResult = MessageBox.Show("Bạn có chắc muốn thoát không", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
             {
-                socket.CloseConnect();                
+                if (this.mode == 1)
+                {
+                    try
+                    {
+                        socket.Send(new SocketData((int)SocketCommand.QUIT, "", new Point()));
+                        socket.CloseConnect();
+                    }
+                    catch { socket.CloseConnect(); }
+                }
+
+                Application.Exit();
             }
-            Application.Exit();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -231,6 +245,7 @@ namespace caro
             }
             Listen();
         }
+        
         private void button6_Click(object sender, EventArgs e)
         {
             try
@@ -248,20 +263,17 @@ namespace caro
         #endregion
 
         #region Lan
+       
         private void Caro_Load(object sender, EventArgs e)
         {
             if (mode == 1)
             {
-                Connect();
-                if (socket.IsServer == false)
-                {
-                    MessageBox.Show("Đợi chủ phòng bắt đầu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }                
+                Connect();           
             }
         }
+       
         private void ProcessData(SocketData data)
-        {
-            
+        {        
             switch (data.Command)
             {
                 case (int)SocketCommand.SEND_POINT:
@@ -415,9 +427,11 @@ namespace caro
                 case (int)SocketCommand.QUIT:
                     this.Invoke((MethodInvoker)(() =>
                     {
+                        banco.Controls.Clear();
                         EndGame();
                         socket.CloseConnect();
-                        MessageBox.Show("Đối thủ đã chạy mất dép", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Đối thủ đã thoát khỏi phòng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Connect();
                     }));
                     break;
 
@@ -425,13 +439,6 @@ namespace caro
                     this.Invoke((MethodInvoker)(() =>
                     {
                         Start();
-                    }));
-                    break;
-
-                case (int)SocketCommand.CHANGE:
-                    this.Invoke((MethodInvoker)(() =>
-                    {
-                        
                     }));
                     break;
 
@@ -454,11 +461,16 @@ namespace caro
                 banco.Enabled = false;
             }            
         }
+       
         private void beforeStart()
         {
             if(socket.IsServer == true)
             {
                 button6.Visible = true;
+                if (banco.Contains(button6))
+                {
+                    button6.BringToFront();
+                }
             }
             if (socket.IsServer == false)
             {
@@ -471,8 +483,10 @@ namespace caro
             button7.Enabled = false;
             send.Enabled = false;
             nhapchat.Enabled = false;
-            
+            hienchat.Clear();
+
         }
+       
         private void Connect()
         {
             socket.IP = this.IP;
@@ -480,18 +494,22 @@ namespace caro
             {
                 socket.IsServer = true;
                 socket.CreateServer();
-                MessageBox.Show("Bạn đang là Server", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Bạn đang là chủ phòng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 name1.Text = name;
+                name2.Text = "";
             }
             else
             {
                 socket.IsServer = false;
                 Listen();
                 MessageBox.Show("Kết nối thành công !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Đợi chủ phòng bắt đầu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 name2.Text = name;
+                name1.Text = "";
             }
             beforeStart();
         }
+       
         private void Listen()
         {
             Thread ListenThread = new Thread(() =>
@@ -507,6 +525,7 @@ namespace caro
             ListenThread.IsBackground = true;
             ListenThread.Start();
         }
+        
         #endregion
 
         #region icon
