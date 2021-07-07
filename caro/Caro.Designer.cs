@@ -60,6 +60,7 @@ namespace caro
             this.toolTip5 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip6 = new System.Windows.Forms.ToolTip(this.components);
             this.button7 = new System.Windows.Forms.Button();
+            this.toolTip7 = new System.Windows.Forms.ToolTip(this.components);
             this.player1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -68,7 +69,6 @@ namespace caro
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.banco.SuspendLayout();
             this.SuspendLayout();
             // 
             // player1
@@ -77,21 +77,21 @@ namespace caro
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.player1.BackColor = System.Drawing.Color.White;
-            this.player1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("player1.BackgroundImage")));
+            this.player1.BackgroundImage = global::caro.Properties.Resources.camhong;
             this.player1.Controls.Add(this.name1);
             this.player1.Controls.Add(this.pictureBox5);
             this.player1.Controls.Add(this.textBox1);
             this.player1.Controls.Add(this.pictureBox3);
             this.player1.Controls.Add(this.pictureBox1);
             this.player1.Location = new System.Drawing.Point(8, 5);
-            this.player1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.player1.Margin = new System.Windows.Forms.Padding(2);
             this.player1.Name = "player1";
             this.player1.Size = new System.Drawing.Size(205, 210);
             this.player1.TabIndex = 0;
             // 
             // name1
             // 
-            this.name1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(207)))), ((int)(((byte)(215)))));
+            this.name1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(224)))), ((int)(((byte)(202)))));
             this.name1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.name1.Enabled = false;
             this.name1.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -106,6 +106,7 @@ namespace caro
             // pictureBox5
             // 
             this.pictureBox5.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox5.Location = new System.Drawing.Point(124, 125);
             this.pictureBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox5.Name = "pictureBox5";
@@ -119,7 +120,7 @@ namespace caro
             this.textBox1.Enabled = false;
             this.textBox1.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.textBox1.Location = new System.Drawing.Point(140, 0);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
@@ -132,7 +133,7 @@ namespace caro
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox3.Location = new System.Drawing.Point(140, 54);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(60, 60);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -141,10 +142,10 @@ namespace caro
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImage = global::caro.Properties.Resources.camhong;
             this.pictureBox1.Image = global::caro.Properties.Resources.soccer_player;
             this.pictureBox1.Location = new System.Drawing.Point(0, 41);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(110, 110);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -164,7 +165,7 @@ namespace caro
             this.player2.Controls.Add(this.pictureBox4);
             this.player2.Controls.Add(this.pictureBox2);
             this.player2.Location = new System.Drawing.Point(8, 220);
-            this.player2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.player2.Margin = new System.Windows.Forms.Padding(2);
             this.player2.Name = "player2";
             this.player2.Size = new System.Drawing.Size(205, 210);
             this.player2.TabIndex = 1;
@@ -186,6 +187,7 @@ namespace caro
             // pictureBox6
             // 
             this.pictureBox6.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox6.ErrorImage = null;
             this.pictureBox6.InitialImage = null;
             this.pictureBox6.Location = new System.Drawing.Point(124, 125);
@@ -201,7 +203,7 @@ namespace caro
             this.textBox2.Enabled = false;
             this.textBox2.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.textBox2.Location = new System.Drawing.Point(140, 0);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
@@ -214,7 +216,7 @@ namespace caro
             // 
             this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox4.Location = new System.Drawing.Point(140, 54);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(60, 60);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -226,7 +228,7 @@ namespace caro
             this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
             this.pictureBox2.Image = global::caro.Properties.Resources.soccer_player__1_;
             this.pictureBox2.Location = new System.Drawing.Point(0, 42);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(110, 110);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -238,10 +240,8 @@ namespace caro
             this.banco.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.banco.BackgroundImage = global::caro.Properties.Resources.xanhbacha;
-            this.banco.Controls.Add(this.button6);
             this.banco.Location = new System.Drawing.Point(217, 5);
-            this.banco.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.banco.Margin = new System.Windows.Forms.Padding(2);
             this.banco.Name = "banco";
             this.banco.Size = new System.Drawing.Size(690, 600);
             this.banco.TabIndex = 0;
@@ -251,16 +251,18 @@ namespace caro
             this.button6.BackColor = System.Drawing.Color.Transparent;
             this.button6.BackgroundImage = global::caro.Properties.Resources.play;
             this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button6.Location = new System.Drawing.Point(301, 261);
+            this.button6.Location = new System.Drawing.Point(542, 258);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(100, 100);
             this.button6.TabIndex = 3;
             this.button6.UseVisualStyleBackColor = false;
+            this.button6.Visible = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // hienchat
             // 
             this.hienchat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(228)))), ((int)(((byte)(244)))));
+            this.hienchat.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.hienchat.Enabled = false;
             this.hienchat.Location = new System.Drawing.Point(912, 5);
             this.hienchat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -272,13 +274,13 @@ namespace caro
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(228)))), ((int)(((byte)(244)))));
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(214)))), ((int)(((byte)(226)))));
             this.button1.BackgroundImage = global::caro.Properties.Resources.undo;
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Location = new System.Drawing.Point(31, 459);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(55, 55);
             this.button1.TabIndex = 7;
@@ -288,13 +290,13 @@ namespace caro
             // 
             // button3
             // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(228)))), ((int)(((byte)(244)))));
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(214)))), ((int)(((byte)(226)))));
             this.button3.BackgroundImage = global::caro.Properties.Resources.exit;
             this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Location = new System.Drawing.Point(118, 528);
-            this.button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(55, 55);
             this.button3.TabIndex = 8;
@@ -304,13 +306,13 @@ namespace caro
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(228)))), ((int)(((byte)(244)))));
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(214)))), ((int)(((byte)(226)))));
             this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Location = new System.Drawing.Point(118, 459);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(55, 55);
             this.button2.TabIndex = 6;
@@ -320,13 +322,13 @@ namespace caro
             // 
             // button4
             // 
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(228)))), ((int)(((byte)(244)))));
+            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(214)))), ((int)(((byte)(226)))));
             this.button4.BackgroundImage = global::caro.Properties.Resources.newgame21;
             this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button4.FlatAppearance.BorderSize = 0;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Location = new System.Drawing.Point(31, 528);
-            this.button4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button4.Margin = new System.Windows.Forms.Padding(2);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(55, 55);
             this.button4.TabIndex = 9;
@@ -337,22 +339,23 @@ namespace caro
             // nhapchat
             // 
             this.nhapchat.Enabled = false;
-            this.nhapchat.Location = new System.Drawing.Point(912, 558);
+            this.nhapchat.Location = new System.Drawing.Point(912, 559);
             this.nhapchat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.nhapchat.Multiline = true;
             this.nhapchat.Name = "nhapchat";
-            this.nhapchat.Size = new System.Drawing.Size(180, 37);
+            this.nhapchat.Size = new System.Drawing.Size(174, 37);
             this.nhapchat.TabIndex = 1;
             // 
             // send
             // 
-            this.send.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(228)))), ((int)(((byte)(244)))));
+            this.send.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(214)))), ((int)(((byte)(226)))));
             this.send.BackgroundImage = global::caro.Properties.Resources.send;
             this.send.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.send.Enabled = false;
+            this.send.FlatAppearance.BorderSize = 0;
             this.send.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.send.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(232)))), ((int)(((byte)(226)))));
-            this.send.Location = new System.Drawing.Point(1137, 558);
+            this.send.Location = new System.Drawing.Point(1094, 559);
             this.send.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.send.Name = "send";
             this.send.Size = new System.Drawing.Size(40, 40);
@@ -368,39 +371,45 @@ namespace caro
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(1089, 557);
-            this.button7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(214)))), ((int)(((byte)(226)))));
+            this.button7.BackgroundImage = global::caro.Properties.Resources.laughing__2_;
+            this.button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button7.FlatAppearance.BorderSize = 0;
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button7.Location = new System.Drawing.Point(1142, 559);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(47, 37);
+            this.button7.Size = new System.Drawing.Size(35, 35);
             this.button7.TabIndex = 10;
-            this.button7.Text = "ICON";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.toolTip7.SetToolTip(this.button7, "Emoji");
+            this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.button7_Click_1);
             // 
             // Caro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(228)))), ((int)(((byte)(244)))));
-            this.ClientSize = new System.Drawing.Size(1182, 562);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(214)))), ((int)(((byte)(226)))));
+            this.ClientSize = new System.Drawing.Size(1184, 616);
             this.Controls.Add(this.button7);
+            this.Controls.Add(this.button6);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.nhapchat);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.send);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.banco);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.hienchat);
             this.Controls.Add(this.player2);
             this.Controls.Add(this.player1);
+            this.Controls.Add(this.banco);
+            this.Controls.Add(this.hienchat);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(1000, 600);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.MaximumSize = new System.Drawing.Size(1200, 653);
-            this.MinimumSize = new System.Drawing.Size(1196, 554);
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximumSize = new System.Drawing.Size(1200, 655);
+            this.MinimumSize = new System.Drawing.Size(1200, 655);
             this.Name = "Caro";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Caro";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Caro_FormClosing);
             this.Load += new System.EventHandler(this.Caro_Load);
@@ -414,7 +423,6 @@ namespace caro
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.banco.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -451,6 +459,7 @@ namespace caro
         private System.Windows.Forms.TextBox name1;
         private System.Windows.Forms.TextBox name2;
         private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.ToolTip toolTip7;
     }
 }
 

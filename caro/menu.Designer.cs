@@ -61,7 +61,6 @@ namespace caro
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.BackgroundImage = global::caro.Properties.Resources.pink1;
             this.pictureBox1.Image = global::caro.Properties.Resources.tic_tac_toe;
             this.pictureBox1.Location = new System.Drawing.Point(91, 11);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
@@ -143,7 +142,7 @@ namespace caro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(228)))), ((int)(((byte)(244)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(214)))), ((int)(((byte)(226)))));
             this.ClientSize = new System.Drawing.Size(434, 491);
             this.Controls.Add(this.instructions);
             this.Controls.Add(this.exit);
@@ -157,6 +156,7 @@ namespace caro
             this.MaximumSize = new System.Drawing.Size(450, 530);
             this.MinimumSize = new System.Drawing.Size(450, 530);
             this.Name = "menu";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Caro";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

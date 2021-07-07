@@ -44,7 +44,7 @@ namespace caro
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(228)))), ((int)(((byte)(244)))));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(214)))), ((int)(((byte)(226)))));
             this.panel1.Controls.Add(this.button5);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.button4);
@@ -138,7 +138,7 @@ namespace caro
             // 
             // panelChildForm
             // 
-            this.panelChildForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(228)))), ((int)(((byte)(244)))));
+            this.panelChildForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(214)))), ((int)(((byte)(226)))));
             this.panelChildForm.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelChildForm.Location = new System.Drawing.Point(199, 0);
             this.panelChildForm.Margin = new System.Windows.Forms.Padding(2);
@@ -155,6 +155,7 @@ namespace caro
             this.Controls.Add(this.panelChildForm);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Inmenu";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Instructions";
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

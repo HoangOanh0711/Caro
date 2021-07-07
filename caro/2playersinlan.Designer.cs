@@ -66,7 +66,7 @@ namespace caro
             // 
             this.txbIP.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txbIP.Location = new System.Drawing.Point(146, 140);
-            this.txbIP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbIP.Margin = new System.Windows.Forms.Padding(2);
             this.txbIP.Name = "txbIP";
             this.txbIP.Size = new System.Drawing.Size(324, 32);
             this.txbIP.TabIndex = 4;
@@ -80,7 +80,7 @@ namespace caro
             this.connect.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.connect.Image = global::caro.Properties.Resources.d1dcfb___Pale_Lavender_Color_Image___Schemecolor;
             this.connect.Location = new System.Drawing.Point(327, 206);
-            this.connect.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.connect.Margin = new System.Windows.Forms.Padding(2);
             this.connect.Name = "connect";
             this.connect.Size = new System.Drawing.Size(175, 50);
             this.connect.TabIndex = 5;
@@ -96,7 +96,7 @@ namespace caro
             this.back.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.back.Image = global::caro.Properties.Resources.d1dcfb___Pale_Lavender_Color_Image___Schemecolor;
             this.back.Location = new System.Drawing.Point(60, 206);
-            this.back.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.back.Margin = new System.Windows.Forms.Padding(2);
             this.back.Name = "back";
             this.back.Size = new System.Drawing.Size(175, 50);
             this.back.TabIndex = 6;
@@ -119,7 +119,7 @@ namespace caro
             // 
             this.tbName.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tbName.Location = new System.Drawing.Point(146, 90);
-            this.tbName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbName.Margin = new System.Windows.Forms.Padding(2);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(324, 32);
             this.tbName.TabIndex = 4;
@@ -130,7 +130,7 @@ namespace caro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(228)))), ((int)(((byte)(244)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(214)))), ((int)(((byte)(226)))));
             this.ClientSize = new System.Drawing.Size(564, 309);
             this.Controls.Add(this.back);
             this.Controls.Add(this.connect);
@@ -141,7 +141,7 @@ namespace caro
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximumSize = new System.Drawing.Size(580, 348);
             this.MinimumSize = new System.Drawing.Size(580, 348);
             this.Name = "_2playersinlan";

@@ -31,6 +31,7 @@ namespace caro
 
         private void button4_Click(object sender, EventArgs e)
         {
+            button4.BackColor = Color.FromArgb(200, 228, 244);
             openChildForm(new rules());
         }
 

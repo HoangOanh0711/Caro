@@ -16,7 +16,7 @@ namespace caro
         private TextBox playerName;
         private PictureBox turn1;
         private PictureBox turn2;
-        
+
 
         private List<Player> listPlayers;
         private List<List<Button>> matrixPositions;
@@ -48,7 +48,7 @@ namespace caro
             set { playerName = value; }
         }
 
-        
+
 
         public List<Player> ListPlayers
         {
@@ -104,7 +104,7 @@ namespace caro
             //this.Avatar = Avatar;
 
             this.CurrentPlayer = 0;
-            
+
         }
         #endregion
 
@@ -164,7 +164,7 @@ namespace caro
             }
         }
 
-        
+
         private Point GetButtonCoordinate(Button btn)
         {
             int Vertical = Convert.ToInt32(btn.Tag);
@@ -351,7 +351,7 @@ namespace caro
         }
         public bool Redo()
         {
-            if (StkRedoStep.Count <=1)
+            if (StkRedoStep.Count <= 1)
                 return false;
 
             PlayInfo OldPos = StkRedoStep.Peek();
@@ -399,10 +399,10 @@ namespace caro
             Button btn = sender as Button;
 
             if (btn.BackgroundImage != null)
-                return; 
+                return;
 
             btn.BackgroundImage = ListPlayers[CurrentPlayer].Symbol;
-            
+
             StkUndoStep.Push(new PlayInfo(GetButtonCoordinate(btn), CurrentPlayer, btn.BackgroundImage));
             StkRedoStep.Clear();
 
@@ -424,16 +424,16 @@ namespace caro
             if (gameOver != null)
             {
                 gameOver(this, new EventArgs());
-                
-            }    
-                
+
+            }
+
         }
         public void OtherPlayerClicked(Point point)
         {
             Button btn = MatrixPositions[point.Y][point.X];
 
             if (btn.BackgroundImage != null)
-                return; 
+                return;
 
             btn.BackgroundImage = ListPlayers[CurrentPlayer].Symbol;
 
@@ -447,11 +447,11 @@ namespace caro
                 EndGame();
         }
         #endregion
-        
+
         #region 1 player
-            //Khởi tạo 2 mảng điểm tấn công và điểm phòng thủ, cho giá trị bằng 7 (trường hợp 5 cờ và bị chặn 2 đầu)
-        private long[] MangDiemTanCong= new long[7] { 0, 64, 4096, 262144, 16777216, 1073741824, 68719476736 }; //
-        private long[] MangDiemPhongThu= new long[7] { 0, 8, 512, 32768, 2097152, 134217728, 8589934592 }; //điểm phòng thủ mặc điểm sẽ bé hơn điểm tấn công
+        //Khởi tạo 2 mảng điểm tấn công và điểm phòng thủ, cho giá trị bằng 7 (trường hợp 5 cờ và bị chặn 2 đầu)
+        private long[] MangDiemTanCong = new long[7] { 0, 64, 4096, 262144, 16777216, 1073741824, 68719476736 }; //
+        private long[] MangDiemPhongThu = new long[7] { 0, 8, 512, 32768, 2097152, 134217728, 8589934592 }; //điểm phòng thủ mặc điểm sẽ bé hơn điểm tấn công
         //điểm phòng thủ ở mức 1 mặc định là 8 bởi vì xét xung quanh con cờ có 8 ô, do đó điểm tân công ở mức 1 sẽ lớn hơn điểm phòng thủ (8*8=64), sau đó nhân cho 64 sẽ ra mức 2
 
         #region Calculate attack score //tính điểm tấn công
@@ -462,22 +462,22 @@ namespace caro
             int ManCells = 0; //số quân của người chơi
 
             // Duyệt từ trên xuống
-            for (int Count = 1; Count < 6 && CurrRow + Count < Constance.nRows; Count++) 
+            for (int Count = 1; Count < 6 && CurrRow + Count < Constance.nRows; Count++)
             //Xác định biến đếm(count): duyệt từ 1 đến 5, duyệt 4 ô + ô đang đánh là 5 ô
             //&& CurrRow + Count < Constance.nRows dùng để giới hạn biên
             {
-                if (MatrixPositions[CurrRow + Count][CurrCol].BackgroundImage == ListPlayers[0].Symbol) 
-            //xét mảng ô cờ vị trí[CurrRow + Count][CurrCol].BackgroundImage (tức là ô tiếp theo theo chiều từ trên xuống) là quân máy thì tăng ComCells lên 1
+                if (MatrixPositions[CurrRow + Count][CurrCol].BackgroundImage == ListPlayers[0].Symbol)
+                    //xét mảng ô cờ vị trí[CurrRow + Count][CurrCol].BackgroundImage (tức là ô tiếp theo theo chiều từ trên xuống) là quân máy thì tăng ComCells lên 1
                     ComCells += 1;
                 else if (MatrixPositions[CurrRow + Count][CurrCol].BackgroundImage == ListPlayers[1].Symbol)
                 {
-           //xét mảng ô cờ vị trí[CurrRow + Count][CurrCol].BackgroundImage là quân người thì tăng ManCells lên 1
+                    //xét mảng ô cờ vị trí[CurrRow + Count][CurrCol].BackgroundImage là quân người thì tăng ManCells lên 1
                     ManCells += 1;
                     break;
                 }
-                else 
+                else
                     break;
-           //trường hợp không phải quân người cũng không phải quân máy thì thoát
+                //trường hợp không phải quân người cũng không phải quân máy thì thoát
             }
 
             // Duyệt từ dưới lên
@@ -486,11 +486,11 @@ namespace caro
             //&& CurrRow - Count >= 0 dùng để giới hạn biên (duyệt ngược từ dưới lên)
             {
                 if (MatrixPositions[CurrRow - Count][CurrCol].BackgroundImage == ListPlayers[0].Symbol) //ô hiện tại lùi lại nên - count
-            //xét mảng ô cờ vị trí[CurrRow + Count][CurrCol].BackgroundImage là quân máy thì tăng ComCells lên 1
+                                                                                                        //xét mảng ô cờ vị trí[CurrRow + Count][CurrCol].BackgroundImage là quân máy thì tăng ComCells lên 1
                     ComCells += 1;
                 else if (MatrixPositions[CurrRow - Count][CurrCol].BackgroundImage == ListPlayers[1].Symbol)
                 {
-           //xét mảng ô cờ vị trí[CurrRow + Count][CurrCol].BackgroundImage là quân người thì tăng ManCells lên 1
+                    //xét mảng ô cờ vị trí[CurrRow + Count][CurrCol].BackgroundImage là quân người thì tăng ManCells lên 1
                     ManCells += 1;
                     break;
                 }
@@ -667,7 +667,7 @@ namespace caro
                 {
                     ComCells += 1; //gặp quân máy thì thoát ra
                     break;
-                }  
+                }
                 else if (MatrixPositions[CurrRow + Count][CurrCol].BackgroundImage == ListPlayers[1].Symbol)
                     ManCells += 1; //gặp quân người thì tăng lên, và tiếp tục xét tiếp, càng nhiều quân người thì càng nguy điểm phải chặn ngay, quan trọng đối với việc phòng ngự
                 else
@@ -692,7 +692,7 @@ namespace caro
                 return 0;
             // Nếu chặn ở 2 đầu thì thoát ra
             TotalScore += MangDiemPhongThu[ManCells];
-            
+
             return TotalScore;
         }
 
@@ -862,7 +862,7 @@ namespace caro
             }
         }
         #endregion
-        
+
         #endregion
     }
 }

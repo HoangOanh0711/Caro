@@ -134,7 +134,7 @@ namespace caro
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(228)))), ((int)(((byte)(244)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(214)))), ((int)(((byte)(226)))));
             this.ClientSize = new System.Drawing.Size(564, 311);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label3);
@@ -152,6 +152,7 @@ namespace caro
             this.Name = "playcom";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Caro";
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -107,7 +107,7 @@ namespace caro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(228)))), ((int)(((byte)(244)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(214)))), ((int)(((byte)(226)))));
             this.ClientSize = new System.Drawing.Size(564, 291);
             this.Controls.Add(this.back);
             this.Controls.Add(this.start);
@@ -119,6 +119,7 @@ namespace caro
             this.MaximumSize = new System.Drawing.Size(580, 330);
             this.MinimumSize = new System.Drawing.Size(580, 330);
             this.Name = "playAI";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Caro";
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -157,49 +157,26 @@ C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Ver Mới\caro\obj\Debug\netcoreapp3.
 C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Ver Mới\caro\obj\Debug\netcoreapp3.1\caro.rules.resources
 C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Ver Mới\caro\obj\Debug\netcoreapp3.1\caro.emoji.resources
 C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Ver Mới\caro\obj\Debug\netcoreapp3.1\caro.Inmenu.resources
-D:\visual studio\doan\DoAnLTM\caro\bin\Debug\netcoreapp3.1\caro.exe
-D:\visual studio\doan\DoAnLTM\caro\bin\Debug\netcoreapp3.1\caro.deps.json
-D:\visual studio\doan\DoAnLTM\caro\bin\Debug\netcoreapp3.1\caro.runtimeconfig.json
-D:\visual studio\doan\DoAnLTM\caro\bin\Debug\netcoreapp3.1\caro.runtimeconfig.dev.json
-D:\visual studio\doan\DoAnLTM\caro\bin\Debug\netcoreapp3.1\caro.dll
-D:\visual studio\doan\DoAnLTM\caro\bin\Debug\netcoreapp3.1\caro.pdb
-D:\visual studio\doan\DoAnLTM\caro\obj\Debug\netcoreapp3.1\caro.csproj.AssemblyReference.cache
-D:\visual studio\doan\DoAnLTM\caro\obj\Debug\netcoreapp3.1\caro._2playersinlan.resources
-D:\visual studio\doan\DoAnLTM\caro\obj\Debug\netcoreapp3.1\caro.Caro.resources
-D:\visual studio\doan\DoAnLTM\caro\obj\Debug\netcoreapp3.1\caro.emoji.resources
-D:\visual studio\doan\DoAnLTM\caro\obj\Debug\netcoreapp3.1\caro.Inmenu.resources
-D:\visual studio\doan\DoAnLTM\caro\obj\Debug\netcoreapp3.1\caro.menu.resources
-D:\visual studio\doan\DoAnLTM\caro\obj\Debug\netcoreapp3.1\caro.playAI.resources
-D:\visual studio\doan\DoAnLTM\caro\obj\Debug\netcoreapp3.1\caro.playcom.resources
-D:\visual studio\doan\DoAnLTM\caro\obj\Debug\netcoreapp3.1\caro.Properties.Resources.resources
-D:\visual studio\doan\DoAnLTM\caro\obj\Debug\netcoreapp3.1\caro.rules.resources
-D:\visual studio\doan\DoAnLTM\caro\obj\Debug\netcoreapp3.1\caro.csproj.GenerateResource.cache
-D:\visual studio\doan\DoAnLTM\caro\obj\Debug\netcoreapp3.1\caro.AssemblyInfoInputs.cache
-D:\visual studio\doan\DoAnLTM\caro\obj\Debug\netcoreapp3.1\caro.AssemblyInfo.cs
-D:\visual studio\doan\DoAnLTM\caro\obj\Debug\netcoreapp3.1\caro.csproj.CoreCompileInputs.cache
-D:\visual studio\doan\DoAnLTM\caro\obj\Debug\netcoreapp3.1\caro.dll
-D:\visual studio\doan\DoAnLTM\caro\obj\Debug\netcoreapp3.1\caro.pdb
-D:\visual studio\doan\DoAnLTM\caro\obj\Debug\netcoreapp3.1\caro.genruntimeconfig.cache
-C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Sắp Final\caro\bin\Debug\netcoreapp3.1\caro.exe
-C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Sắp Final\caro\bin\Debug\netcoreapp3.1\caro.deps.json
-C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Sắp Final\caro\bin\Debug\netcoreapp3.1\caro.runtimeconfig.json
-C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Sắp Final\caro\bin\Debug\netcoreapp3.1\caro.runtimeconfig.dev.json
-C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Sắp Final\caro\bin\Debug\netcoreapp3.1\caro.dll
-C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Sắp Final\caro\bin\Debug\netcoreapp3.1\caro.pdb
-C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Sắp Final\caro\obj\Debug\netcoreapp3.1\caro.csproj.AssemblyReference.cache
-C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Sắp Final\caro\obj\Debug\netcoreapp3.1\caro._2playersinlan.resources
-C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Sắp Final\caro\obj\Debug\netcoreapp3.1\caro.Caro.resources
-C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Sắp Final\caro\obj\Debug\netcoreapp3.1\caro.emoji.resources
-C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Sắp Final\caro\obj\Debug\netcoreapp3.1\caro.Inmenu.resources
-C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Sắp Final\caro\obj\Debug\netcoreapp3.1\caro.menu.resources
-C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Sắp Final\caro\obj\Debug\netcoreapp3.1\caro.playAI.resources
-C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Sắp Final\caro\obj\Debug\netcoreapp3.1\caro.playcom.resources
-C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Sắp Final\caro\obj\Debug\netcoreapp3.1\caro.Properties.Resources.resources
-C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Sắp Final\caro\obj\Debug\netcoreapp3.1\caro.rules.resources
-C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Sắp Final\caro\obj\Debug\netcoreapp3.1\caro.csproj.GenerateResource.cache
-C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Sắp Final\caro\obj\Debug\netcoreapp3.1\caro.AssemblyInfoInputs.cache
-C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Sắp Final\caro\obj\Debug\netcoreapp3.1\caro.AssemblyInfo.cs
-C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Sắp Final\caro\obj\Debug\netcoreapp3.1\caro.csproj.CoreCompileInputs.cache
-C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Sắp Final\caro\obj\Debug\netcoreapp3.1\caro.dll
-C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Sắp Final\caro\obj\Debug\netcoreapp3.1\caro.pdb
-C:\Users\ThanhBlack\Desktop\.Net\Đồ án\Sắp Final\caro\obj\Debug\netcoreapp3.1\caro.genruntimeconfig.cache
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\ver cừu\caro\bin\Debug\netcoreapp3.1\caro.exe
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\ver cừu\caro\bin\Debug\netcoreapp3.1\caro.deps.json
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\ver cừu\caro\bin\Debug\netcoreapp3.1\caro.runtimeconfig.json
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\ver cừu\caro\bin\Debug\netcoreapp3.1\caro.runtimeconfig.dev.json
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\ver cừu\caro\bin\Debug\netcoreapp3.1\caro.dll
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\ver cừu\caro\bin\Debug\netcoreapp3.1\caro.pdb
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\ver cừu\caro\obj\Debug\netcoreapp3.1\caro.csproj.AssemblyReference.cache
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\ver cừu\caro\obj\Debug\netcoreapp3.1\caro._2playersinlan.resources
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\ver cừu\caro\obj\Debug\netcoreapp3.1\caro.Caro.resources
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\ver cừu\caro\obj\Debug\netcoreapp3.1\caro.emoji.resources
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\ver cừu\caro\obj\Debug\netcoreapp3.1\caro.Inmenu.resources
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\ver cừu\caro\obj\Debug\netcoreapp3.1\caro.menu.resources
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\ver cừu\caro\obj\Debug\netcoreapp3.1\caro.playAI.resources
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\ver cừu\caro\obj\Debug\netcoreapp3.1\caro.playcom.resources
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\ver cừu\caro\obj\Debug\netcoreapp3.1\caro.Properties.Resources.resources
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\ver cừu\caro\obj\Debug\netcoreapp3.1\caro.rules.resources
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\ver cừu\caro\obj\Debug\netcoreapp3.1\caro.csproj.GenerateResource.cache
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\ver cừu\caro\obj\Debug\netcoreapp3.1\caro.AssemblyInfoInputs.cache
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\ver cừu\caro\obj\Debug\netcoreapp3.1\caro.AssemblyInfo.cs
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\ver cừu\caro\obj\Debug\netcoreapp3.1\caro.csproj.CoreCompileInputs.cache
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\ver cừu\caro\obj\Debug\netcoreapp3.1\caro.dll
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\ver cừu\caro\obj\Debug\netcoreapp3.1\caro.pdb
+C:\Users\ThanhBlack\Desktop\.Net\Đồ án\ver cừu\caro\obj\Debug\netcoreapp3.1\caro.genruntimeconfig.cache
