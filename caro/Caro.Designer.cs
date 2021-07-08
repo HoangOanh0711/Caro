@@ -46,21 +46,22 @@ namespace caro
             this.banco = new System.Windows.Forms.Panel();
             this.button6 = new System.Windows.Forms.Button();
             this.hienchat = new System.Windows.Forms.TextBox();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.undo = new System.Windows.Forms.ToolTip(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
+            this.redo = new System.Windows.Forms.ToolTip(this.components);
             this.button2 = new System.Windows.Forms.Button();
-            this.toolTip3 = new System.Windows.Forms.ToolTip(this.components);
-            this.toolTip4 = new System.Windows.Forms.ToolTip(this.components);
+            this.exit = new System.Windows.Forms.ToolTip(this.components);
+            this.newgame = new System.Windows.Forms.ToolTip(this.components);
             this.button4 = new System.Windows.Forms.Button();
             this.nhapchat = new System.Windows.Forms.TextBox();
             this.send = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.toolTip5 = new System.Windows.Forms.ToolTip(this.components);
-            this.toolTip6 = new System.Windows.Forms.ToolTip(this.components);
+            this.ruless = new System.Windows.Forms.ToolTip(this.components);
+            this.rules = new System.Windows.Forms.Button();
+            this.sendd = new System.Windows.Forms.ToolTip(this.components);
             this.button7 = new System.Windows.Forms.Button();
-            this.toolTip7 = new System.Windows.Forms.ToolTip(this.components);
+            this.emoji = new System.Windows.Forms.ToolTip(this.components);
             this.player1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -279,12 +280,12 @@ namespace caro
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(31, 459);
+            this.button1.Location = new System.Drawing.Point(34, 438);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(55, 55);
+            this.button1.Size = new System.Drawing.Size(50, 50);
             this.button1.TabIndex = 7;
-            this.toolTip1.SetToolTip(this.button1, "Undo");
+            this.undo.SetToolTip(this.button1, "Undo");
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -295,12 +296,12 @@ namespace caro
             this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(118, 528);
+            this.button3.Location = new System.Drawing.Point(121, 497);
             this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(55, 55);
+            this.button3.Size = new System.Drawing.Size(50, 50);
             this.button3.TabIndex = 8;
-            this.toolTip3.SetToolTip(this.button3, "Exit");
+            this.exit.SetToolTip(this.button3, "Exit");
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -311,12 +312,12 @@ namespace caro
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(118, 459);
+            this.button2.Location = new System.Drawing.Point(121, 438);
             this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(55, 55);
+            this.button2.Size = new System.Drawing.Size(50, 50);
             this.button2.TabIndex = 6;
-            this.toolTip2.SetToolTip(this.button2, "Redo");
+            this.redo.SetToolTip(this.button2, "Redo");
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -327,12 +328,12 @@ namespace caro
             this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button4.FlatAppearance.BorderSize = 0;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Location = new System.Drawing.Point(31, 528);
+            this.button4.Location = new System.Drawing.Point(34, 497);
             this.button4.Margin = new System.Windows.Forms.Padding(2);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(55, 55);
+            this.button4.Size = new System.Drawing.Size(50, 50);
             this.button4.TabIndex = 9;
-            this.toolTip4.SetToolTip(this.button4, "New Game");
+            this.newgame.SetToolTip(this.button4, "New Game");
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
@@ -360,7 +361,7 @@ namespace caro
             this.send.Name = "send";
             this.send.Size = new System.Drawing.Size(40, 40);
             this.send.TabIndex = 2;
-            this.toolTip6.SetToolTip(this.send, "Send");
+            this.sendd.SetToolTip(this.send, "Send");
             this.send.UseVisualStyleBackColor = false;
             this.send.Click += new System.EventHandler(this.send_Click);
             // 
@@ -369,18 +370,35 @@ namespace caro
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // rules
+            // 
+            this.rules.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(214)))), ((int)(((byte)(226)))));
+            this.rules.BackgroundImage = global::caro.Properties.Resources.rules2;
+            this.rules.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.rules.FlatAppearance.BorderSize = 0;
+            this.rules.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rules.Location = new System.Drawing.Point(74, 550);
+            this.rules.Margin = new System.Windows.Forms.Padding(2);
+            this.rules.Name = "rules";
+            this.rules.Size = new System.Drawing.Size(55, 55);
+            this.rules.TabIndex = 11;
+            this.ruless.SetToolTip(this.rules, "Rules");
+            this.rules.UseVisualStyleBackColor = false;
+            this.rules.Click += new System.EventHandler(this.rules_Click);
+            // 
             // button7
             // 
             this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(214)))), ((int)(((byte)(226)))));
             this.button7.BackgroundImage = global::caro.Properties.Resources.laughing__2_;
             this.button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button7.Enabled = false;
             this.button7.FlatAppearance.BorderSize = 0;
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button7.Location = new System.Drawing.Point(1142, 559);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(35, 35);
             this.button7.TabIndex = 10;
-            this.toolTip7.SetToolTip(this.button7, "Emoji");
+            this.emoji.SetToolTip(this.button7, "Emoji");
             this.button7.UseVisualStyleBackColor = false;
             this.button7.Click += new System.EventHandler(this.button7_Click_1);
             // 
@@ -390,6 +408,7 @@ namespace caro
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(214)))), ((int)(((byte)(226)))));
             this.ClientSize = new System.Drawing.Size(1184, 616);
+            this.Controls.Add(this.rules);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button4);
@@ -439,10 +458,9 @@ namespace caro
         private System.Windows.Forms.Panel banco;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.ToolTip toolTip2;
-        private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.ToolTip toolTip3;
-        private System.Windows.Forms.ToolTip toolTip4;
+        private System.Windows.Forms.ToolTip redo;
+        private System.Windows.Forms.ToolTip undo;
+        private System.Windows.Forms.ToolTip exit;
         private System.Windows.Forms.TextBox hienchat;
         private System.Windows.Forms.TextBox nhapchat;
         private System.Windows.Forms.Button send;
@@ -454,12 +472,14 @@ namespace caro
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.ToolTip toolTip5;
-        private System.Windows.Forms.ToolTip toolTip6;
+        private System.Windows.Forms.ToolTip ruless;
+        private System.Windows.Forms.ToolTip sendd;
         private System.Windows.Forms.TextBox name1;
         private System.Windows.Forms.TextBox name2;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.ToolTip toolTip7;
+        private System.Windows.Forms.ToolTip emoji;
+        private System.Windows.Forms.Button rules;
+        private System.Windows.Forms.ToolTip newgame;
     }
 }
 

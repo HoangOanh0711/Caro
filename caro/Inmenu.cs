@@ -39,5 +39,11 @@ namespace caro
         {
             Close();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            button1.BackColor = Color.FromArgb(200, 228, 244);
+            openChildForm(new inlan());
+        }
     }
 }

@@ -41,6 +41,12 @@ namespace caro
             if (string.IsNullOrEmpty(txbIP.Text))
                 txbIP.Text = Socket.GetLocalIPv4(NetworkInterfaceType.Ethernet);
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            inlan lan = new inlan();
+            lan.Show();
+        }
     }
 }
 

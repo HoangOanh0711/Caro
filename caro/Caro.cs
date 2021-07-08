@@ -220,6 +220,8 @@ namespace caro
 
         private void send_Click(object sender, EventArgs e)
         {
+            if (nhapchat.Text == "")
+                return;
             sendicon();
             if (socket.IsServer == true)
             {
@@ -492,6 +494,11 @@ namespace caro
         private void Connect()
         {
             socket.IP = this.IP;
+            if (socket.IsServer == false)
+            {
+                MessageBox.Show("Phòng đã đầy", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Application.Exit();
+            }
             if (!socket.ConnectServer())
             {
                 socket.IsServer = true;
@@ -502,6 +509,7 @@ namespace caro
             }
             else
             {
+                
                 socket.IsServer = false;
                 Listen();
                 MessageBox.Show("Kết nối thành công !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -725,7 +733,12 @@ namespace caro
             Listen();
         }
 
-       
+        private void rules_Click(object sender, EventArgs e)
+        {
+            rules rule = new rules();
+            rule.Show();
+        }
+
         void DoAnyThing(object sender, EventArgs e)
         {
             sendicon();

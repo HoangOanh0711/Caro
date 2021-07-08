@@ -42,10 +42,10 @@ namespace caro
             this.Hide();
         }
 
-        private void instructions_Click(object sender, EventArgs e)
+
+        private void menu_Load(object sender, EventArgs e)
         {
-            Inmenu inmenu = new Inmenu();
-            inmenu.Show();
+
         }
     }
 }
