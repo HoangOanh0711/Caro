@@ -99,11 +99,9 @@ namespace caro
         #region Intialize
         public GameBoard(Panel board)
         {
-            this.Board = board;
-            //this.PlayerName = PlayerName;
-            //this.Avatar = Avatar;
+            this.Board = board;   //Nhận panel hiển thị từ form caro
+            this.CurrentPlayer = 0;  //Lượt chơi 
 
-            this.CurrentPlayer = 0;
 
         }
         #endregion
@@ -112,25 +110,27 @@ namespace caro
         public void DrawGameBoard()
         {
             board.Enabled = true;
-            board.Controls.Clear();
+            board.Controls.Clear();  //Xoá hết các nút đang có
 
-            StkUndoStep = new Stack<PlayInfo>();
-            StkRedoStep = new Stack<PlayInfo>();
+            StkUndoStep = new Stack<PlayInfo>();   // khởi tạo bộ nhớ stack để undo
+            StkRedoStep = new Stack<PlayInfo>();   // khởi tạo bộ nhớ stack để redo
 
             this.CurrentPlayer = 0;
-            ChangePlayer();
+            ChangePlayer();   //hàm cập nhật lượt chơi
 
+            //Thông tin toạ độ của nút
             int LocX, LocY;
+            //Thông tin kích thước bàn cờ
             int nRows = Constance.nRows;
             int nCols = Constance.nCols;
 
-            Button OldButton = new Button();
+            Button OldButton = new Button();  //Khởi tạo 1 nút ảo để lấy vị trí tạo
             OldButton.Width = OldButton.Height = 0;
             OldButton.Location = new Point(0, 0);
 
-            MatrixPositions = new List<List<Button>>();
+            MatrixPositions = new List<List<Button>>();  //khởi tạo ma trận để lưu sơ đồ nút
 
-            for (int i = 0; i < nRows; i++)
+            for (int i = 0; i < nRows; i++)  //thực hiện các vòng lặp để tạo từng cột từ hàng nút
             {
                 MatrixPositions.Add(new List<Button>());
 
@@ -139,9 +139,9 @@ namespace caro
                     LocX = OldButton.Location.X + OldButton.Width;
                     LocY = OldButton.Location.Y;
 
-                    Button btn = new Button()
+                    Button btn = new Button()  //Tạo 1 nút với các thông số được truyền vào
                     {
-                        Width = Constance.CellWidth,
+                        Width = Constance.CellWidth,   // Kích cỡ được ấn định như 1 const trong hàm Constance
                         Height = Constance.CellHeight,
 
                         Location = new Point(LocX, LocY),
@@ -153,7 +153,7 @@ namespace caro
                     };
 
                     btn.Click += btn_Click;
-                    MatrixPositions[i].Add(btn);
+                    MatrixPositions[i].Add(btn);  //thêm nút đã tạo vào trong ma trận 
 
                     Board.Controls.Add(btn);
                     OldButton = btn;
@@ -174,8 +174,10 @@ namespace caro
             return Coordinate;
         }
 
-        #region Handling winning and losing
+        //Hàm Tính thắng thua 
+        #region Handling winning and losing  
         #region Checkchess
+        //Xét theo đường ngang
         private bool CheckHorizontal(int CurrRow, int CurrCol, Image PlayerSymbol)
         {
             int NumCellsToWin = 5;
@@ -183,7 +185,7 @@ namespace caro
 
             if (CurrRow > Constance.nCols - 5)
                 return false;
-
+            //Xét theo toạ độ nút vừa đánh, nếu những nút lân cận giống symbol thì sẽ được cộng, đủ 5 điểm sẽ thông báo thắng
             for (Count = 1; Count < NumCellsToWin; Count++)
                 if (MatrixPositions[CurrRow][CurrCol + Count].BackgroundImage != PlayerSymbol)
                     return false;
@@ -191,17 +193,17 @@ namespace caro
             // Xét chặn 2 đầu
             if (CurrCol == 0 || CurrCol + Count == Constance.nCols)
                 return true;
-
+            //Nếu trước hoặc sau hàng đang xét không có symbol của đối thủ thì được xét thắng
             if (MatrixPositions[CurrRow][CurrCol - 1].BackgroundImage == null || MatrixPositions[CurrRow][CurrCol + Count].BackgroundImage == null)
             {
                 for (Count = 0; Count < NumCellsToWin; Count++)
-                    MatrixPositions[CurrRow][CurrCol + Count].BackColor = Color.Lime;
+                    MatrixPositions[CurrRow][CurrCol + Count].BackColor = Color.Lime; //Khi thắng ô được tô màu xanh
                 return true;
             }
-            //màu của sự chiến thắng: color.lime :>
             return false;
         }
 
+        //Xét theo dường thẳng
         private bool CheckVertical(int CurrRow, int CurrCol, Image PlayerSymbol)
         {
             int NumCellsToWin = 5;
@@ -227,7 +229,7 @@ namespace caro
 
             return false;
         }
-
+        //Xét theo đường chéo chính
         private bool CheckMainDiag(int CurrRow, int CurrCol, Image PlayerSymbol)
         {
             int NumCellsToWin = 5;
@@ -253,7 +255,7 @@ namespace caro
 
             return false;
         }
-
+        //Xét theo đường chéo phụ
         private bool CheckExtraDiag(int CurrRow, int CurrCol, Image PlayerSymbol)
         {
             int NumCellsToWin = 5;
@@ -291,7 +293,7 @@ namespace caro
             }
 
             bool IsWin = false;
-
+            //Gọi lần lượt các Hàm xét
             foreach (PlayInfo btn in StkUndoStep)
             {
                 if (CheckHorizontal(btn.Point.Y, btn.Point.X, btn.Symbol))
@@ -317,12 +319,12 @@ namespace caro
         #region Undo & Redo
         public bool Undo()
         {
-            if (StkUndoStep.Count <= 1)
+            if (StkUndoStep.Count <= 1) //chỉ undo khi trong stack có nhiều hơn 1 quân cờ
                 return false;
             //peek là lấy cái vào đầu tiên
             //pos là lấy cái vào sau cùng
             PlayInfo OldPos = StkUndoStep.Peek();
-            CurrentPlayer = OldPos.CurrentPlayer == 1 ? 0 : 1;
+            CurrentPlayer = OldPos.CurrentPlayer == 1 ? 0 : 1;  //lùi lượt chơi lại
 
             bool IsUndo1 = UndoAStep();
             bool IsUndo2 = UndoAStep();
@@ -336,7 +338,7 @@ namespace caro
 
             PlayInfo OldPos = StkUndoStep.Pop();
             StkRedoStep.Push(OldPos);
-
+            //lấy toạ độ của quân vừa đánh và trả nó về giá trị null, xoá symbol ra khỏi nút
             Button btn = MatrixPositions[OldPos.Point.Y][OldPos.Point.X];
             btn.BackgroundImage = null;
 
@@ -351,7 +353,7 @@ namespace caro
         }
         public bool Redo()
         {
-            if (StkRedoStep.Count <= 1)
+            if (StkRedoStep.Count <= 1) 
                 return false;
 
             PlayInfo OldPos = StkRedoStep.Peek();
@@ -389,32 +391,35 @@ namespace caro
         #region 2 players
         private void ChangePlayer()
         {
-            int temp = CurrentPlayer;
-            temp = temp == 1 ? 0 : 1;
-            listPlayers[CurrentPlayer].Frame.Visible = true;
-            listPlayers[temp].Frame.Visible = false;
+            //Hàm thực hiện việc thay đổi lượt chơi
+            int temp = CurrentPlayer; //lấy ra lượt chơi hiện tại
+            temp = temp == 1 ? 0 : 1;   
+            listPlayers[CurrentPlayer].Frame.Visible = true;   //hiện thị icon thể hiện lượt chơi của người tới lượt
+            listPlayers[temp].Frame.Visible = false; //ẩn icon thể hiện lượt chơi của người chưa tới lượt
         }
-        private void btn_Click(object sender, EventArgs e)
+        //event này sẽ hoạt động mỗi khi đánh 1 quân cờ, 
+        private void btn_Click(object sender, EventArgs e) 
         {
             Button btn = sender as Button;
 
-            if (btn.BackgroundImage != null)
+            if (btn.BackgroundImage != null) //Nếu ô đó đã có người đánh sẽ thoát ra và không làm gì
                 return;
 
-            btn.BackgroundImage = ListPlayers[CurrentPlayer].Symbol;
+            btn.BackgroundImage = ListPlayers[CurrentPlayer].Symbol;  //Đặt symbol người đánh vào ô cờ
 
             StkUndoStep.Push(new PlayInfo(GetButtonCoordinate(btn), CurrentPlayer, btn.BackgroundImage));
+            //thêm quân cờ đánh vào bộ nhớ
             StkRedoStep.Clear();
 
-            CurrentPlayer = CurrentPlayer == 1 ? 0 : 1;
-            ChangePlayer();
+            CurrentPlayer = CurrentPlayer == 1 ? 0 : 1; //Thay đổi lượt chơi
+            ChangePlayer();  //Cập nhật lượt chơi
 
-            if (playerClicked != null)
+            if (playerClicked != null)      
                 playerClicked(this, new BtnClickEvent(GetButtonCoordinate(btn)));
             if (IsEndGame())
-                EndGame();
+                EndGame();   //Kiểm tra có thắng hay chưa, nếu rồi sẽ gọi hàm Endgame
             if (!(IsAI) && playMode == 3)
-                StartAI();
+                StartAI();   //Xét và khởi tạo chế độ AI
 
             IsAI = false;
 
@@ -423,14 +428,16 @@ namespace caro
         {
             if (gameOver != null)
             {
-                gameOver(this, new EventArgs());
+                gameOver(this, new EventArgs());  //Dừng game lại
 
             }
 
         }
-        public void OtherPlayerClicked(Point point)
+        public void OtherPlayerClicked(Point point)   //Hàm xử lý dành cho modegame1
         {
-            Button btn = MatrixPositions[point.Y][point.X];
+            //Sau khi nhận thông tin quân cờ từ đối thủ gửi tới, Hàm sẽ thực hiện cập nhật quân cờ lên bàn cờ giống 
+            //hàm sự kiện btn_click ở trên
+            Button btn = MatrixPositions[point.Y][point.X];   
 
             if (btn.BackgroundImage != null)
                 return;

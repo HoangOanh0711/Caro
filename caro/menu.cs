@@ -43,9 +43,9 @@ namespace caro
         }
 
 
-        private void menu_Load(object sender, EventArgs e)
+        private void menu_FormClosed(object sender, FormClosedEventArgs e)
         {
-
+            Application.Exit();
         }
     }
 }

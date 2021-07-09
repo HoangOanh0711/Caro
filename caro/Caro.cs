@@ -15,11 +15,15 @@ namespace caro
         #region Properties
         GameBoard board;
         SocketManager socket;
-        
         string IP;
         int mode = 0;
-        string sohinh;
         string name;
+        int icon, temp, scoX, scoO;
+        public int ScoX { get => scoX; }
+        public int ScoO { get => scoO; }
+
+
+        string sohinh;
         private int _ticks;
         Bitmap happy1 = new Bitmap(Application.StartupPath + "\\Resources\\happy (1).png");
         Bitmap happy = new Bitmap(Application.StartupPath + "\\Resources\\happy.png");
@@ -33,30 +37,28 @@ namespace caro
         Bitmap angry = new Bitmap(Application.StartupPath + "\\Resources\\angry1.png");
         Bitmap angry1 = new Bitmap(Application.StartupPath + "\\Resources\\angry11.png");
         Bitmap vain = new Bitmap(Application.StartupPath + "\\Resources\\vain.png");
-        int icon, temp, scoX, scoO;
-        public int ScoX { get => scoX; }
-        public int ScoO { get => scoO; }
+        
 
         public Caro(string yourname1, string yourname2, int gameMode)
         {
             InitializeComponent();
-            this.mode = gameMode;
+            this.mode = gameMode;  
             scoO = scoX = 0;
 
-            if (mode == 2 || mode == 3)
+            if (mode == 2 || mode == 3)   // chế độ chơi chung 1 máy và chơi cùng AI
             {
                 name1.Text = yourname1;
                 name2.Text = yourname2;
-                board = new GameBoard(banco);
-                setname();
-                board.PlayMode = mode;
-                board.GameOver += Board_GameOver;
-                board.PlayerClicked += Board_PlayerClicked;
-                NewGame();
+                board = new GameBoard(banco);   //khởi tạo và truyền panel bàn cờ vào hàm Gameboard
+                setname();  //khởi tạo tên người chơi
+                board.PlayMode = mode;  
+                board.GameOver += Board_GameOver;   // Set chế độ tính gameover
+                board.PlayerClicked += Board_PlayerClicked;   // Set chế độ truyền quân khi dùng lan
+                NewGame();  //Gọi hàm NewGame
             }
-            if (mode == 1)
+            if (mode == 1)    // chế độ chơi 2 người trong LAN
             {
-                socket = new SocketManager();
+                socket = new SocketManager();   // Khởi tạo socket
                 this.name = yourname1;
                 this.IP = yourname2;
                 board = new GameBoard(banco);
@@ -76,6 +78,8 @@ namespace caro
 
         public void setname()
         {
+            //Hàm khởi tạo người chơi, truyền thông tin cần thiết vào 
+
             board.ListPlayers = new List<Player>()
             {
                 new Player(name1.Text,Image.FromFile(Application.StartupPath + "\\Resources\\x.png"),
@@ -96,21 +100,21 @@ namespace caro
             button1.Enabled = true;
             button2.Enabled = true;
 
-            board.DrawGameBoard();
+            board.DrawGameBoard();  //Vẽ bàn cờ, tạo các nút cờ đánh
         }
 
-        void EndGame()
+        void EndGame()  //Hàm gọi mỗi khi kết thúc trận
         {
             button1.Enabled = false;
             button2.Enabled = false;
             banco.Enabled = false;
         }
 
-        void update_Score(int winner)
+        void update_Score(int winner)  //Cập nhật điểm 
         {
-            if (winner == 1)
+            if (winner == 1) // nếu player1 win thì cộng điểm
                 scoX++;
-            else if (winner == 2)
+            else if (winner == 2)  // nếu player2 win thì cộng điểm
                 scoO++;
             textBox1.Text = ScoO.ToString();
             textBox2.Text = ScoX.ToString();
@@ -118,98 +122,106 @@ namespace caro
 
         private void Board_PlayerClicked(object sender, BtnClickEvent e)
         {
-            if (board.PlayMode == 1)
+            // Mỗi khi click vào 1 quân cờ sẽ được gọi hàm này
+            if (board.PlayMode == 1)   //Đối với chế độ LAN
             {
                 try
                 {
                     banco.Enabled = false;
-                    socket.Send(new SocketData((int)SocketCommand.SEND_POINT, "", e.ClickedPoint));
+                    socket.Send(new SocketData((int)SocketCommand.SEND_POINT, "", e.ClickedPoint)); 
+                    //Gửi toạ độ nút vừa đánh tới máy đối thủ
 
                     button1.Enabled = false;
                     button2.Enabled = false;
 
                     Listen();
+                    //Lắng nghe những gì người chơi kia gửi lại
                 }
                 catch
                 {
                     EndGame();
                     MessageBox.Show("Không có kết nối nào tới máy đối thủ", "Lỗi kết nối", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                    //Báo lỗi khi không có kết nối giữa 2 máy
                 }
             }
         }
 
         private void Caro_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Bạn có chắc muốn thoát không", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            if (dialogResult == DialogResult.OK)
-            {
-                e.Cancel = true;
-                if (this.mode == 1)
-                {
-                    try
-                    {
-                        socket.Send(new SocketData((int)SocketCommand.QUIT, "", new Point()));
-                        socket.CloseConnect();
-                    }
-                    catch { socket.CloseConnect(); }
-                }
-                Application.Exit();
-
-            }
+            
         }
 
         private void Board_GameOver(object sender, EventArgs e)
         {
+            //Mỗi khi kết thúc 1 game hàm sẽ được gọi ra để tính điểm và thông báo
             EndGame();
-            temp = board.CurrentPlayer;
-            if (temp == 1)
+            temp = board.CurrentPlayer; //xét lượt chơi hiện tại
+            if (temp == 1)  //nếu lượt chơi là player1
             {
-                update_Score(2);
+                update_Score(2); //cộng điểm cho player2
             }
-            else if (temp == 0)
+            else if (temp == 0)   //và ngược lại
                 update_Score(1);
             MessageBox.Show(board.ListPlayers[temp == 1 ? 0 : 1].Name + " đã chiến thắng ♥ !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //Hiện Tên người chiên thắng
             if (board.PlayMode == 1)
                 socket.Send(new SocketData((int)SocketCommand.END_GAME, "", new Point()));
+            //Nếu là modegame1, gửi SocketCommand ENGGAME
         }
         #endregion
 
         #region Button
 
-        private void button3_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)  //Nút EXIT
         {
-            
-              
-                Application.Exit();
-            
+            DialogResult dialogResult = MessageBox.Show("Bạn có chắc muốn thoát không", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.OK)
+            {
+                this.Hide();
+                if (this.mode == 1)
+                {
+                    try
+                    {
+                        socket.Send(new SocketData((int)SocketCommand.QUIT, "", new Point()));
+                        //Gửi SocketCommand QUIT
+                        socket.CloseConnect();
+                        //Đóng tất cả kết nối
+                    }
+                    catch { socket.CloseConnect(); }
+                }
+                menu _menu = new menu();  // Khởi tạo và trở về menu
+                _menu.Show();
+                //e.Cancel = true;
+            }
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            board.Undo();
+            board.Undo();  //Gọi hàm thực hiện lệnh Undo
             if (board.PlayMode == 1)
                 socket.Send(new SocketData((int)SocketCommand.UNDO, "", new Point()));
+            //Gửi SocketCommand UNDO
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            board.Redo();
+            board.Redo();   //Gọi hàm thực hiện lệnh Redo
             if (board.PlayMode == 1)
                 socket.Send(new SocketData((int)SocketCommand.REDO, "", new Point()));
-
+            //Gửi SocketCommand REDO
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             NewGame();
-
+            //Nút khởi tạo game mới
             if (board.PlayMode == 1)
             {
                 try
                 {
                     socket.Send(new SocketData((int)SocketCommand.NEW_GAME, "", new Point()));
-
+                    //Gửi SocketCommand NewGame
                     if (socket.IsServer == false)
                         banco.Enabled = false;
                 }
@@ -238,18 +250,21 @@ namespace caro
             Listen();
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void button6_Click(object sender, EventArgs e) //Nút này dành riêng cho ModeGame1 
         {
             try
             {
                 socket.Send(new SocketData((int)SocketCommand.START, "", new Point()));
+                //Gửi SocketCommand Start
                 socket.Send(new SocketData((int)SocketCommand.NAMESE, name1.Text, new Point()));
-                Start();
-                Listen();
+                ////Gửi SocketCommand NAMESE, Truyền tên của người chơi ở máy server để máy client cập nhật tên
+                Start(); //Gọi hàm Start
+                Listen();  //Bắt đầu tạo Listen để nhận tất thông tin điều kiện
             }
             catch
             {
                 MessageBox.Show("Vui lòng chờ bạn chơi", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //Nếu chưa ai vào phòng thì không thể bắt đầu
             }
         }
         private void button7_Click_1(object sender, EventArgs e)
@@ -261,7 +276,7 @@ namespace caro
         }
         private void button5_Click(object sender, EventArgs e)
         {
-            rules Rule = new rules();
+            rules Rule = new rules(); //Hiện thị hướng dẫn game
             Rule.Show();
         }
         #endregion
@@ -283,6 +298,7 @@ namespace caro
                 case (int)SocketCommand.SEND_POINT:
                     this.Invoke((MethodInvoker)(() =>
                     {
+                        //Nhận và thực hiện cập nhật nút lên bàn cờ 
                         board.OtherPlayerClicked(data.Point);
                         banco.Enabled = true;
 
@@ -292,23 +308,24 @@ namespace caro
                     break;
 
                 case (int)SocketCommand.SEND_MESSAGE:
-                    hienchat.Text = data.Message;
+                    hienchat.Text = data.Message; //cập nhật nội dung chat lên ô hiện chat
                     break;
 
                 case (int)SocketCommand.NAMECL:
                     this.Invoke((MethodInvoker)(() =>
                     {
-                        name2.Text = data.Message;
-                        board.ListPlayers[1].Name = data.Message;
+                        name2.Text = data.Message;  //cập nhật tên của player2 lên textbox
+                        board.ListPlayers[1].Name = data.Message;  //cập nhật tên của player2 vào listplayer
                     }));
                     break;
 
                 case (int)SocketCommand.NAMESE:
                     this.Invoke((MethodInvoker)(() =>
                     {
-                        name1.Text = data.Message;
-                        board.ListPlayers[0].Name = data.Message;
+                        name1.Text = data.Message;  //cập nhật tên của player1 lên textbox
+                        board.ListPlayers[0].Name = data.Message;  //cập nhật tên của player1 vào listplayer
                         socket.Send(new SocketData((int)SocketCommand.NAMECL, name2.Text, new Point()));
+                        //gửi tên của player2 cho player1 cập nhật
                     }));
                     break;
 
@@ -400,7 +417,7 @@ namespace caro
                 case (int)SocketCommand.NEW_GAME:
                     this.Invoke((MethodInvoker)(() =>
                     {
-                        NewGame();
+                        NewGame();   //Khởi tạo newgame
                         if (this.mode == 1 && socket.IsServer == false)
                             banco.Enabled = false;
 
@@ -410,21 +427,21 @@ namespace caro
                 case (int)SocketCommand.UNDO:
                     this.Invoke((MethodInvoker)(() =>
                     {
-                        board.Undo();
+                        board.Undo(); //thực hiện lệnh undo
                     }));
                     break;
 
                 case (int)SocketCommand.REDO:
                     this.Invoke((MethodInvoker)(() =>
                     {
-                        board.Redo();
+                        board.Redo();  //thực hiện lệnh redo
                     }));
                     break;
 
                 case (int)SocketCommand.END_GAME:
                     this.Invoke((MethodInvoker)(() =>
                     {
-                        EndGame();
+                        EndGame();  //thực hiện hàm endgame
                     }));
                     break;
 
@@ -433,16 +450,16 @@ namespace caro
                     {
                         banco.Controls.Clear();
                         EndGame();
-                        socket.CloseConnect();
+                        socket.CloseConnect();  //đóng kết nối
                         MessageBox.Show("Đối thủ đã thoát khỏi phòng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Connect();
+                        Connect();  //tạo ra 1 kết nối mới
                     }));
                     break;
 
                 case (int)SocketCommand.START:
                     this.Invoke((MethodInvoker)(() =>
                     {
-                        Start();
+                        Start();  //thực hiện hàm start
                     }));
                     break;
 
@@ -453,6 +470,7 @@ namespace caro
         }
         private void Start()
         {
+            // enable những chức năng có của game và thực hiện newgame
             button6.Visible = false;
             button4.Enabled = true;
 
@@ -470,6 +488,7 @@ namespace caro
         {
             if (socket.IsServer == true)
             {
+                //chỉ hiện thị nút start cho chủ phòng
                 button6.Visible = true;
                 if (banco.Contains(button6))
                 {
@@ -480,6 +499,7 @@ namespace caro
             {
                 button6.Visible = false;
             }
+            //disable những chức năng cho đến khi bấm nút start
             button1.Enabled = false;
             button2.Enabled = false;
             button4.Enabled = false;
@@ -496,13 +516,14 @@ namespace caro
             socket.IP = this.IP;
             if (socket.IsServer == false)
             {
+                //nếu phòng đã đủ server và client thì sẽ được thoát ra
                 MessageBox.Show("Phòng đã đầy", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 Application.Exit();
             }
             if (!socket.ConnectServer())
             {
                 socket.IsServer = true;
-                socket.CreateServer();
+                socket.CreateServer();  
                 MessageBox.Show("Bạn đang là chủ phòng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 name1.Text = name;
                 name2.Text = "";

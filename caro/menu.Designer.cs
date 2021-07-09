@@ -139,7 +139,7 @@ namespace caro
             this.Name = "menu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Caro";
-            this.Load += new System.EventHandler(this.menu_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.menu_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 

@@ -167,7 +167,6 @@ C:\Users\ThanhBlack\Desktop\.Net\Đồ án\ver cừu\caro\obj\Debug\netcoreapp3.
 C:\Users\ThanhBlack\Desktop\.Net\Đồ án\ver cừu\caro\obj\Debug\netcoreapp3.1\caro._2playersinlan.resources
 C:\Users\ThanhBlack\Desktop\.Net\Đồ án\ver cừu\caro\obj\Debug\netcoreapp3.1\caro.Caro.resources
 C:\Users\ThanhBlack\Desktop\.Net\Đồ án\ver cừu\caro\obj\Debug\netcoreapp3.1\caro.emoji.resources
-C:\Users\ThanhBlack\Desktop\.Net\Đồ án\ver cừu\caro\obj\Debug\netcoreapp3.1\caro.Inmenu.resources
 C:\Users\ThanhBlack\Desktop\.Net\Đồ án\ver cừu\caro\obj\Debug\netcoreapp3.1\caro.menu.resources
 C:\Users\ThanhBlack\Desktop\.Net\Đồ án\ver cừu\caro\obj\Debug\netcoreapp3.1\caro.playAI.resources
 C:\Users\ThanhBlack\Desktop\.Net\Đồ án\ver cừu\caro\obj\Debug\netcoreapp3.1\caro.playcom.resources
@@ -181,4 +180,3 @@ C:\Users\ThanhBlack\Desktop\.Net\Đồ án\ver cừu\caro\obj\Debug\netcoreapp3.
 C:\Users\ThanhBlack\Desktop\.Net\Đồ án\ver cừu\caro\obj\Debug\netcoreapp3.1\caro.pdb
 C:\Users\ThanhBlack\Desktop\.Net\Đồ án\ver cừu\caro\obj\Debug\netcoreapp3.1\caro.genruntimeconfig.cache
 C:\Users\ThanhBlack\Desktop\.Net\Đồ án\ver cừu\caro\obj\Debug\netcoreapp3.1\caro.inlan.resources
-C:\Users\ThanhBlack\Desktop\.Net\Đồ án\ver cừu\caro\obj\Debug\netcoreapp3.1\caro.inmulti.resources
