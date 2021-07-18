@@ -13,6 +13,7 @@ namespace caro
     public partial class Caro : Form
     {
         #region Properties
+        
         GameBoard board;
         SocketManager socket;
         string IP;
@@ -67,7 +68,6 @@ namespace caro
                 board.GameOver += Board_GameOver;
                 board.PlayerClicked += Board_PlayerClicked;
             }
-
         }
 
         public Caro(int bieutuong)
@@ -120,35 +120,34 @@ namespace caro
             textBox2.Text = ScoX.ToString();
         }
 
-        private void Board_PlayerClicked(object sender, BtnClickEvent e)
+        private void Caro_FormClosing(object sender, FormClosingEventArgs e)
         {
-            // Mỗi khi click vào 1 quân cờ sẽ được gọi hàm này
-            if (board.PlayMode == 1)   //Đối với chế độ LAN
+            DialogResult dialogResult = MessageBox.Show("Bạn có chắc muốn thoát không", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.No)
+            {
+                //this.Hide();
+                e.Cancel=true;
+
+                return;
+            }
+            
+            if (this.mode == 1)
             {
                 try
                 {
-                    banco.Enabled = false;
-                    socket.Send(new SocketData((int)SocketCommand.SEND_POINT, "", e.ClickedPoint)); 
-                    //Gửi toạ độ nút vừa đánh tới máy đối thủ
-
-                    button1.Enabled = false;
-                    button2.Enabled = false;
-
-                    Listen();
-                    //Lắng nghe những gì người chơi kia gửi lại
+                    socket.Send(new SocketData((int)SocketCommand.QUIT, "", new Point()));
+                    //Gửi SocketCommand QUIT
+                    socket.CloseConnect();
+                    //Đóng tất cả kết nối
                 }
-                catch
-                {
-                    EndGame();
-                    MessageBox.Show("Không có kết nối nào tới máy đối thủ", "Lỗi kết nối", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //Báo lỗi khi không có kết nối giữa 2 máy
-                }
+                catch { socket.CloseConnect(); }
             }
-        }
-
-        private void Caro_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            
+            //Khởi tạo và trở về menu
+            if (this.mode != 1)
+            {
+                menu _menu = new menu();
+                _menu.Show();
+            }
         }
 
         private void Board_GameOver(object sender, EventArgs e)
@@ -174,26 +173,7 @@ namespace caro
 
         private void button3_Click(object sender, EventArgs e)  //Nút EXIT
         {
-            DialogResult dialogResult = MessageBox.Show("Bạn có chắc muốn thoát không", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            if (dialogResult == DialogResult.OK)
-            {
-                this.Hide();
-                if (this.mode == 1)
-                {
-                    try
-                    {
-                        socket.Send(new SocketData((int)SocketCommand.QUIT, "", new Point()));
-                        //Gửi SocketCommand QUIT
-                        socket.CloseConnect();
-                        //Đóng tất cả kết nối
-                    }
-                    catch { socket.CloseConnect(); }
-                }
-                menu _menu = new menu();  // Khởi tạo và trở về menu
-                _menu.Show();
-                //e.Cancel = true;
-            }
-
+            this.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -282,7 +262,31 @@ namespace caro
         #endregion
 
         #region Lan
+        private void Board_PlayerClicked(object sender, BtnClickEvent e)
+        {
+            // Mỗi khi click vào 1 quân cờ sẽ được gọi hàm này
+            if (board.PlayMode == 1)   //Đối với chế độ LAN
+            {
+                try
+                {
+                    banco.Enabled = false;
+                    socket.Send(new SocketData((int)SocketCommand.SEND_POINT, "", e.ClickedPoint));
+                    //Gửi toạ độ nút vừa đánh tới máy đối thủ
 
+                    button1.Enabled = false;
+                    button2.Enabled = false;
+
+                    Listen();
+                    //Lắng nghe những gì người chơi kia gửi lại
+                }
+                catch
+                {
+                    EndGame();
+                    MessageBox.Show("Không có kết nối nào tới máy đối thủ", "Lỗi kết nối", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //Báo lỗi khi không có kết nối giữa 2 máy
+                }
+            }
+        }
         private void Caro_Load(object sender, EventArgs e)
         {
             if (mode == 1)
@@ -452,6 +456,7 @@ namespace caro
                         EndGame();
                         socket.CloseConnect();  //đóng kết nối
                         MessageBox.Show("Đối thủ đã thoát khỏi phòng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        socket.IsServer = true;
                         Connect();  //tạo ra 1 kết nối mới
                     }));
                     break;
@@ -462,9 +467,6 @@ namespace caro
                         Start();  //thực hiện hàm start
                     }));
                     break;
-
-                default:
-                    break;
             }
             Listen();
         }
@@ -473,7 +475,7 @@ namespace caro
             // enable những chức năng có của game và thực hiện newgame
             button6.Visible = false;
             button4.Enabled = true;
-
+            setname();
             button7.Enabled = true;
             send.Enabled = true;
             nhapchat.Enabled = true;
@@ -483,7 +485,6 @@ namespace caro
                 banco.Enabled = false;
             }
         }
-
         private void beforeStart()
         {
             if (socket.IsServer == true)

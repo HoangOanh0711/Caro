@@ -24,6 +24,11 @@ namespace caro
 
         private void start_Click(object sender, EventArgs e)
         {
+            if (textBox1.Text == "" || textBox2.Text == "")
+            {
+                MessageBox.Show("Vui lòng nhập đủ thông tin", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             string yourname1 = textBox1.Text;
             string yourname2 = textBox2.Text;
             int mod = 2;

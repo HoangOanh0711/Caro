@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
 
+
 namespace socketmanager
 {
     public class SocketManager
@@ -132,10 +133,14 @@ namespace socketmanager
         {
             try
             {
-                server.Close();
+                
+                server.Close();   
                 client.Close();
             }
-            catch { }
+            catch 
+            {
+                
+            }
 
         }
         #endregion

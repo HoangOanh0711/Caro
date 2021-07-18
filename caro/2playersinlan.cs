@@ -25,6 +25,11 @@ namespace caro
 
         private void connect_Click(object sender, EventArgs e)
         {
+            if(tbName.Text==""||txbIP.Text=="")
+            {
+                MessageBox.Show("Vui lòng nhập đủ thông tin", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             string name = tbName.Text;
             string ip = txbIP.Text;
             int mod = 1;

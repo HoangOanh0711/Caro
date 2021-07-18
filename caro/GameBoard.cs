@@ -101,8 +101,6 @@ namespace caro
         {
             this.Board = board;   //Nhận panel hiển thị từ form caro
             this.CurrentPlayer = 0;  //Lượt chơi 
-
-
         }
         #endregion
 
@@ -164,20 +162,9 @@ namespace caro
             }
         }
 
-
-        private Point GetButtonCoordinate(Button btn)
-        {
-            int Vertical = Convert.ToInt32(btn.Tag);
-            int Horizontal = MatrixPositions[Vertical].IndexOf(btn);
-
-            Point Coordinate = new Point(Horizontal, Vertical);
-            return Coordinate;
-        }
-
         //Hàm Tính thắng thua 
         #region Handling winning and losing  
         #region Checkchess
-        //Xét theo đường ngang
         private bool CheckHorizontal(int CurrRow, int CurrCol, Image PlayerSymbol)
         {
             int NumCellsToWin = 5;
@@ -202,8 +189,7 @@ namespace caro
             }
             return false;
         }
-
-        //Xét theo dường thẳng
+        //Xét theo đường ngang
         private bool CheckVertical(int CurrRow, int CurrCol, Image PlayerSymbol)
         {
             int NumCellsToWin = 5;
@@ -229,7 +215,7 @@ namespace caro
 
             return false;
         }
-        //Xét theo đường chéo chính
+        //Xét theo dường thẳng
         private bool CheckMainDiag(int CurrRow, int CurrCol, Image PlayerSymbol)
         {
             int NumCellsToWin = 5;
@@ -246,7 +232,7 @@ namespace caro
             if (CurrRow == 0 || CurrRow + Count == Constance.nRows || CurrCol == 0 || CurrCol + Count == Constance.nCols)
                 return true;
 
-            if (MatrixPositions[CurrRow - 1][CurrCol - 1].BackgroundImage == null || MatrixPositions[CurrRow + Count][CurrCol + Count].BackgroundImage == null)
+            if (MatrixPositions[CurrRow - 1][CurrCol - 1].BackgroundImage == null || MatrixPositions[CurrRow + Count][CurrCol + Count].BackgroundImage==null)
             {
                 for (Count = 0; Count < NumCellsToWin; Count++)
                     MatrixPositions[CurrRow + Count][CurrCol + Count].BackColor = Color.Lime;
@@ -255,7 +241,7 @@ namespace caro
 
             return false;
         }
-        //Xét theo đường chéo phụ
+        //Xét theo đường chéo chính
         private bool CheckExtraDiag(int CurrRow, int CurrCol, Image PlayerSymbol)
         {
             int NumCellsToWin = 5;
@@ -272,7 +258,7 @@ namespace caro
             if (CurrRow == 4 || CurrRow == Constance.nRows - 1 || CurrRow == 0 || CurrRow + Count == Constance.nRows)
                 return true;
 
-            if (MatrixPositions[CurrRow + 1][CurrCol - 1].BackgroundImage == null || MatrixPositions[CurrRow - Count][CurrCol + Count].BackgroundImage == null)
+            if (MatrixPositions[CurrRow + 1][CurrCol - 1].BackgroundImage == null || MatrixPositions[CurrRow - Count][CurrCol + Count].BackgroundImage==null)
             {
                 for (Count = 0; Count < NumCellsToWin; Count++)
                     MatrixPositions[CurrRow - Count][CurrCol + Count].BackColor = Color.Lime;
@@ -281,8 +267,8 @@ namespace caro
 
             return false;
         }
+        //Xét theo đường chéo phụ
         #endregion
-
         //Hàm isendgame gọi xét các điều kiện thắng
         private bool IsEndGame()
         {
@@ -291,7 +277,6 @@ namespace caro
                 MessageBox.Show("Hòa cờ !!!");
                 return true;
             }
-
             bool IsWin = false;
             //Gọi lần lượt các Hàm xét
             foreach (PlayInfo btn in StkUndoStep)
@@ -308,7 +293,6 @@ namespace caro
                 if (CheckExtraDiag(btn.Point.Y, btn.Point.X, btn.Symbol))
                     IsWin = true;
             }
-
             if (IsWin)
                 return IsWin;
             return false;
@@ -348,7 +332,6 @@ namespace caro
                 OldPos = StkUndoStep.Peek();
 
             ChangePlayer();
-
             return true;
         }
         public bool Redo()
@@ -382,7 +365,6 @@ namespace caro
                 OldPos = StkRedoStep.Peek();
 
             ChangePlayer();
-
             return true;
         }
 
@@ -418,11 +400,20 @@ namespace caro
                 playerClicked(this, new BtnClickEvent(GetButtonCoordinate(btn)));
             if (IsEndGame())
                 EndGame();   //Kiểm tra có thắng hay chưa, nếu rồi sẽ gọi hàm Endgame
+
             if (!(IsAI) && playMode == 3)
                 StartAI();   //Xét và khởi tạo chế độ AI
-
             IsAI = false;
 
+        }
+
+        private Point GetButtonCoordinate(Button btn)
+        {
+            int Vertical = Convert.ToInt32(btn.Tag);
+            int Horizontal = MatrixPositions[Vertical].IndexOf(btn);
+
+            Point Coordinate = new Point(Horizontal, Vertical);
+            return Coordinate;
         }
         public void EndGame()
         {
@@ -431,7 +422,6 @@ namespace caro
                 gameOver(this, new EventArgs());  //Dừng game lại
 
             }
-
         }
         public void OtherPlayerClicked(Point point)   //Hàm xử lý dành cho modegame1
         {
